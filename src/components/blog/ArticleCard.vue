@@ -1,56 +1,56 @@
 <template>
-  <el-card class="me-area" :body-style="{ padding: '16px' }">
-    <div class="me-article-header">
-      <a @click="view(id)" class="me-article-title">{{ title }}</a>
-      <el-button v-if="weight > 0" class="me-article-icon" type="text"
-        >置顶</el-button
-      >
-      <span class="me-pull-right me-article-count">
-        <i class="me-icon-comment"></i>&nbsp;{{ commentCounts }}
-      </span>
-      <span class="me-pull-right me-article-count">
-        <i class="el-icon-view"></i>&nbsp;{{ viewCounts }}
-      </span>
-    </div>
+  <div>
+    <div class="article-list" v-for="blog in blogList" :key="blog.id">
+      <el-card class="me-area" :body-style="{ padding: '16px' }">
+        <div class="me-article-header">
+          <a @click="view(blog.id)" class="me-article-title">{{ blog.title }}</a>
+          <el-button v-if="blog.weight > 0" class="me-article-icon" type="text"
+          >置顶
+          </el-button
+          >
+          <!-- 评论数展示 -->
+          <!--          <span class="me-pull-right me-article-count"/>-->
+          <!--          <i class="me-icon-comment"></i>&nbsp;{{ blog.commentCounts }}-->
+          <span class="me-pull-right me-article-count"/>
+          <i class="el-icon-view"></i>&nbsp;{{ blog.views }}
+        </div>
 
-    <div class="me-artile-description">
-      {{ summary }}
-    </div>
-    <div class="me-article-footer">
-      <span class="me-article-author">
-        <i class="me-icon-author"></i>&nbsp;{{ author }}
-      </span>
+        <div class="me-article-description">
+          {{ blog.description }}
+        </div>
+        <div class="me-article-footer">
+          <span class="me-article-author"/>
+          <!-- 作者信息 -->
+          <i class="el-icon-user-solid"></i>&nbsp;{{ blog.userInfo.nickname }}
+          <el-tag v-for="t in blog.tags" :key="t.tagName" size="mini" type="success">\{{
+              t.tagName
+            }}
+          </el-tag>
 
-      <el-tag v-for="t in tags" :key="t.tagName" size="mini" type="success">{{
-        t.tagName
-      }}</el-tag>
-
-      <span class="me-pull-right me-article-count">
-        <i class="el-icon-time"></i>&nbsp;{{ createDate }}
+          <span class="me-pull-right me-article-count">
+        <i class="el-icon-time"></i>&nbsp;{{ blog.updateTime | timeToNow}}
       </span>
+        </div>
+      </el-card>
     </div>
-  </el-card>
+  </div>
 </template>
 
 <script>
 export default {
   name: "ArticleCard",
+  props: {
+    blogList: {
+      type: Array,
+      require: true
+    },
+  },
   data() {
-    return {
-      id: "String",
-      weight: 1,
-      title: "String",
-      commentCounts: 1,
-      viewCounts: 1,
-      summary: "String",
-      author: "String",
-      tags: ["1", "2"],
-      createDate: "String",
-    };
+    return {};
   },
   methods: {
     view(id) {
-      console.log("文章详情接口");
+      console.log(id + "文章详情接口");
     },
   },
 };

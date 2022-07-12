@@ -10,17 +10,25 @@
 
     <div class="main">
       <el-container>
-        <el-aside width="200px">Aside</el-aside>
-        <el-main
+        <div class="side">
+          <el-aside width="200px">Aside</el-aside>
+        </div>
+        <div class="main">
+          <el-main
           >Main区域
-          <article-card></article-card>
-        </el-main>
-        <el-aside width="200px">Aside</el-aside>
+            <keep-alive include="Home">
+              <router-view></router-view>
+            </keep-alive>
+          </el-main>
+        </div>
+        <div class="side">
+          <el-aside width="200px">Aside</el-aside>
+        </div>
       </el-container>
     </div>
     <transition>
       <el-backtop :visibility-height="1">
-        <img src="" class="el-icon-arrow-up" />
+        <i class="el-icon-arrow-up"/>
       </el-backtop>
     </transition>
     <BlogFooter></BlogFooter>
@@ -32,9 +40,12 @@ import Navigation from "@/components/index/Navigation.vue";
 import BlogHeader from "@/components/index/BlogHeader.vue";
 import BlogFooter from "@/components/index/BlogFooter.vue";
 import ArticleCard from "@/components/blog/ArticleCard.vue";
+
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: "Index",
-  components: { Navigation, BlogHeader, BlogFooter, ArticleCard },
+  // eslint-disable-next-line vue/no-unused-components
+  components: {Navigation, BlogHeader, BlogFooter, ArticleCard},
   data() {
     return {};
   },
@@ -47,9 +58,12 @@ export default {
   min-height: 100vh; /* 没有元素时，也把页面撑开至100% */
   flex-direction: column;
 }
+
 .main {
-  width: auto;
+  width: 100%;
+  height: 100%;
 }
+
 .el-container {
   display: flex;
   flex: 1;

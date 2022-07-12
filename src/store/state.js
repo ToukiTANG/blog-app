@@ -3,5 +3,6 @@ export default {
     clientSize: {
         clientHeight: 0,
         clientWidth: 1080
-    }
+    },
+    isOtherToHome: false
 }
