@@ -1,13 +1,13 @@
 <template>
   <div ref="nav">
     <el-menu
-      :default-active="isActive"
-      class="el-menu-demo"
-      mode="horizontal"
-      background-color="#000000"
-      text-color="#fff"
-      active-text-color="#ffd04b"
-      menu-trigger="click"
+        :default-active="isActive"
+        class="el-menu-demo"
+        mode="horizontal"
+        background-color="#000000"
+        text-color="#fff"
+        active-text-color="#ffd04b"
+        menu-trigger="click"
     >
       <el-menu-item index="1">
         <router-link class="link" to="/home" active-class="active">
@@ -16,10 +16,9 @@
       </el-menu-item>
       <el-submenu index="2">
         <template slot="title">分类</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
-        <el-menu-item index="2-2">选项2</el-menu-item>
-        <el-menu-item index="2-3">选项3</el-menu-item>
-        <el-menu-item index="2-4">选项4</el-menu-item>
+        <template v-for="item in categoryList">
+            <el-menu-item @click="category(item.name)" :index="item.id" :key="item.id">{{item.name}}</el-menu-item>
+        </template>
       </el-submenu>
       <el-menu-item index="3">归档</el-menu-item>
       <el-submenu index="4">
@@ -33,11 +32,23 @@
 
 <script>
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: "Navigation",
+  props: {
+    categoryList: {
+      type: Array,
+      require: true
+    },
+  },
   data() {
     return {
       isActive: "1",
     };
+  },
+  methods: {
+    category(name) {
+      this.$router.push(`/category/${name}`)
+    }
   },
 };
 </script>
@@ -46,8 +57,22 @@ export default {
 .link {
   text-decoration: none;
 }
+
 ul.el-menu-demo.el-menu--horizontal.el-menu {
   display: flex;
   justify-content: center;
 }
+
+.el-row {
+  background-color: #42b983;
+  margin: 20px;
+}
+
+.el-col {
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px;
+  border-right: 1px solid white;
+}
+
 </style>

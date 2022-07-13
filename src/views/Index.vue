@@ -1,7 +1,7 @@
 <template>
   <div class="site">
     <!-- 顶部导航 -->
-    <Navigation></Navigation>
+    <Navigation :categoryList="categoryList"></Navigation>
 
     <!-- 首页大图 只在首页且pc段显示 -->
     <div class="m-mobile-hide">
@@ -47,7 +47,9 @@ export default {
   // eslint-disable-next-line vue/no-unused-components
   components: {Navigation, BlogHeader, BlogFooter, ArticleCard},
   data() {
-    return {};
+    return {
+      categoryList: [{id: "001", name: "随笔"}, {id: "002", name: "test02"}]
+    };
   },
 };
 </script>

@@ -9,11 +9,19 @@ const router = new VueRouter({
             path: '/',
             component: () => import('@/views/Index.vue'),
             redirect: '/home',
-            children: [{
-                path: '/home',
-                name:'home',
-                component: () => import('@/views/home/Home.vue'),
-            }]
+            children: [
+                {
+                    path: '/home',
+                    name: 'home',
+                    component: () => import('@/views/home/Home.vue'),
+                    mete: {title: "首页"}
+                },
+                {
+                    path: '/category/:name',
+                    name: 'category',
+                    component: () => import('@/views/category/Category'),
+                    mete: {title: "分类"}
+                }]
         }
     ],
 })
