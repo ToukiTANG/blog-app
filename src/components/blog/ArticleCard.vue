@@ -19,10 +19,7 @@
           {{ blog.description }}
         </div>
         <div class="me-article-footer">
-          <span class="me-article-author"/>
-          <!-- 作者信息 -->
-          <i class="el-icon-user-solid"></i>&nbsp;{{ blog.userInfo.nickname }}
-          <el-tag v-for="t in blog.tags" :key="t.tagName" size="mini" type="success">\{{
+          <el-tag v-for="t in blog.tags" :key="t.tagName" size="mini" type="success">{{
               t.tagName
             }}
           </el-tag>
