@@ -1,19 +1,9 @@
 <template>
   <header ref="header">
-    BlogHeader组件
-    <div>
-      <!-- <div
-        class="bgimag"
-        style="
-          background-image: url('https://fastly.jsdelivr.net/gh/Naccl/blog-resource/img/bg1.jpg');
-        "
-      ></div> -->
-      <!-- <img
-        src="https://fastly.jsdelivr.net/gh/Naccl/blog-resource/img/bg1.jpg"
-      /> -->
-    </div>
+<!--    <img src="https://fastly.jsdelivr.net/gh/Naccl/blog-resource/img/bg3.jpg" alt="header大图"/>-->
+    <img class="header-img" src="../../assets/世界的镇魂曲.jpg" alt="header大图"/>
     <hr />
-    <div class="wrpper">
+    <div class="wave">
       <i class="el-icon-bottom" @click="toMain"></i>
     </div>
   </header>
@@ -47,6 +37,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.header-img{
+  width: 100%;
+  object-fit: cover;
+}
 
 </style>

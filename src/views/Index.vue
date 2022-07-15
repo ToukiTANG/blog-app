@@ -1,7 +1,7 @@
 <template>
   <div class="site">
     <!-- 顶部导航 -->
-    <Navigation :categoryList="categoryList"></Navigation>
+    <Navigation class="nav-menu" :categoryList="categoryList"></Navigation>
 
     <!-- 首页大图 只在首页且pc段显示 -->
     <div class="m-mobile-hide">
@@ -13,7 +13,7 @@
         <div class="side">
           <el-aside width="200px">Aside</el-aside>
         </div>
-        <div class="main">
+        <div class="m-main">
           <el-main
           >Main区域
             <keep-alive include="Home">
@@ -40,6 +40,7 @@ import Navigation from "@/components/index/Navigation.vue";
 import BlogHeader from "@/components/index/BlogHeader.vue";
 import BlogFooter from "@/components/index/BlogFooter.vue";
 import ArticleCard from "@/components/blog/ArticleCard.vue";
+import {SAVE_CLIENT_SIZE} from "@/store/mutation-types";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -51,6 +52,20 @@ export default {
       categoryList: [{id: "001", name: "随笔"}, {id: "002", name: "test02"}]
     };
   },
+  mounted() {
+    //进入首页过后即计算窗口大小
+    this.$store.commit(SAVE_CLIENT_SIZE, {
+      clientHeight: document.body.clientHeight,
+      clientWidth: document.body.clientWidth
+    })
+    //当浏览器尺寸被调整，重设窗口大小
+    window.onresize = () => {
+      this.$store.commit(SAVE_CLIENT_SIZE, {
+        clientHeight: document.body.clientHeight,
+        clientWidth: document.body.clientWidth
+      })
+    }
+  }
 };
 </script>
 
@@ -64,6 +79,7 @@ export default {
 .main {
   width: 100%;
   height: 100%;
+  margin-top: 40px;
 }
 
 .el-container {
@@ -74,5 +90,10 @@ export default {
   min-width: 0;
   width: 960px;
   margin: 0 auto;
+}
+
+/*固定在头部*/
+.nav-menu {
+  position: fixed;
 }
 </style>
