@@ -24,6 +24,7 @@
 
 <script>
 import {getArchives} from "@/api/archives";
+import {light2dark} from "@/utils/navCss";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -47,6 +48,9 @@ export default {
       })
     }
   },
+  mounted() {
+    light2dark()
+  }
 }
 </script>
 

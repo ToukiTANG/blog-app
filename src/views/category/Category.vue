@@ -9,6 +9,7 @@
 <script>
 import Articles from "@/components/blog/Articles";
 import {getBlogListByCategoryName} from "@/api/category";
+import {light2dark} from "@/utils/navCss";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -47,6 +48,9 @@ export default {
   },
   created() {
     this.getBlogList()
+  },
+  mounted() {
+    light2dark()
   }
 }
 </script>

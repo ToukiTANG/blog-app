@@ -1,16 +1,22 @@
 <template>
-  <header ref="header">
-<!--    <img src="https://fastly.jsdelivr.net/gh/Naccl/blog-resource/img/bg3.jpg" alt="header大图"/>-->
-    <img class="header-img" src="../../assets/世界的镇魂曲.jpg" alt="header大图"/>
-    <hr />
-    <div class="wave">
-      <i class="el-icon-bottom" @click="toMain"></i>
+
+  <div class="image-header" ref="header">
+    <div class="main-image">
+      <img class="img-view" src="@/assets/世界的镇魂曲.jpg" alt="main-image">
     </div>
-  </header>
+    <div class="wrapper">
+      <div>
+        <i class="icon-down fa-solid fa-angles-down" @click="toMain"></i>
+      </div>
+      <div class="wave1" style="background: url(../../assets/wave1.png) repeat-x"></div>
+      <div class="wave2" style="background: url(../../assets/wave2.png) repeat-x"></div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import {mapState} from "vuex";
+
 export default {
   name: "BlogHeader",
   data() {
@@ -20,7 +26,9 @@ export default {
     ...mapState(["clientSize"]),
   },
   watch: {
-    "clientSize.clientHeight"() {},
+    "clientSize.clientHeight"() {
+      this.setHeaderHeight()
+    },
   },
   methods: {
     toMain() {
@@ -33,14 +41,67 @@ export default {
       this.$refs.header.style.height = this.clientSize.clientHeight + "px";
     },
   },
-  mounted() {},
+  mounted() {
+    this.setHeaderHeight()
+  },
 };
 </script>
 
 <style scoped>
-.header-img{
+.image-header {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main-image {
+  height: 100vh;
   width: 100%;
+  align-items: center;
+}
+
+.img-view {
   object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.wave1, .wave2 {
+  position: absolute;
+  bottom: 0;
+  opacity: 0.7;
+}
+
+.wave1 {
+  height: 75px;
+  width: 100%;
+}
+
+.wave2 {
+  height: 90px;
+  width: calc(100% + 100px);
+  left: -100px;
+}
+
+.wrapper .icon-down {
+  font-size: 45px;
+  position: absolute;
+  left: 50%;
+  bottom: 90px;
+  color: #eaeef178;
+  animation: opener .6s ease-in-out alternate infinite;
+}
+
+.wrapper i:hover {
+  transition: all .5s;
+  color: #3c4d55;
+}
+
+@keyframes opener {
+  100% {
+    bottom: 100px
+  }
 }
 
 </style>

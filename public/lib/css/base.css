@@ -17,14 +17,15 @@
 body {
     font-family: sans-serif;
     background: var(--color-base);
+    height: 100vh;
 }
 
 /*滚动条*/
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 8px;
 }
 
 /* 滚动条上的滚动滑块 */
 ::-webkit-scrollbar-thumb {
-    background-color: skyblue;
+    background-color: #12507b;
 }

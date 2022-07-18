@@ -81,8 +81,6 @@ export default {
     })
 
   },
-
-
   methods: {
     category(name) {
       this.$router.push(`/category/${name}`);
@@ -101,6 +99,7 @@ export default {
   align-items: center;
   padding: 0 5%;
   position: relative;
+  z-index: 1000;
 }
 
 .men-bar .logo {

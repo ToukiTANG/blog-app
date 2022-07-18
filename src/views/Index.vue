@@ -4,7 +4,7 @@
     <Navigation class="nav-menu" :categoryList="categoryList"></Navigation>
 
     <!-- 首页大图 只在首页且pc段显示 -->
-    <div class="m-mobile-hide">
+    <div class="header-image">
       <BlogHeader v-show="$route.name === 'home'"></BlogHeader>
     </div>
 
@@ -81,8 +81,8 @@ export default {
 <style scoped>
 .site {
   display: flex;
-  min-height: 100vh; /* 没有元素时，也把页面撑开至100% */
   flex-direction: column;
+  width: 100%;
 }
 
 /*固定在头部*/
@@ -93,10 +93,10 @@ export default {
 .main {
   display: flex;
   justify-content: center;
-  align-items: center;
   position: relative;
   width: 1400px;
-  margin: 60px auto 0;
+  margin: 80px auto 0;
+  min-height: 100vh;
 }
 
 .side {
