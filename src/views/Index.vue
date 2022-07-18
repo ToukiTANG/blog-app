@@ -8,23 +8,32 @@
       <BlogHeader v-show="$route.name === 'home'"></BlogHeader>
     </div>
 
+    <!--    <div class="main">-->
+    <!--      <el-container>-->
+    <!--        <div class="side">-->
+    <!--          <el-aside width="200px">Aside</el-aside>-->
+    <!--        </div>-->
+    <!--        <div class="m-main">-->
+    <!--          <el-main-->
+    <!--          >Main区域-->
+    <!--            <keep-alive include="Home">-->
+    <!--              <router-view></router-view>-->
+    <!--            </keep-alive>-->
+    <!--          </el-main>-->
+    <!--        </div>-->
+    <!--        <div class="side">-->
+    <!--          <el-aside width="200px">Aside</el-aside>-->
+    <!--        </div>-->
+    <!--      </el-container>-->
+    <!--    </div>-->
     <div class="main">
-      <el-container>
-        <div class="side">
-          <el-aside width="200px">Aside</el-aside>
-        </div>
-        <div class="m-main">
-          <el-main
-          >Main区域
-            <keep-alive include="Home">
-              <router-view></router-view>
-            </keep-alive>
-          </el-main>
-        </div>
-        <div class="side">
-          <el-aside width="200px">Aside</el-aside>
-        </div>
-      </el-container>
+      <div class="side">l-side</div>
+      <div class="main-content">
+        <keep-alive include="Home">
+          <router-view/>
+        </keep-alive>
+      </div>
+      <div class="side">r-side</div>
     </div>
     <transition>
       <el-backtop :visibility-height="1">
@@ -76,24 +85,34 @@ export default {
   flex-direction: column;
 }
 
-.main {
-  width: 100%;
-  height: 100%;
-  margin-top: 40px;
-}
-
-.el-container {
-  display: flex;
-  flex: 1;
-  flex-basis: auto;
-  box-sizing: border-box;
-  min-width: 0;
-  width: 960px;
-  margin: 0 auto;
-}
-
 /*固定在头部*/
 .nav-menu {
   position: fixed;
 }
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 1400px;
+  margin: 60px auto 0;
+}
+
+.side {
+  display: block;
+  flex: 1;
+  height: 500px;
+  border: 1px solid black;
+}
+
+.main-content {
+  padding: 30px 20px;
+  display: block;
+  flex: 3;
+  height: 500px;
+  margin: 0 14px;
+  border: 1px solid black;
+}
+
 </style>
