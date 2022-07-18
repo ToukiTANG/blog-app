@@ -2,15 +2,15 @@
   <div class="men-bar">
     <h1 class="logo">Touki's blog</h1>
     <ul>
-      <li class="li-item-init">
+      <li class="li-item-light">
         <router-link to="/home">首页</router-link>
       </li>
-      <li class="li-item-init">
+      <li class="li-item-light">
         <a href="#">分类<i class="fas fa-caret-down"></i></a>
         <div class="dropdown-menu">
           <ul>
             <li
-                class="li-item-init"
+                class="li-item-light"
                 v-for="item in categoryList"
                 :key="item.id"
                 @click="category(item.name)"
@@ -20,15 +20,15 @@
           </ul>
         </div>
       </li>
-      <li class="li-item-init">
+      <li class="li-item-light">
         <router-link to="/archives">归档</router-link>
       </li>
-      <li class="li-item-init">
+      <li class="li-item-light">
         <a href="#">关于<i class="fas fa-caret-down"></i></a>
         <div class="dropdown-menu">
           <ul>
-            <li class="li-item-init"><a href="#">网站</a></li>
-            <li class="li-item-init"><a href="#">作者</a></li>
+            <li class="li-item-light"><a href="#">网站</a></li>
+            <li class="li-item-light"><a href="#">作者</a></li>
           </ul>
         </div>
       </li>
@@ -36,13 +36,15 @@
     <div class="search">
       <div class="icon"></div>
       <div class="input">
-        <input type="text" placeholder="Search" id="mySearch" />
+        <input type="text" placeholder="Search" id="mySearch"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {dark2light, light2dark} from "@/utils/navCss";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Navigation",
@@ -58,26 +60,26 @@ export default {
       isChange: true,
     };
   },
+  watch: {
+    '$route.fullPath'() {
+      if (this.$route.name === "home") {
+        dark2light()
+      } else {
+        light2dark()
+      }
+    }
+  },
   mounted() {
     window.addEventListener("scroll", () => {
       if (this.$route.name === "home") {
-        if (window.scrollY > 200) {
-          const menList = document.getElementsByClassName("men-bar");
-          menList[0].style.backgroundColor = "var(--color-black)";
-          const liList = document.getElementsByClassName("li-item-init");
-          for (let i = 0; i < liList.length; i++) {
-            liList[i].className = "li-item-change";
-          }
+        if (window.scrollY >= 200) {
+          light2dark()
         } else {
-          const menList = document.getElementsByClassName("men-bar");
-          menList[0].style.backgroundColor = "transparent";
-          const liList = document.getElementsByClassName("li-item-change");
-          for (let i = 0; i < liList.length; i++) {
-            liList[i].className = "li-item-init";
-          }
+          dark2light()
         }
       }
-    });
+    })
+
   },
 
 

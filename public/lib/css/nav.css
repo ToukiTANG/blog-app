@@ -55,16 +55,16 @@ body {
     align-items: center;
 }
 
-.men-bar ul .li-item-init:hover{
+.men-bar ul .li-item-light:hover{
     background-color: #0000000d;
 }
 
-.men-bar ul .li-item-change:hover{
+.men-bar ul .li-item-dark:hover{
     background-color: var(--color-black-1);
 }
 
 
-.men-bar ul .li-item-init:hover .dropdown-menu{
+.men-bar ul .li-item-light:hover .dropdown-menu{
     display: block;
     position: absolute;
     left: 0;
@@ -72,7 +72,7 @@ body {
     background-color: inherit;
 }
 
-.men-bar ul .li-item-change:hover .dropdown-menu{
+.men-bar ul .li-item-dark:hover .dropdown-menu{
     display: block;
     position: absolute;
     left: 0;
