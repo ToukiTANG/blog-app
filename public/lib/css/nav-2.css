@@ -17,7 +17,7 @@ body {
 }
 
 .men-bar {
-    background-color: transparent;
+    background-color: var(--color-black);
     height: 80px;
     width: 100%;
     display: flex;
@@ -56,7 +56,7 @@ body {
 }
 
 .men-bar ul li:hover{
-    background-color: #0000000d;
+    background-color: var(--color-black-1);
 }
 
 .men-bar ul li:hover .dropdown-menu{
@@ -64,7 +64,7 @@ body {
     position: absolute;
     left: 0;
     top: 100%;
-    background-color: inherit;
+    background-color: var(--color-black);
 }
 
 .men-bar ul li:hover .dropdown-menu ul{
