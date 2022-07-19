@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="articles">
     <article-card class="article-card-list" :blogList="blogList"></article-card>
     <pagination class="article-pagination" :getBlogList="getBlogList" :totalPage="totalPage"></pagination>
   </div>

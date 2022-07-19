@@ -1,32 +1,45 @@
 <template>
   <div>
     <div class="article-list" v-for="blog in blogList" :key="blog.id">
-      <el-card class="me-area" :body-style="{ padding: '16px' }">
-        <div class="me-article-header">
-          <a @click="view(blog.id)" class="me-article-title">{{ blog.title }}</a>
-          <el-button v-if="blog.weight > 0" class="me-article-icon" type="text"
-          >置顶
-          </el-button
-          >
-          <!-- 评论数展示 -->
-          <!--          <span class="me-pull-right me-article-count"/>-->
-          <!--          <i class="me-icon-comment"></i>&nbsp;{{ blog.commentCounts }}-->
-          <span class="me-pull-right me-article-count"/>
-          <i class="el-icon-view"></i>&nbsp;{{ blog.views }}
+      <el-card shadow="hover" class="me-area" :body-style="{ padding: '0 16px 16px' }">
+        <!--置顶标志-->
+        <div v-if="blog.weight===1" class="article-top">
+          <i class="fa-solid fa-circle-up fa-lg"></i>
         </div>
+        <div class="article-content">
+          <!--标题-->
+          <div class="article-title">
+            <h2>
+              <a href="#" @click="view(blog.id)" class="me-article-title">{{ blog.title }}</a>
+            </h2>
 
-        <div class="me-article-description">
-          {{ blog.description }}
-        </div>
-        <div class="me-article-footer">
-          <el-tag v-for="t in blog.tags" :key="t.tagName" size="mini" type="success">{{
-              t.tagName
-            }}
-          </el-tag>
+          </div>
+          <!--简略信息图标-->
+          <div class="article-info">
+            <div class="info-item">
+              <div class="info-time"><i class="fa-solid fa-calendar-days fa-xs"><span>{{
+                  blog.updateTime | timeToNow
+                }}</span></i>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-views"><i class="fa-solid fa-eye fa-xs"></i><span>{{ blog.views }}</span></div>
+            </div>
+          </div>
+          <!--首图-->
+          <div>
 
-          <span class="me-pull-right me-article-count">
-        <i class="el-icon-time"></i>&nbsp;{{ blog.updateTime | timeToNow}}
-      </span>
+          </div>
+          <!--概述-->
+          <div class="me-article-description">
+            {{ blog.description }}
+          </div>
+          <div class="me-article-footer">
+            <el-tag v-for="t in blog.tags" :key="t.tagName" size="mini" type="success">{{
+                t.tagName
+              }}
+            </el-tag>
+          </div>
         </div>
       </el-card>
     </div>
@@ -54,39 +67,78 @@ export default {
 </script>
 
 <style scoped>
-.me-article-header {
-  /*padding: 10px 18px;*/
-  padding-bottom: 10px;
+
+.el-card.is-hover-shadow:hover {
+  box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, .3)
 }
 
-.me-article-title {
-  font-weight: 600;
+.el-card {
+  padding: 25px 20px 0;
+  margin-bottom: 30px;
+  border: 1px solid var(--color-border);
 }
 
-.me-article-icon {
-  padding: 3px 8px;
+.article-title {
+  margin-bottom: 20px;
 }
 
-.me-article-count {
-  color: #a6a6a6;
-  padding-left: 14px;
-  font-size: 13px;
+.article-title h2 {
+  text-align: center;
 }
 
-.me-pull-right {
+.article-title h2 a {
+  color: #333333;
+}
+
+.article-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-item {
+  margin: 0 10px;
+}
+
+.info-item span {
+  margin-left: 5px;
+}
+
+.info-time {
+  color: #4182a4;
+}
+
+.info-views {
+  color: #2a6e3f;
+}
+
+.article-top {
+  display: inline-block;
   float: right;
+  position: relative;
+  bottom: 10px;
+  left: 10px;
 }
 
-.me-artile-description {
-  font-size: 13px;
-  line-height: 24px;
-  margin-bottom: 10px;
+.article-top:after {
+  content: "";
+  float: right;
+  left: 26px;
+  bottom: 15px;
+  position: relative;
+  border-right: solid 30px #db2828;
+  border-top: solid 30px #db2828;
+  border-left: solid 30px transparent;
+  border-bottom: solid 30px transparent;
 }
 
-.me-article-author {
-  color: #a6a6a6;
-  padding-right: 18px;
-  font-size: 13px;
+.article-top i {
+  color: white;
+  float: left;
+  position: relative;
+  top: 5px;
+  left: 80px;
+  z-index: 3;
 }
 
 .el-tag {

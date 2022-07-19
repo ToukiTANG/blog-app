@@ -1,11 +1,7 @@
 <template>
   <div class="pagination">
-    <el-pagination
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-size="5"
-        layout="prev, pager, next, jumper"
-        :total="totalPage">
+    <el-pagination @current-change="handleCurrentChange" :current-page="currentPage" :page-count="totalPage"
+                   :page-size="5" layout="prev, pager, next, jumper" background>
     </el-pagination>
   </div>
 </template>
@@ -53,5 +49,13 @@ export default {
 </script>
 
 <style scoped>
+
+.pagination{
+  text-align: center;
+}
+
+>>>.el-pagination.is-background .btn-next, >>>.el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+  background-color: #ffffff !important;
+}
 
 </style>

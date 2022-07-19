@@ -28,6 +28,10 @@ export default {
   width: 100%;
 }
 
+.el-card{
+  border: 1px solid var(--color-border);
+}
+
 .el-card.is-hover-shadow:hover {
   box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, .3)
 }
