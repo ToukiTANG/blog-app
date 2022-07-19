@@ -25,6 +25,11 @@
               <div class="info-views"><i class="fa-solid fa-eye fa-xs"></i><span>{{ blog.views }}</span></div>
             </div>
           </div>
+          <div class="category-tag">
+            <router-link :to="`/category/${blog.category.categoryName}`">
+              <i class="fa-solid fa-folder-open fa-sm"> {{ blog.category.categoryName }}</i>
+            </router-link>
+          </div>
           <!--概述-->
           <div class="article-description">
             {{ blog.description }}
@@ -159,6 +164,7 @@ export default {
   padding: 25px 20px 0;
   margin-bottom: 30px;
   border: 1px solid var(--color-border);
+  overflow: visible;
 }
 
 .article-title {
@@ -228,6 +234,44 @@ export default {
 
 .article-description {
   margin: 20px 0;
+}
+
+.category-tag {
+  width: 100px;
+  height: 35px;
+  border-radius: 0 5px 5px 0;
+  background-color: #db9b34;
+  position: relative;
+  left: -62px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-tag:after {
+  content: "";
+  border-style: solid;
+  border-width: 0 25px 25px 0;
+  border-right-color: #c67915;
+  border-top-color: #c67915;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  position: absolute;
+  top: 100%;
+  right: 75%;
+}
+
+.category-tag i {
+  width: 100%;
+  color: var(--color-white);
+}
+
+.category-tag a {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
 .el-tag {
