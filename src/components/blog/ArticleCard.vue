@@ -25,6 +25,7 @@
               <div class="info-views"><i class="fa-solid fa-eye fa-xs"></i><span>{{ blog.views }}</span></div>
             </div>
           </div>
+          <!--分类标签-->
           <div class="category-tag">
             <router-link :to="`/category/${blog.category.categoryName}`">
               <i class="fa-solid fa-folder-open fa-sm"> {{ blog.category.categoryName }}</i>
@@ -38,10 +39,14 @@
           <div v-if="blog.firstPicture" style="{width: 100%}">
             <img class="first-img" src="@/assets/firstPicture.jpg" alt="firstPicture"/>
           </div>
+          <!--阅读全文按钮-->
+          <div class="article-reading">
+            <el-button type="primary" round size="small">阅读全文</el-button>
+          </div>
+          <el-divider></el-divider>
           <div class="me-article-footer">
-            <el-tag v-for="t in blog.tags" :key="t.tagName" size="mini" type="success">{{
-                t.tagName
-              }}
+            <el-tag v-for="t in blog.tags" :key="t.tagName" size="mini" type="success">
+              {{ t.tagName }}
             </el-tag>
           </div>
         </div>
@@ -229,7 +234,9 @@ export default {
 
 .first-img {
   object-fit: cover;
-  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  border-radius: 5px;
 }
 
 .article-description {
@@ -272,6 +279,27 @@ export default {
   text-align: center;
   height: 100%;
   width: 100%;
+}
+
+.article-reading {
+  margin: 15px 0 0;
+  text-align: center;
+}
+
+.article-reading .el-button {
+  border-color: #6b798e;
+}
+
+.article-reading .el-button--primary {
+  background-color: #6b798e;
+}
+
+.article-reading .el-button--primary:hover {
+  background-color: #6b798ecf;
+}
+
+.article-reading .el-button--primary:active {
+  background-color: #505c6e;
 }
 
 .el-tag {
