@@ -49,15 +49,13 @@ export default {
 
 <style scoped>
 .image-header {
-  height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
 .main-image {
-  height: 100vh;
-  width: 100%;
+  height: 100%;
   align-items: center;
 }
 

@@ -12,7 +12,7 @@ Vue.filter('timeFormat', function (value, format = 'YYYY-MM-DD HH:mm:ss') {
 Vue.filter('timeToNow', function (value) {
     //相对时间大于一个月，显示详细时间
     if (moment().diff(moment(value),"days") > 7) {
-        return moment(value).format('YYYY-MM-DD HH:mm')
+        return moment(value).format('yyyy-MM-DD HH:mm')
     }
     return moment(value).fromNow()
 })

@@ -3,7 +3,7 @@
     <!-- 顶部导航 -->
     <Navigation class="nav-menu" :categoryList="categoryList"></Navigation>
 
-    <!-- 首页大图 只在首页且pc段显示 -->
+    <!-- 首页大图 只在首页且显示 -->
     <div class="header-image">
       <BlogHeader v-show="$route.name === 'home'"></BlogHeader>
     </div>
@@ -19,7 +19,7 @@
       </div>
       <div class="side">r-side</div>
     </div>
-
+    <!--回到顶部图标-->
     <transition>
       <el-backtop :visibility-height="1">
         <i class="el-icon-arrow-up"/>
@@ -51,14 +51,14 @@ export default {
   mounted() {
     //进入首页过后即计算窗口大小
     this.$store.commit(SAVE_CLIENT_SIZE, {
-      clientHeight: document.body.clientHeight,
-      clientWidth: document.body.clientWidth
+      clientHeight: window.innerHeight,
+      clientWidth: window.innerWidth
     })
     //当浏览器尺寸被调整，重设窗口大小
     window.onresize = () => {
       this.$store.commit(SAVE_CLIENT_SIZE, {
-        clientHeight: document.body.clientHeight,
-        clientWidth: document.body.clientWidth
+        clientHeight: window.innerHeight,
+        clientWidth: window.innerWidth
       })
     }
   }
@@ -95,7 +95,6 @@ export default {
   padding: 0 20px;
   display: block;
   flex: 3;
-  height: 500px;
   margin: 0 14px;
 }
 

@@ -25,13 +25,13 @@
               <div class="info-views"><i class="fa-solid fa-eye fa-xs"></i><span>{{ blog.views }}</span></div>
             </div>
           </div>
-          <!--首图-->
-          <div>
-
-          </div>
           <!--概述-->
-          <div class="me-article-description">
+          <div class="article-description">
             {{ blog.description }}
+          </div>
+          <!--首图-->
+          <div v-if="blog.firstPicture" style="{width: 100%}">
+            <img class="first-img" src="@/assets/firstPicture.jpg" alt="firstPicture"/>
           </div>
           <div class="me-article-footer">
             <el-tag v-for="t in blog.tags" :key="t.tagName" size="mini" type="success">{{
@@ -49,13 +49,97 @@
 export default {
   name: "ArticleCard",
   props: {
-    blogList: {
-      type: Array,
-      require: true
-    },
+    // blogList: {
+    //   type: Array,
+    //   require: true
+    // },
   },
   data() {
-    return {};
+    return {
+      blogList: [
+        {
+          "id": 1,
+          "title": "测试标题",
+          "firstPicture": "@/assets/firstPicture.jpg",
+          "description": "第一条测试数据",
+          "updateTime": "2022-07-14T07:15:45.000+00:00",
+          "weight": 1,
+          "views": 10,
+          "commentEnabled": 1,
+          "category": {
+            "id": 1,
+            "categoryName": "随笔"
+          },
+          "tags": [
+            {
+              "id": 1,
+              "tagName": "SpringBoot"
+            },
+            {
+              "id": 2,
+              "tagName": "Java"
+            },
+            {
+              "id": 3,
+              "tagName": "Python"
+            }]
+        },
+        {
+          "id": 2,
+          "title": "测试标题2",
+          "firstPicture": null,
+          "description": "第二条测试数据",
+          "updateTime": "2022-07-13T07:15:45.000+00:00",
+          "weight": 1,
+          "views": 5,
+          "commentEnabled": 1,
+          "category": {
+            "id": 1,
+            "categoryName": "随笔"
+          },
+          "tags": [
+            {
+              "id": 1,
+              "tagName": "SpringBoot"
+            },
+            {
+              "id": 2,
+              "tagName": "Java"
+            },
+            {
+              "id": 3,
+              "tagName": "Python"
+            }]
+        },
+        {
+          "id": 3,
+          "title": "测试标题3",
+          "firstPicture": null,
+          "description": "第三条测试数据",
+          "updateTime": "2022-07-11T07:15:45.000+00:00",
+          "weight": 0,
+          "views": 10,
+          "commentEnabled": 1,
+          "category": {
+            "id": 1,
+            "categoryName": "随笔"
+          },
+          "tags": [
+            {
+              "id": 1,
+              "tagName": "SpringBoot"
+            },
+            {
+              "id": 2,
+              "tagName": "Java"
+            },
+            {
+              "id": 3,
+              "tagName": "Python"
+            }]
+        }
+      ]
+    };
   },
   methods: {
     view(id) {
@@ -135,6 +219,15 @@ export default {
   top: 18px;
   right: 7px;
   z-index: 1;
+}
+
+.first-img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.article-description {
+  margin: 20px 0;
 }
 
 .el-tag {
