@@ -3,10 +3,10 @@
     <h1 class="logo">Touki's blog</h1>
     <ul>
       <li class="li-item-light">
-        <router-link to="/home">首页</router-link>
+        <router-link to="/home"><i class="fa-solid fa-house-chimney fa-xs"></i> 首页</router-link>
       </li>
       <li class="li-item-light">
-        <a href="#">分类<i class="fas fa-caret-down"></i></a>
+        <a href="#"><i class="fa-solid fa-layer-group fa-xs"></i>分类<i class="fas fa-caret-down fa-xs"></i></a>
         <div class="dropdown-menu">
           <ul>
             <li
@@ -21,16 +21,10 @@
         </div>
       </li>
       <li class="li-item-light">
-        <router-link to="/archives">归档</router-link>
+        <router-link to="/archives"><i class="fa-solid fa-calendar fa-xs"></i>归档</router-link>
       </li>
       <li class="li-item-light">
-        <a href="#">关于<i class="fas fa-caret-down"></i></a>
-        <div class="dropdown-menu">
-          <ul>
-            <li class="li-item-light"><a href="#">网站</a></li>
-            <li class="li-item-light"><a href="#">作者</a></li>
-          </ul>
-        </div>
+        <a href="#"><i class="fa-solid fa-circle-info fa-xs"></i>关于</a>
       </li>
     </ul>
     <div class="search">
@@ -104,8 +98,10 @@ export default {
 
 .men-bar .logo {
   flex: 1;
-  color: var(--color-white);
-  font-size: 30px;
+  color: #f5f3f2;
+  font-size: 25px;
+  font-style: italic;
+  opacity: .8;
 }
 
 .men-bar ul {
@@ -113,6 +109,10 @@ export default {
   display: flex;
   flex: 6;
   height: 100%;
+}
+
+.men-bar ul i {
+  margin-right: 5px;
 }
 
 .men-bar ul li {
@@ -130,36 +130,40 @@ export default {
   align-items: center;
 }
 
-.men-bar ul .li-item-light:hover{
+.men-bar ul .li-item-light:hover {
+  transition: background-color .2s;
   background-color: #0000000d;
 }
 
-.men-bar ul .li-item-dark:hover{
+.men-bar ul .li-item-dark:hover {
+  transition: background-color .2s;
   background-color: var(--color-black-1);
 }
 
 
-.men-bar ul .li-item-light:hover .dropdown-menu{
+.men-bar ul .li-item-light:hover .dropdown-menu {
   display: block;
   position: absolute;
   left: 0;
   top: 100%;
+  transition: background-color .2s;
   background-color: inherit;
 }
 
-.men-bar ul .li-item-dark:hover .dropdown-menu{
+.men-bar ul .li-item-dark:hover .dropdown-menu {
   display: block;
   position: absolute;
   left: 0;
   top: 100%;
+  transition: background-color .2s;
   background-color: var(--color-black);
 }
 
-.men-bar ul li:hover .dropdown-menu ul{
+.men-bar ul li:hover .dropdown-menu ul {
   display: block;
 }
 
-.men-bar ul li:hover .dropdown-menu ul li{
+.men-bar ul li:hover .dropdown-menu ul li {
   height: 60px;
 }
 
@@ -217,7 +221,7 @@ export default {
   transform: translate(6px, 6px) rotate(315deg);
 }
 
-.men-bar .search .input{
+.men-bar .search .input {
   position: relative;
   width: 300px;
   height: 100%;
@@ -227,7 +231,7 @@ export default {
   align-items: center;
 }
 
-.men-bar .search .input input{
+.men-bar .search .input input {
   color: var(--color-white);
   position: absolute;
   top: 0;
