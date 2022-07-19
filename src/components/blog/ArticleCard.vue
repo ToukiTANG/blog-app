@@ -1,18 +1,17 @@
 <template>
   <div>
     <div class="article-list" v-for="blog in blogList" :key="blog.id">
+      <!--置顶标志-->
+      <div v-if="blog.weight===1" class="article-top">
+        <i class="fa-solid fa-circle-up fa-lg"></i>
+      </div>
       <el-card shadow="hover" class="me-area" :body-style="{ padding: '0 16px 16px' }">
-        <!--置顶标志-->
-        <div v-if="blog.weight===1" class="article-top">
-          <i class="fa-solid fa-circle-up fa-lg"></i>
-        </div>
         <div class="article-content">
           <!--标题-->
           <div class="article-title">
             <h2>
               <a href="#" @click="view(blog.id)" class="me-article-title">{{ blog.title }}</a>
             </h2>
-
           </div>
           <!--简略信息图标-->
           <div class="article-info">
@@ -113,18 +112,15 @@ export default {
 }
 
 .article-top {
-  display: inline-block;
+  width: 0;
+  height: 0;
   float: right;
   position: relative;
-  bottom: 10px;
-  left: 10px;
 }
 
 .article-top:after {
   content: "";
   float: right;
-  left: 26px;
-  bottom: 15px;
   position: relative;
   border-right: solid 30px #db2828;
   border-top: solid 30px #db2828;
@@ -134,11 +130,11 @@ export default {
 
 .article-top i {
   color: white;
-  float: left;
+  float: right;
   position: relative;
-  top: 5px;
-  left: 80px;
-  z-index: 3;
+  top: 18px;
+  right: 7px;
+  z-index: 1;
 }
 
 .el-tag {
