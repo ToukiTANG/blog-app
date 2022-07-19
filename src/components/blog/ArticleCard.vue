@@ -44,8 +44,8 @@
             <el-button type="primary" round size="small">阅读全文</el-button>
           </div>
           <el-divider></el-divider>
-          <div class="me-article-footer">
-            <el-tag v-for="t in blog.tags" :key="t.tagName" size="mini" type="success">
+          <div class="article-footer">
+            <el-tag v-for="t in blog.tags" :key="t.tagName">
               {{ t.tagName }}
             </el-tag>
           </div>
@@ -304,5 +304,9 @@ export default {
 
 .el-tag {
   margin-left: 6px;
+}
+
+.article-footer {
+  margin: 0 0 8px;
 }
 </style>
