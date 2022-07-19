@@ -27,7 +27,9 @@
     <!--      </el-container>-->
     <!--    </div>-->
     <div class="main">
-      <div class="side">l-side</div>
+      <div class="side">
+        <introduction></introduction>
+      </div>
       <div class="main-content">
         <keep-alive include="Home">
           <router-view/>
@@ -50,12 +52,13 @@ import BlogHeader from "@/components/index/BlogHeader.vue";
 import BlogFooter from "@/components/index/BlogFooter.vue";
 import ArticleCard from "@/components/blog/ArticleCard.vue";
 import {SAVE_CLIENT_SIZE} from "@/store/mutation-types";
+import Introduction from "@/components/side/Introduction";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Index",
   // eslint-disable-next-line vue/no-unused-components
-  components: {Navigation, BlogHeader, BlogFooter, ArticleCard},
+  components: {Introduction, Navigation, BlogHeader, BlogFooter, ArticleCard},
   data() {
     return {
       categoryList: [{id: "001", name: "随笔"}, {id: "002", name: "test02"}]
@@ -102,8 +105,6 @@ export default {
 .side {
   display: block;
   flex: 1;
-  height: 500px;
-  border: 1px solid black;
 }
 
 .main-content {
