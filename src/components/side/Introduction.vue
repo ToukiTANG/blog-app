@@ -1,5 +1,5 @@
 <template>
-  <div class="Introduction">
+  <div class="introduction">
     <el-card shadow="hover" :body-style="{padding:0}">
       <img src="@/assets/touki.jpg" class="image" alt="">
       <div class="text-nickname">Touki</div>
@@ -22,6 +22,10 @@ export default {
 </script>
 
 <style scoped>
+.introduction{
+  position: sticky;
+  top: 60px;
+}
 
 .image {
   object-fit: cover;
