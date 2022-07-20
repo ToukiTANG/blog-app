@@ -17,7 +17,9 @@
           <router-view/>
         </keep-alive>
       </div>
-      <div class="side">r-side</div>
+      <div class="side">
+        <random-article></random-article>
+      </div>
     </div>
     <!--回到顶部图标-->
     <transition>
@@ -37,12 +39,13 @@ import BlogFooter from "@/components/index/BlogFooter.vue";
 import ArticleCard from "@/components/blog/ArticleCard.vue";
 import {SAVE_CLIENT_SIZE} from "@/store/mutation-types";
 import Introduction from "@/components/side/Introduction";
+import RandomArticle from "@/components/side/RandomArticle";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Index",
   // eslint-disable-next-line vue/no-unused-components
-  components: {Introduction, Navigation, BlogHeader, BlogFooter, ArticleCard},
+  components: {RandomArticle, Introduction, Navigation, BlogHeader, BlogFooter, ArticleCard},
   data() {
     return {
       categoryList: [{id: "001", name: "随笔"}, {id: "002", name: "test02"}]
