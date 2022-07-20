@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="article-card">
     <div class="article-list" v-for="blog in blogList" :key="blog.id">
       <!--置顶标志-->
       <div v-if="blog.weight===1" class="article-top">
