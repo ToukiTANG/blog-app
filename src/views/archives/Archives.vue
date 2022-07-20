@@ -6,19 +6,22 @@
       <el-divider></el-divider>
       <div class="timeline">
         <div class="timeline-item" v-for="(value, key ,index) in archiveMap" :key="index">
-          <div class="timeline-header">
-            <a href="#">{{ key }}</a>
+          <div class="timeline-header" :class="colorObj[index%5]">
+            <a href="#" class="date">{{ key }}</a>
           </div>
           <div v-for="item in value" :key="item.id">
             <div class="timeline-item">
-              <div class="wrap">
+              <div class="wrap" :class="colorObj[index%5]">
                 <span class="day">{{ item.day }}日</span>
                 <a href="#">
-                  <div class="title">{{ item.title }}</div>
+                  <div class="title" :class="colorObj[index%5]">{{ item.title }}</div>
                 </a>
               </div>
             </div>
           </div>
+        </div>
+        <div class="timeline-header" :class="'dark'">
+          <a href="#" class="date">Hello world!</a>
         </div>
       </div>
     </el-card>
@@ -46,14 +49,20 @@ export default {
                   {"id": 3, "title": "测试title02-03", "day": 3},
                   {"id": 4, "title": "测试title02-02", "day": 2},
                   {"id": 5, "title": "测试title02-01", "day": 1}
+                ],
+            "2019年12月":
+                [
+                  {"id": 3, "title": "测试title02-03", "day": 3},
+                  {"id": 4, "title": "测试title02-02", "day": 2},
+                  {"id": 5, "title": "测试title02-01", "day": 1}
                 ]
           },
       colorObj: {
-        0: 'tl-blue',
-        1: 'tl-dark',
-        2: 'tl-green',
-        3: 'tl-purple',
-        4: 'tl-red',
+        0: 'blue',
+        1: 'dark',
+        2: 'green',
+        3: 'orange',
+        4: 'red',
       }
     }
   },
@@ -100,7 +109,6 @@ export default {
 .timeline .timeline-header {
   height: 30px;
   width: 100px;
-  background-color: #23b7e5;
   text-align: center;
   border-radius: 5px;
 }
@@ -117,7 +125,6 @@ export default {
 
 .wrap {
   margin-left: 50px;
-  border-color: #23b7e5;
   position: relative;
   padding: 15px 0 15px 20px;
   border-style: solid;
@@ -175,9 +182,68 @@ export default {
   font-size: 14px;
   padding: 12px 15px;
   letter-spacing: 0.3px;
-  background-color: #23b7e5;
   color: #ffffff;
   width: fit-content;
   border-radius: 5px;
+}
+
+.timeline-header.blue, .title.blue {
+  background-color: #4994c4;
+}
+
+.timeline-header.blue:hover, .title.blue:hover {
+  opacity: .8;
+}
+
+.wrap.blue {
+  border-color: #4994c4;
+}
+
+.timeline-header.dark, .title.dark {
+  background-color: #31322c;
+}
+
+.timeline-header.dark:hover, .title.dark:hover {
+  opacity: .8;
+}
+
+.wrap.dark {
+  border-color: #31322c;
+}
+
+.timeline-header.green, .title.green {
+  background-color: #5d7259;
+}
+
+.timeline-header.green:hover, .title.green:hover {
+  opacity: .8;
+}
+
+.wrap.green {
+  border-color: #5d7259;
+}
+
+.timeline-header.dark, .title.dark {
+  background-color: #d9883d;
+}
+
+.timeline-header.dark:hover, .title.dark:hover {
+  opacity: .8;
+}
+
+.wrap.dark {
+  border-color: #d9883d;
+}
+
+.timeline-header.red, .title.red {
+  background-color: #b13b2e;
+}
+
+.timeline-header.red:hover, .title.red:hover {
+  opacity: .8;
+}
+
+.wrap.red {
+  border-color: #b13b2e;
 }
 </style>
