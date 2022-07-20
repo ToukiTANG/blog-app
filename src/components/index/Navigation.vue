@@ -157,6 +157,7 @@ export default {
   top: 100%;
   transition: background-color .2s;
   background-color: var(--color-black);
+  border-radius: 5px;
 }
 
 .men-bar ul li:hover .dropdown-menu ul {
@@ -165,6 +166,7 @@ export default {
 
 .men-bar ul li:hover .dropdown-menu ul li {
   height: 60px;
+  border-radius: 5px;
 }
 
 

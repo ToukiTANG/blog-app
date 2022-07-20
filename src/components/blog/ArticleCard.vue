@@ -44,9 +44,10 @@
             <el-button type="primary" round size="small">阅读全文</el-button>
           </div>
           <el-divider></el-divider>
+          <!--标签-->
           <div class="article-footer">
             <el-tag v-for="t in blog.tags" :key="t.tagName">
-              {{ t.tagName }}
+              <a href="#">{{ t.tagName }}</a>
             </el-tag>
           </div>
         </div>
@@ -302,11 +303,30 @@ export default {
   background-color: #505c6e;
 }
 
-.el-tag {
-  margin-left: 6px;
-}
-
 .article-footer {
   margin: 0 0 8px;
+}
+
+.article-footer .el-tag {
+  margin-left: 6px;
+  color: #206864;
+  border-color: #206864d4;
+  background-color: #2068641f;
+}
+
+.article-footer .el-tag:hover {
+  transition: .2s;
+  background-color: #2068644C;
+}
+
+.article-footer span .el-tag .el-tag-light {
+  padding: 0 10px;
+}
+
+.article-footer .el-tag a {
+  color: inherit;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
 }
 </style>
