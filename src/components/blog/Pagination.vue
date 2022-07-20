@@ -52,6 +52,7 @@ export default {
 
 .pagination{
   text-align: center;
+  margin-bottom: 30px;
 }
 
 >>>.el-pagination.is-background .btn-next, >>>.el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
