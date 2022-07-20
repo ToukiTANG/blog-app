@@ -48,6 +48,10 @@ export default {
 </script>
 
 <style scoped>
+.random-article {
+  position: sticky;
+  top: 60px;
+}
 
 .random-article >>> .el-card__body {
   padding: 0;
