@@ -1,6 +1,8 @@
 <template>
-  <div class="Category">
-    <h2 class="category-name">分类{{ categoryName }}下的文章</h2>
+  <div class="category">
+    <el-card shadow="always">
+      <h2 class="category-name">分类{{ categoryName }}下的文章</h2>
+    </el-card>
     <articles :getBlogList="getBlogList" :blogList="blogList" :totalPage="totalPage"></articles>
   </div>
 
@@ -57,4 +59,12 @@ export default {
 
 <style scoped>
 
+.category .el-card {
+  padding: 0;
+  margin-bottom: 10px;
+  border: 1px solid var(--color-border);
+  text-align: center;
+  /*box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, .3)*/
+
+}
 </style>
