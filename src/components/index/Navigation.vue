@@ -38,6 +38,7 @@
 
 <script>
 import {dark2light, light2dark} from "@/utils/navCss";
+import {mapState} from "vuex";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -49,10 +50,10 @@ export default {
     },
   },
   data() {
-    return {
-      isActive: "1",
-      isChange: true,
-    };
+    return {};
+  },
+  computed: {
+    ...mapState(["clientSize"])
   },
   watch: {
     '$route.fullPath'() {
@@ -66,7 +67,7 @@ export default {
   mounted() {
     window.addEventListener("scroll", () => {
       if (this.$route.name === "home") {
-        if (window.scrollY >= 200) {
+        if (window.scrollY >= this.clientSize.clientHeight / 2) {
           light2dark()
         } else {
           dark2light()
