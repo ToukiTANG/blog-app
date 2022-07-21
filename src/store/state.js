@@ -4,5 +4,6 @@ export default {
         clientHeight: 0,
         clientWidth: 1080
     },
-    isOtherToHome: false
+    isOtherToHome: false,
+    siteInfo:""
 }

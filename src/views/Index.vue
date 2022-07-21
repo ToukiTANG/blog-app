@@ -37,7 +37,7 @@ import Navigation from "@/components/index/Navigation.vue";
 import BlogHeader from "@/components/index/BlogHeader.vue";
 import BlogFooter from "@/components/index/BlogFooter.vue";
 import ArticleCard from "@/components/blog/ArticleCard.vue";
-import {SAVE_CLIENT_SIZE} from "@/store/mutation-types";
+import {SAVE_CLIENT_SIZE, SAVE_SITE_INFO} from "@/store/mutation-types";
 import Introduction from "@/components/side/Introduction";
 import RandomArticle from "@/components/side/RandomArticle";
 import {getHitokoto} from "@/api/hitokoto";
@@ -50,13 +50,23 @@ export default {
   data() {
     return {
       categoryList: [{id: "001", name: "随笔"}, {id: "002", name: "test02"}],
-      hitokoto: {}
+      hitokoto: {},
+      siteInfo: {
+        webTitleSuffix: " - Touki's blog"
+      }
     };
   },
   watch: {
     '$route.path'() {
       this.scroll2Top()
     }
+  },
+  created() {
+    //获取footer上的台词
+    this.getHitokoto()
+    this.$store.commit(SAVE_SITE_INFO, this.siteInfo)
+    //标签title
+    document.title = this.$route.meta.title + this.siteInfo.webTitleSuffix
   },
   mounted() {
     //进入首页过后即计算窗口大小
@@ -71,7 +81,6 @@ export default {
         clientWidth: window.innerWidth
       })
     }
-    this.getHitokoto()
   },
   methods: {
     scroll2Top() {
