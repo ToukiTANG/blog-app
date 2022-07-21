@@ -3,10 +3,20 @@
     <h1 class="logo">Touki's blog</h1>
     <ul>
       <li class="li-item-light">
-        <router-link to="/home"><i class="fa-solid fa-house-chimney fa-xs"></i> 首页</router-link>
+        <!--<i class="fa-solid fa-house-chimney fa-xs"></i>-->
+        <router-link to="/home">
+          <font-awesome-icon icon="fa-house-chimney" size="xs"></font-awesome-icon>
+          首页
+        </router-link>
       </li>
       <li class="li-item-light">
-        <a href="#"><i class="fa-solid fa-layer-group fa-xs"></i>分类<i class="fas fa-caret-down fa-xs"></i></a>
+        <!--<i class="fa-solid fa-layer-group fa-xs"></i>-->
+        <!--<i class="fas fa-caret-down fa-xs"></i>-->
+        <a href="#">
+          <font-awesome-icon icon="fa-layer-group" size="xs"></font-awesome-icon>
+          分类
+          <font-awesome-icon icon="fa-caret-down" size="xs"></font-awesome-icon>
+        </a>
         <div class="dropdown-menu">
           <ul>
             <li
@@ -21,10 +31,17 @@
         </div>
       </li>
       <li class="li-item-light">
-        <router-link to="/archives"><i class="fa-solid fa-calendar fa-xs"></i>归档</router-link>
+        <!--<i class="fa-solid fa-calendar fa-xs"></i>-->
+        <router-link to="/archives">
+          <font-awesome-icon icon="fa-calendar" size="xs"></font-awesome-icon>
+          归档
+        </router-link>
       </li>
       <li class="li-item-light">
-        <a href="#" @click="about"><i class="fa-solid fa-circle-info fa-xs"></i>关于</a>
+        <!--<i class="fa-solid fa-circle-info fa-xs"></i>-->
+        <a href="#" @click="about">
+          <font-awesome-icon icon="fa-circle-info" size="xs"></font-awesome-icon>
+          关于</a>
       </li>
     </ul>
     <div class="search">
@@ -80,7 +97,7 @@ export default {
     category(name) {
       this.$router.push(`/category/${name}`);
     },
-    about(){
+    about() {
       this.$router.push(`/about`)
     }
   },
@@ -115,7 +132,7 @@ export default {
   height: 100%;
 }
 
-.men-bar ul i {
+.men-bar ul svg {
   margin-right: 5px;
 }
 

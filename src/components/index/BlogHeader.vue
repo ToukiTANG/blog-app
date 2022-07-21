@@ -6,7 +6,8 @@
     </div>
     <div class="wrapper">
       <div>
-        <i class="icon-down fa-solid fa-angles-down" @click="toMain"></i>
+        <!--<i class="icon-down fa-solid fa-angles-down" @click="toMain"></i>-->
+        <font-awesome-icon class="icon-down" icon="fa-angles-down" @click="toMain"></font-awesome-icon>
       </div>
       <div class="wave1" style="background: url(/img/wave1.6da78db3.png) repeat-x"></div>
       <div class="wave2" style="background: url(../../assets/wave2.png) repeat-x"></div>
@@ -83,6 +84,7 @@ export default {
 }
 
 .wrapper .icon-down {
+  cursor: pointer;
   font-size: 45px;
   position: absolute;
   left: 50%;
@@ -91,7 +93,7 @@ export default {
   animation: opener .6s ease-in-out alternate infinite;
 }
 
-.wrapper i:hover {
+.wrapper svg:hover {
   transition: all .5s;
   color: #3c4d55;
 }
