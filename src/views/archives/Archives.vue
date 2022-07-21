@@ -223,15 +223,15 @@ export default {
   border-color: #5d7259;
 }
 
-.timeline-header.dark, .title.dark {
+.timeline-header.orange, .title.orange {
   background-color: #d9883d;
 }
 
-.timeline-header.dark:hover, .title.dark:hover {
+.timeline-header.orange:hover, .title.orange:hover {
   opacity: .8;
 }
 
-.wrap.dark {
+.wrap.orange {
   border-color: #d9883d;
 }
 

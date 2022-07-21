@@ -2,7 +2,9 @@
   <div class="random-article">
     <el-card class="random-container" shadow="hover" style="{padding: 0}">
       <div class="random-header">
-        <i class="fa-solid fa-shuffle"></i>随机文章
+        <!--<i class="fa-solid fa-shuffle"></i>-->
+        <font-awesome-icon icon="fa-shuffle"></font-awesome-icon>
+        <span>随机文章</span>
       </div>
       <el-divider></el-divider>
       <div class="article-container">
@@ -64,10 +66,16 @@ export default {
 
 .random-header {
   background-color: var(--color-base);
+  display: flex;
+  align-items: center;
 }
 
-.random-header i {
-  margin: 15px 10px 15px 20px;
+.random-header svg {
+  margin: 17px 10px 15px 20px;
+}
+
+.random-header span{
+  display: block;
 }
 
 .random-article .el-card {

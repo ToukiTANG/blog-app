@@ -19,6 +19,7 @@
       </div>
       <div class="side">
         <random-article></random-article>
+        <tags></tags>
       </div>
     </div>
     <!--回到顶部图标-->
@@ -41,12 +42,13 @@ import {SAVE_CLIENT_SIZE, SAVE_SITE_INFO} from "@/store/mutation-types";
 import Introduction from "@/components/side/Introduction";
 import RandomArticle from "@/components/side/RandomArticle";
 import {getHitokoto} from "@/api/hitokoto";
+import Tags from "@/components/side/Tags";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Index",
   // eslint-disable-next-line vue/no-unused-components
-  components: {RandomArticle, Introduction, Navigation, BlogHeader, BlogFooter, ArticleCard},
+  components: {Tags, RandomArticle, Introduction, Navigation, BlogHeader, BlogFooter, ArticleCard},
   data() {
     return {
       categoryList: [{id: "001", name: "随笔"}, {id: "002", name: "test02"}],
@@ -141,6 +143,9 @@ export default {
   display: block;
   flex: 3;
   margin: 0 14px;
+}
+.tags{
+  margin-top: 20px;
 }
 
 </style>

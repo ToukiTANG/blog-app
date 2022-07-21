@@ -17,7 +17,9 @@ import {
     faCaretDown,
     faCalendar,
     faCircleInfo,
-    faAnglesDown
+    faAnglesDown,
+    faShuffle,
+    faTags
 } from "@fortawesome/free-solid-svg-icons"
 
 import router from './router'
@@ -25,7 +27,8 @@ import store from '@/store/index'
 
 import "@/utils/timeFormat.js"
 
-library.add(faCircleUp, faCalendarDays, faEye, faFolderOpen, faA, faBook, faHouseChimney, faLayerGroup, faCaretDown, faCalendar, faCircleInfo, faAnglesDown)
+library.add(faCircleUp, faCalendarDays, faEye, faFolderOpen, faA, faBook, faHouseChimney, faLayerGroup,
+    faCaretDown, faCalendar, faCircleInfo, faAnglesDown, faShuffle, faTags)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
