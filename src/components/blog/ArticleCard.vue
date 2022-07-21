@@ -37,7 +37,7 @@
           </div>
           <!--首图-->
           <div v-if="blog.firstPicture" style="{width: 100%}">
-            <img class="first-img" src="@/assets/firstPicture.jpg" alt="firstPicture"/>
+            <img class="first-img" :src="blog.firstPicture" alt="firstPicture"/>
           </div>
           <!--阅读全文按钮-->
           <div class="article-reading">
@@ -60,96 +60,96 @@
 export default {
   name: "ArticleCard",
   props: {
-    // blogList: {
-    //   type: Array,
-    //   require: true
-    // },
+    blogList: {
+      type: Array,
+      require: true
+    },
   },
   data() {
     return {
-      blogList: [
-        {
-          "id": 1,
-          "title": "测试标题",
-          "firstPicture": "@/assets/firstPicture.jpg",
-          "description": "第一条测试数据",
-          "updateTime": "2022-07-14T07:15:45.000+00:00",
-          "weight": 1,
-          "views": 10,
-          "commentEnabled": 1,
-          "category": {
-            "id": 1,
-            "categoryName": "随笔"
-          },
-          "tags": [
-            {
-              "id": 1,
-              "tagName": "SpringBoot"
-            },
-            {
-              "id": 2,
-              "tagName": "Java"
-            },
-            {
-              "id": 3,
-              "tagName": "Python"
-            }]
-        },
-        {
-          "id": 2,
-          "title": "测试标题2",
-          "firstPicture": null,
-          "description": "第二条测试数据",
-          "updateTime": "2022-07-13T07:15:45.000+00:00",
-          "weight": 1,
-          "views": 5,
-          "commentEnabled": 1,
-          "category": {
-            "id": 1,
-            "categoryName": "随笔"
-          },
-          "tags": [
-            {
-              "id": 1,
-              "tagName": "SpringBoot"
-            },
-            {
-              "id": 2,
-              "tagName": "Java"
-            },
-            {
-              "id": 3,
-              "tagName": "Python"
-            }]
-        },
-        {
-          "id": 3,
-          "title": "测试标题3",
-          "firstPicture": null,
-          "description": "第三条测试数据",
-          "updateTime": "2022-07-11T07:15:45.000+00:00",
-          "weight": 0,
-          "views": 10,
-          "commentEnabled": 1,
-          "category": {
-            "id": 1,
-            "categoryName": "随笔"
-          },
-          "tags": [
-            {
-              "id": 1,
-              "tagName": "SpringBoot"
-            },
-            {
-              "id": 2,
-              "tagName": "Java"
-            },
-            {
-              "id": 3,
-              "tagName": "Python"
-            }]
-        }
-      ]
+      // blogList: [
+      //   {
+      //     "id": 1,
+      //     "title": "测试标题",
+      //     "firstPicture": "/img/firstPicture.c7dd3f07.jpg",
+      //     "description": "第一条测试数据",
+      //     "updateTime": "2022-07-14T07:15:45.000+00:00",
+      //     "weight": 1,
+      //     "views": 10,
+      //     "commentEnabled": 1,
+      //     "category": {
+      //       "id": 1,
+      //       "categoryName": "随笔"
+      //     },
+      //     "tags": [
+      //       {
+      //         "id": 1,
+      //         "tagName": "SpringBoot"
+      //       },
+      //       {
+      //         "id": 2,
+      //         "tagName": "Java"
+      //       },
+      //       {
+      //         "id": 3,
+      //         "tagName": "Python"
+      //       }]
+      //   },
+      //   {
+      //     "id": 2,
+      //     "title": "测试标题2",
+      //     "firstPicture": "/img/firstPicture_1.bd9cb897.jpg",
+      //     "description": "第二条测试数据",
+      //     "updateTime": "2022-07-13T07:15:45.000+00:00",
+      //     "weight": 1,
+      //     "views": 5,
+      //     "commentEnabled": 1,
+      //     "category": {
+      //       "id": 1,
+      //       "categoryName": "随笔"
+      //     },
+      //     "tags": [
+      //       {
+      //         "id": 1,
+      //         "tagName": "SpringBoot"
+      //       },
+      //       {
+      //         "id": 2,
+      //         "tagName": "Java"
+      //       },
+      //       {
+      //         "id": 3,
+      //         "tagName": "Python"
+      //       }]
+      //   },
+      //   {
+      //     "id": 3,
+      //     "title": "测试标题3",
+      //     "firstPicture": null,
+      //     "description": "第三条测试数据",
+      //     "updateTime": "2022-07-11T07:15:45.000+00:00",
+      //     "weight": 0,
+      //     "views": 10,
+      //     "commentEnabled": 1,
+      //     "category": {
+      //       "id": 1,
+      //       "categoryName": "随笔"
+      //     },
+      //     "tags": [
+      //       {
+      //         "id": 1,
+      //         "tagName": "SpringBoot"
+      //       },
+      //       {
+      //         "id": 2,
+      //         "tagName": "Java"
+      //       },
+      //       {
+      //         "id": 3,
+      //         "tagName": "Python"
+      //       }]
+      //   }
+      // ]
     };
   },
   methods: {
