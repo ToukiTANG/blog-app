@@ -259,9 +259,6 @@ export default {
   background-color: #db9b34;
   position: relative;
   left: -62px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .category-tag:after {

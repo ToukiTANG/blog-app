@@ -24,7 +24,7 @@
         <router-link to="/archives"><i class="fa-solid fa-calendar fa-xs"></i>归档</router-link>
       </li>
       <li class="li-item-light">
-        <a href="#"><i class="fa-solid fa-circle-info fa-xs"></i>关于</a>
+        <a href="#" @click="about"><i class="fa-solid fa-circle-info fa-xs"></i>关于</a>
       </li>
     </ul>
     <div class="search">
@@ -80,6 +80,9 @@ export default {
     category(name) {
       this.$router.push(`/category/${name}`);
     },
+    about(){
+      this.$router.push(`/about`)
+    }
   },
 };
 </script>

@@ -27,7 +27,13 @@ const router = new VueRouter({
                     name: 'archives',
                     component: () => import('@/views/archives/Archives'),
                     meta: {title: "归档"}
-                }]
+                },
+                {
+                    path:'/about',
+                    name:'about',
+                    component:()=>import('@/views/blog/Blog')
+                }
+            ]
         }
     ],
 })
