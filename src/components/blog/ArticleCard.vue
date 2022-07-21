@@ -27,7 +27,7 @@
             </div>
             <div class="info-item">
               <!--<i class="fa-solid fa-eye fa-xs"></i>-->
-              <div class="info-views"><font-awesome-icon icon="fa-solid fa-eye" size="xs"></font-awesome-icon> <span>{{ blog.views }}</span></div>
+              <div class="info-views"><font-awesome-icon icon="fa-solid fa-eye" size="xs"></font-awesome-icon><span>{{ blog.views }}</span></div>
             </div>
           </div>
           <!--分类标签-->
@@ -274,13 +274,12 @@ export default {
   right: 75%;
 }
 
-.category-tag svg {
-}
-
 .category-tag a {
-  display: inline;
+  display: block;
   text-align: center;
   width: 100%;
+  height: 100%;
+  padding: 6px 0 6px;
   color: var(--color-white);
 }
 

@@ -13,14 +13,14 @@ import {
 } from 'element-ui'
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import {faCircleUp, faCalendarDays, faEye, faFolderOpen} from "@fortawesome/free-solid-svg-icons"
+import {faCircleUp, faCalendarDays, faEye, faFolderOpen, faA, faBook} from "@fortawesome/free-solid-svg-icons"
 
 import router from './router'
 import store from '@/store/index'
 
 import "@/utils/timeFormat.js"
 
-library.add(faCircleUp, faCalendarDays, faEye, faFolderOpen)
+library.add(faCircleUp, faCalendarDays, faEye, faFolderOpen, faA, faBook)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
@@ -34,7 +34,6 @@ Vue.use(CollapseItem)
 Vue.use(Tag)
 Vue.use(Button)
 Vue.use(Tooltip)
-
 
 
 new Vue({

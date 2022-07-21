@@ -1,7 +1,7 @@
 <template>
   <div class="blog">
-    <div class="article-top">
-      <i class="fa-solid fa-circle-up fa-lg"></i>
+    <div class="article-top" v-if="blog.weight===1">
+      <font-awesome-icon icon="fa-solid fa-circle-up" size="lg"></font-awesome-icon>
     </div>
     <el-card shadow="always" :body-style="{ padding: '0 16px 16px' }">
       <div class="blog-header">
@@ -14,28 +14,41 @@
         <!--简略信息图标-->
         <div class="article-info">
           <div class="info-item">
-            <div class="info-time"><i class="fa-solid fa-calendar-days fa-xs"><span>{{
-                blog.updateTime | timeToNow
-              }}</span></i>
+            <div class="info-time">
+              <font-awesome-icon icon="fa-solid fa-calendar-days" size="xs"></font-awesome-icon>
+              <span>{{
+                  blog.updateTime | timeToNow
+                }}</span>
             </div>
           </div>
           <div class="info-item">
-            <div class="info-views"><i class="fa-solid fa-eye fa-xs"></i><span>{{ blog.views }}</span></div>
+            <div class="info-views">
+              <font-awesome-icon icon="fa-solid fa-eye" size="xs"></font-awesome-icon>
+              <span>{{ blog.views }}</span></div>
           </div>
           <div class="info-item">
             <div class="info-font-size">
-              <el-tooltip content="点击切换字体大小" placement="top"><i class="fa-solid fa-a fa-xs"></i></el-tooltip>
+              <!--<i class="fa-solid fa-a fa-xs"></i>-->
+              <el-tooltip content="点击切换字体大小" placement="top">
+                <font-awesome-icon icon="fa-solid fa-a" size="xs"></font-awesome-icon>
+              </el-tooltip>
             </div>
           </div>
           <div class="info-item">
             <div class="info-focus">
-              <el-tooltip content="点击切换专注模式" placement="top"><i class="fa-solid fa-book fa-xs"></i></el-tooltip>
+              <!--<i class="fa-solid fa-book fa-xs"></i>-->
+              <el-tooltip content="点击切换专注模式" placement="top">
+                <font-awesome-icon icon="fa-solid fa-book" size="xs"></font-awesome-icon>
+              </el-tooltip>
             </div>
           </div>
         </div>
       </div>
       <div class="category-tag">
-        <a href="#"><i class="fa-solid fa-folder-open fa-sm">{{ blog.category.categoryName }}</i></a>
+        <router-link :to="`/category/${blog.category.categoryName}`">
+          <!--<i class="fa-solid fa-folder-open fa-sm">-->
+          <font-awesome-icon icon="fa-solid fa-folder-open" size="sm"></font-awesome-icon> {{ blog.category.categoryName }}
+        </router-link>
       </div>
       <div class="article-content">
         <mavon-editor :value="blog.content" :subfield="false" defaultOpen="preview" :toolbarsFlag="false"
@@ -70,6 +83,8 @@ export default {
             id: 1,
             title: "测试标题",
             updateTime: "2022-07-14T07:15:45.000+00:00",
+            weight: 1,
+            views: 10,
             content: "### 布局\n" +
                 "\n" +
                 "---\n" +
@@ -196,11 +211,11 @@ export default {
   border-bottom: solid 30px transparent;
 }
 
-.article-top i {
+.article-top svg {
   color: white;
   float: right;
   position: relative;
-  top: 18px;
+  top: 10px;
   right: 7px;
   z-index: 1;
 }
@@ -213,6 +228,8 @@ export default {
 
 .info-item {
   margin: 0 10px;
+  display: inline-block;
+  line-height: 100%;
 }
 
 .info-item span {
@@ -258,17 +275,13 @@ export default {
   right: 75%;
 }
 
-.category-tag i {
-  width: 100%;
-  color: var(--color-white);
-}
-
 .category-tag a {
-  display: flex;
-  align-items: center;
+  display: block;
   text-align: center;
-  height: 100%;
   width: 100%;
+  height: 100%;
+  padding: 6px 0 6px;
+  color: var(--color-white);
 }
 
 .blog-content {
@@ -313,18 +326,19 @@ export default {
   border: none;
 }
 
-.markdown-body{
+.markdown-body {
   line-height: 1.8;
 }
+
 .markdown-body >>> .hljs {
   padding: 16px;
 }
 
-.markdown-body >>>code{
+.markdown-body >>> code {
   font-size: 100%;
 }
 
-.markdown-body >>>.highlight pre, .markdown-body >>>pre {
+.markdown-body >>> .highlight pre, .markdown-body >>> pre {
   padding: 0;
 }
 </style>
