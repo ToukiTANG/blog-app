@@ -2,14 +2,21 @@
   <footer>
     <div class="footer-container">
       <div class="content-top">
-        <div class="content-top-item">最新博客</div>
+        <div class="content-top-item">
+          <div class="new-blog-title" style="color: #d8d8d8">最新博客</div>
+          <div class="new-blog" v-for="blog in newBlogs" :key="blog.id">{{ blog.title }}</div>
+        </div>
         <div class="content-top-item divider-container">
           <el-divider direction="vertical"></el-divider>
         </div>
-        <div class="content-top-item">箴言</div>
+        <div class="content-top-item" style="line-height: 3.0; color: rgba(255, 255, 255, .5)">
+          <p id="hitokoto-text">{{ hitokoto.hitokoto }}</p>
+          <p id="hitokoto-from" style="float: right;"
+             v-text="hitokoto.from?`——《${hitokoto.from}》`:''"></p>
+        </div>
       </div>
       <el-divider></el-divider>
-      <div class="content-bottom">网站信息</div>
+      <div class="content-bottom" style="color: #d8d8d8">网站信息</div>
     </div>
   </footer>
 </template>
@@ -17,15 +24,24 @@
 <script>
 export default {
   name: "BlogFooter",
+  props: {
+    hitokoto: {
+      type: Object,
+      require: true
+    },
+  },
+  data() {
+    return {
+      newBlogs: [{id: 1, title: "测试标题01"}, {id: 2, title: "测试标题000002"}, {id: 3, title: "测试标题000000000003"}]
+    }
+  },
 };
 </script>
 
 <style scoped>
 footer {
-  height: 200px;
+  height: 260px;
   background-color: var(--color-black-1);
-  padding-top: 30px;
-  padding-bottom: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +49,7 @@ footer {
 
 .footer-container {
   color: var(--color-white);
-  width: 800px;
+  width: 1000px;
 }
 
 .el-divider--horizontal {
@@ -55,9 +71,18 @@ footer {
 
 .content-top-item {
   text-align: center;
-  flex: 5;
-  padding: 20px;
-  height: 130px;
+  flex: 20;
+  padding: 10px;
+}
+
+.content-top-item .new-blog {
+  margin: 5px 0 5px;
+  color: rgba(255, 255, 255, .5);
+  cursor: pointer;
+}
+
+.content-top-item .new-blog:hover {
+  color: #d8d8d8;
 }
 
 .divider-container {
@@ -68,7 +93,7 @@ footer {
 }
 
 .content-bottom {
-  margin-top: 20px;
+  margin: 25px 0 25px;
   text-align: center;
 }
 </style>

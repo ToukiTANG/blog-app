@@ -28,7 +28,7 @@
       </el-backtop>
     </transition>
 
-    <BlogFooter></BlogFooter>
+    <BlogFooter :hitokoto="hitokoto"></BlogFooter>
   </div>
 </template>
 
@@ -40,6 +40,7 @@ import ArticleCard from "@/components/blog/ArticleCard.vue";
 import {SAVE_CLIENT_SIZE} from "@/store/mutation-types";
 import Introduction from "@/components/side/Introduction";
 import RandomArticle from "@/components/side/RandomArticle";
+import {getHitokoto} from "@/api/hitokoto";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -48,7 +49,8 @@ export default {
   components: {RandomArticle, Introduction, Navigation, BlogHeader, BlogFooter, ArticleCard},
   data() {
     return {
-      categoryList: [{id: "001", name: "随笔"}, {id: "002", name: "test02"}]
+      categoryList: [{id: "001", name: "随笔"}, {id: "002", name: "test02"}],
+      hitokoto: {}
     };
   },
   watch: {
@@ -69,6 +71,7 @@ export default {
         clientWidth: window.innerWidth
       })
     }
+    this.getHitokoto()
   },
   methods: {
     scroll2Top() {
@@ -88,6 +91,11 @@ export default {
         }
       }
       rAF(frameFunc)
+    },
+    getHitokoto() {
+      getHitokoto().then(res => {
+        this.hitokoto = res
+      })
     }
   },
 };

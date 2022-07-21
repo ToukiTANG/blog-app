@@ -23,7 +23,7 @@ requests.interceptors.response.use((res) => {
     NProgress.done()
     // console.log(res)
     //成功的回调
-    if (res.data.code !== 200) {
+    if (res.status !== 200) {
         return Promise.reject("error")
     } else {
         return res.data
