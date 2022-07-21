@@ -51,6 +51,11 @@ export default {
       categoryList: [{id: "001", name: "随笔"}, {id: "002", name: "test02"}]
     };
   },
+  watch: {
+    '$route.path'() {
+      this.scroll2Top()
+    }
+  },
   mounted() {
     //进入首页过后即计算窗口大小
     this.$store.commit(SAVE_CLIENT_SIZE, {
@@ -64,7 +69,27 @@ export default {
         clientWidth: window.innerWidth
       })
     }
-  }
+  },
+  methods: {
+    scroll2Top() {
+      const cubic = value => Math.pow(value, 3);
+      const easeInOutCubic = value => value < 0.5 ? cubic(value * 2) / 2 : 1 - cubic((1 - value) * 2) / 2;
+      const el = document.documentElement
+      const beginTime = Date.now()
+      const beginValue = el.scrollTop
+      const rAF = window.requestAnimationFrame || (func => setTimeout(func, 16))
+      const frameFunc = () => {
+        const progress = (Date.now() - beginTime) / 500;
+        if (progress < 1) {
+          el.scrollTop = beginValue * (1 - easeInOutCubic(progress))
+          rAF(frameFunc)
+        } else {
+          el.scrollTop = 0
+        }
+      }
+      rAF(frameFunc)
+    }
+  },
 };
 </script>
 
