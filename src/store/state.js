@@ -5,5 +5,12 @@ export default {
         clientWidth: 1080
     },
     isOtherToHome: false,
-    siteInfo:""
+    siteInfo: "",
+    colorObj: {
+        0: 'blue',
+        1: 'dark',
+        2: 'green',
+        3: 'orange',
+        4: 'red',
+    }
 }

@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Tags",
@@ -25,14 +27,10 @@ export default {
         id: 4, tagName:
             "测试tag名字"
       }, {id: 5, tagName: "C++"}],
-      colorObj: {
-        0: 'blue',
-        1: 'dark',
-        2: 'green',
-        3: 'orange',
-        4: 'red',
-      }
     }
+  },
+  computed: {
+    ...mapState(["colorObj"])
   },
 }
 </script>

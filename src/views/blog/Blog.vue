@@ -47,7 +47,8 @@
       <div class="category-tag">
         <router-link :to="`/category/${blog.category.categoryName}`">
           <!--<i class="fa-solid fa-folder-open fa-sm">-->
-          <font-awesome-icon icon="fa-solid fa-folder-open" size="sm"></font-awesome-icon> {{ blog.category.categoryName }}
+          <font-awesome-icon icon="fa-solid fa-folder-open" size="sm"></font-awesome-icon>
+          {{ blog.category.categoryName }}
         </router-link>
       </div>
       <div class="article-content">
@@ -57,7 +58,10 @@
       <el-divider></el-divider>
       <!--标签-->
       <div class="article-footer">
-        <el-tag v-for="t in blog.tags" :key="t.tagName">
+        <!--<el-tag v-for="t in blog.tags" :key="t.tagName">-->
+        <!--  <a href="#">{{ t.tagName }}</a>-->
+        <!--</el-tag>-->
+        <el-tag v-for="t in blog.tags" :key="t.id" :class="colorObj[Math.round(Math.random()*4)]">
           <a href="#">{{ t.tagName }}</a>
         </el-tag>
       </div>
@@ -68,6 +72,7 @@
 <script>
 import {mavonEditor} from "mavon-editor"
 import "mavon-editor/dist/css/index.css"
+import {mapState} from "vuex";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -165,7 +170,8 @@ export default {
           }
     }
   },
-  created: function () {
+  computed: {
+    ...mapState(["colorObj"])
   },
   mounted() {
   }
@@ -301,6 +307,61 @@ export default {
 .article-footer .el-tag:hover {
   transition: .2s;
   background-color: #2068644C;
+}
+
+.article-footer .el-tag:hover {
+  transition: .2s;
+  /*background-color: #2068644C;*/
+}
+
+.article-footer .el-tag.blue {
+  color: #4994c4;
+  border-color: #4994c4;
+  background-color: #4994c41f;
+}
+
+.article-footer .el-tag.blue:hover {
+  background-color: #4994c44c;
+}
+
+.article-footer .el-tag.dark {
+  color: #31322c;
+  border-color: #31322c;
+  background-color: #31322c1f;
+}
+
+.article-footer .el-tag.dark:hover {
+  background-color: #31322c4c;
+}
+
+.article-footer .el-tag.green {
+  color: #5d7259;
+  border-color: #5d7259;
+  background-color: #5d72591f;
+}
+
+.article-footer .el-tag.green:hover {
+  background-color: #5d72594c;
+}
+
+.article-footer .el-tag.red {
+  color: #b13b2e;
+  border-color: #b13b2e;
+  background-color: #b13b2e1f;
+}
+
+.article-footer .el-tag.red:hover {
+  background-color: #b13b2e4c;
+}
+
+.article-footer .el-tag.orange {
+  color: #d9883d;
+  border-color: #d9883d;
+  background-color: #d9883d1f;
+}
+
+.article-footer .el-tag.orange:hover {
+  background-color: #d9883d4c;
 }
 
 .article-footer span .el-tag .el-tag-light {

@@ -50,7 +50,7 @@
           </div>
           <!--阅读全文按钮-->
           <div class="article-reading">
-            <el-button type="primary" round size="small">阅读全文</el-button>
+            <el-button @click="view(blog.id)" type="primary" round size="small">阅读全文</el-button>
           </div>
           <el-divider></el-divider>
           <!--标签-->
@@ -66,6 +66,8 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   name: "ArticleCard",
   props: {
@@ -159,18 +161,14 @@ export default {
             }]
         }
       ],
-      colorObj: {
-        0: 'blue',
-        1: 'dark',
-        2: 'green',
-        3: 'orange',
-        4: 'red',
-      }
     };
+  },
+  computed: {
+    ...mapState(["colorObj"])
   },
   methods: {
     view(id) {
-      console.log(id + "文章详情接口");
+      this.$router.push(`/blog/${id}`)
     },
   },
 };
@@ -198,7 +196,14 @@ export default {
 }
 
 .article-title h2 a {
+  display: inline-block;
   color: #333333;
+}
+
+.article-title h2 a:hover {
+  transition: .3s ease-in-out;
+  /*设置x，y轴的放大倍数*/
+  transform: scale(1.3, 1.3)
 }
 
 .article-info {
