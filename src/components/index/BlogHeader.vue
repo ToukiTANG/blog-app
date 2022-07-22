@@ -9,8 +9,8 @@
         <!--<i class="icon-down fa-solid fa-angles-down" @click="toMain"></i>-->
         <font-awesome-icon class="icon-down" icon="fa-angles-down" @click="toMain"></font-awesome-icon>
       </div>
-      <div class="wave1" style="background: url(/img/wave1.6da78db3.png) repeat-x"></div>
-      <div class="wave2" style="background: url(../../assets/wave2.png) repeat-x"></div>
+      <div class="wave1" style="background: url(https://cdn.naccl.top/blog/img/wave1.png) repeat-x"></div>
+      <div class="wave2" style="background: url(https://cdn.naccl.top/blog/img/wave2.png) repeat-x"></div>
     </div>
   </div>
 </template>
