@@ -8,7 +8,7 @@
       <el-divider></el-divider>
       <div class="tags-item-container">
         <el-tag :class="colorObj[index%5]" v-for="(t,index) in tagList" :key="index">
-          <a href="#">{{ t.tagName }}</a>
+          <router-link :to="`/tag/${t.tagName}`">{{ t.tagName }}</router-link>
         </el-tag>
       </div>
     </el-card>

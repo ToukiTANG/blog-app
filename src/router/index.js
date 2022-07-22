@@ -40,6 +40,12 @@ const router = new VueRouter({
                     name: 'blog',
                     component: () => import('@/views/blog/Blog'),
                     meta: {title: "博客"}
+                },
+                {
+                    path: '/tag/:name',
+                    name: 'tag',
+                    component: () => import('@/views/tag/Tag'),
+                    meta: {title: "标签"}
                 }
             ]
         }

@@ -3,15 +3,12 @@
     <h1 class="logo">Touki's blog</h1>
     <ul>
       <li class="li-item" :class="dark?'dark':''">
-        <!--<i class="fa-solid fa-house-chimney fa-xs"></i>-->
         <router-link to="/home">
           <font-awesome-icon icon="fa-house-chimney" size="xs"></font-awesome-icon>
           首页
         </router-link>
       </li>
       <li class="li-item" :class="dark?'dark':''">
-        <!--<i class="fa-solid fa-layer-group fa-xs"></i>-->
-        <!--<i class="fas fa-caret-down fa-xs"></i>-->
         <a href="#">
           <font-awesome-icon icon="fa-layer-group" size="xs"></font-awesome-icon>
           分类
@@ -23,25 +20,23 @@
                 class="li-item" :class="dark?'dark':''"
                 v-for="item in categoryList"
                 :key="item.id"
-                @click="category(item.name)"
             >
-              <a href="#">{{ item.name }}</a>
+              <router-link :to="`/category/${item.name}`">{{ item.name }}</router-link>
             </li>
           </ul>
         </div>
       </li>
       <li class="li-item" :class="dark?'dark':''">
-        <!--<i class="fa-solid fa-calendar fa-xs"></i>-->
         <router-link to="/archives">
           <font-awesome-icon icon="fa-calendar" size="xs"></font-awesome-icon>
           归档
         </router-link>
       </li>
       <li class="li-item" :class="dark?'dark':''">
-        <!--<i class="fa-solid fa-circle-info fa-xs"></i>-->
-        <a href="#" @click="about">
+        <router-link to="/about">
           <font-awesome-icon icon="fa-circle-info" size="xs"></font-awesome-icon>
-          关于</a>
+          关于
+        </router-link>
       </li>
     </ul>
     <div class="search">
@@ -91,14 +86,7 @@ export default {
 
 
   },
-  methods: {
-    category(name) {
-      this.$router.push(`/category/${name}`);
-    },
-    about() {
-      this.$router.push(`/about`)
-    }
-  },
+  methods: {},
 };
 </script>
 

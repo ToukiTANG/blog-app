@@ -1,26 +1,30 @@
 <template>
-  <div class="category">
+  <div class="tag">
     <el-card shadow="always">
-      <h2 class="category-name">分类{{ categoryName }}下的文章</h2>
+      <h2 class="tag-name">标签{{ tagName }}下的文章</h2>
     </el-card>
     <articles :getBlogList="getBlogList" :blogList="blogList" :totalPage="totalPage"></articles>
   </div>
-
 </template>
 
 <script>
 import Articles from "@/components/blog/Articles";
-import {getBlogListByCategoryName} from "@/api/category";
+import {getBlogListByTagName} from "@/api/tag";
 import {Message} from "element-ui";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Category",
+  name: "Tag",
   components: {Articles},
   data() {
     return {
       blogList: [],
-      totalPage: 0,
+      totalPage: 0
+    }
+  },
+  computed: {
+    tagName() {
+      return this.$route.params.name
     }
   },
   watch: {
@@ -32,14 +36,9 @@ export default {
       }
     }
   },
-  computed: {
-    categoryName() {
-      return this.$route.params.name
-    }
-  },
   methods: {
-    getBlogList(pageNum) {
-      getBlogListByCategoryName(this.categoryName, pageNum).then(res => {
+    getBlogList() {
+      getBlogListByTagName().then((res) => {
         this.blogList = res.data.list
         this.totalPage = res.data.totalPage
       }).catch(() => {
@@ -49,15 +48,12 @@ export default {
   },
   created() {
     this.getBlogList()
-  },
-  mounted() {
   }
 }
 </script>
 
 <style scoped>
-
-.category .el-card {
+.tag .el-card {
   padding: 0;
   margin-bottom: 10px;
   border: 1px solid var(--color-border);
@@ -65,4 +61,5 @@ export default {
   /*box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, .3)*/
 
 }
+
 </style>

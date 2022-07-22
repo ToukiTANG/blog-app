@@ -8,7 +8,7 @@
         <!--标题-->
         <div class="article-title">
           <h2>
-            <a href="#" @click="view(blog.id)" class="me-article-title">{{ blog.title }}</a>
+            <a href="#">{{ blog.title }}</a>
           </h2>
         </div>
         <!--简略信息图标-->
@@ -28,7 +28,6 @@
           </div>
           <div class="info-item">
             <div class="info-font-size">
-              <!--<i class="fa-solid fa-a fa-xs"></i>-->
               <el-tooltip content="点击切换字体大小" placement="top">
                 <font-awesome-icon icon="fa-solid fa-a" size="xs"></font-awesome-icon>
               </el-tooltip>
@@ -36,7 +35,6 @@
           </div>
           <div class="info-item">
             <div class="info-focus">
-              <!--<i class="fa-solid fa-book fa-xs"></i>-->
               <el-tooltip content="点击切换专注模式" placement="top">
                 <font-awesome-icon icon="fa-solid fa-book" size="xs"></font-awesome-icon>
               </el-tooltip>
@@ -46,7 +44,6 @@
       </div>
       <div class="category-tag">
         <router-link :to="`/category/${blog.category.categoryName}`">
-          <!--<i class="fa-solid fa-folder-open fa-sm">-->
           <font-awesome-icon icon="fa-solid fa-folder-open" size="sm"></font-awesome-icon>
           {{ blog.category.categoryName }}
         </router-link>
@@ -58,11 +55,8 @@
       <el-divider></el-divider>
       <!--标签-->
       <div class="article-footer">
-        <!--<el-tag v-for="t in blog.tags" :key="t.tagName">-->
-        <!--  <a href="#">{{ t.tagName }}</a>-->
-        <!--</el-tag>-->
         <el-tag v-for="t in blog.tags" :key="t.id" :class="colorObj[Math.round(Math.random()*4)]">
-          <a href="#">{{ t.tagName }}</a>
+          <router-link :to="`/tag/${t.tagName}`">{{ t.tagName }}</router-link>
         </el-tag>
       </div>
     </el-card>

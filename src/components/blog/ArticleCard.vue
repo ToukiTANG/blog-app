@@ -3,7 +3,6 @@
     <div class="article-list" v-for="blog in blogList" :key="blog.id">
       <!--置顶标志-->
       <div v-if="blog.weight===1" class="article-top">
-        <!--<i class="fa-solid fa-circle-up fa-lg"></i>-->
         <font-awesome-icon icon="fa-solid fa-circle-up" size="lg"></font-awesome-icon>
       </div>
       <el-card shadow="hover" class="me-area" :body-style="{ padding: '0 16px 16px' }">
@@ -11,13 +10,12 @@
           <!--标题-->
           <div class="article-title">
             <h2>
-              <a href="#" @click="view(blog.id)" class="me-article-title">{{ blog.title }}</a>
+              <router-link :to="`/blog/${blog.id}`">{{ blog.title }}</router-link>
             </h2>
           </div>
           <!--简略信息图标-->
           <div class="article-info">
             <div class="info-item">
-              <!--<i class="fa-solid fa-calendar-days fa-xs">-->
               <div class="info-time">
                 <font-awesome-icon icon="fa-solid fa-calendar-days" size="xs"></font-awesome-icon>
                 <span>{{
@@ -26,7 +24,6 @@
               </div>
             </div>
             <div class="info-item">
-              <!--<i class="fa-solid fa-eye fa-xs"></i>-->
               <div class="info-views">
                 <font-awesome-icon icon="fa-solid fa-eye" size="xs"></font-awesome-icon>
                 <span>{{ blog.views }}</span></div>
@@ -35,7 +32,6 @@
           <!--分类标签-->
           <div class="category-tag">
             <router-link :to="`/category/${blog.category.categoryName}`">
-              <!--<i class="fa-solid fa-folder-open fa-sm">-->
               <font-awesome-icon icon="fa-solid fa-folder-open" size="sm"></font-awesome-icon>
               {{ blog.category.categoryName }}
             </router-link>
@@ -56,7 +52,7 @@
           <!--标签-->
           <div class="article-footer">
             <el-tag v-for="t in blog.tags" :key="t.id" :class="colorObj[Math.round(Math.random()*4)]">
-              <a href="#">{{ t.tagName }}</a>
+              <router-link :to="`/tag/${t.tagName}`">{{ t.tagName }}</router-link>
             </el-tag>
           </div>
         </div>
