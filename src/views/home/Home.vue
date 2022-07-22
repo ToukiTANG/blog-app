@@ -8,6 +8,7 @@
 import Articles from "@/components/blog/Articles"
 import {getBlogList} from "@/api/home"
 import {SET_IS_BLOG_TO_HOME} from "@/store/mutation-types";
+import {Message} from "element-ui";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -44,7 +45,7 @@ export default {
         this.blogList = res.data.list
         this.totalPage = res.data.totalPage
       }).catch(() => {
-        this.$message({type: "error", message: "文章加载失败，请重试！", showClose: true})
+        Message({type: "error", message: "文章加载失败，请重试！", showClose: true})
       })
     }
   },

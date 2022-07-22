@@ -30,7 +30,7 @@
 
 <script>
 import {getArchives} from "@/api/archives";
-import {light2dark} from "@/utils/navCss";
+import {Message} from "element-ui";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -75,7 +75,7 @@ export default {
         this.count = res.data.count
         this.archiveMap = res.data.resultMap
       }).catch(() => {
-        this.$message({type: "error", message: "好像哪里出了问题呢，请重试！", showClose: true})
+        Message({type: "error", message: "好像哪里出了问题呢，请重试！", showClose: true})
       })
     },
     toBlob(blog) {
@@ -83,7 +83,6 @@ export default {
     }
   },
   mounted() {
-    light2dark()
   }
 }
 </script>

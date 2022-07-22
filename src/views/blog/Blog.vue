@@ -66,7 +66,6 @@
 </template>
 
 <script>
-import {light2dark} from "@/utils/navCss";
 import {mavonEditor} from "mavon-editor"
 import "mavon-editor/dist/css/index.css"
 
@@ -169,7 +168,6 @@ export default {
   created: function () {
   },
   mounted() {
-    light2dark()
   }
 }
 </script>

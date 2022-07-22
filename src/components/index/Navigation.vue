@@ -1,15 +1,15 @@
 <template>
-  <div class="men-bar">
+  <div class="men-bar" :class="dark?'dark':''">
     <h1 class="logo">Touki's blog</h1>
     <ul>
-      <li class="li-item-light">
+      <li class="li-item" :class="dark?'dark':''">
         <!--<i class="fa-solid fa-house-chimney fa-xs"></i>-->
         <router-link to="/home">
           <font-awesome-icon icon="fa-house-chimney" size="xs"></font-awesome-icon>
           首页
         </router-link>
       </li>
-      <li class="li-item-light">
+      <li class="li-item" :class="dark?'dark':''">
         <!--<i class="fa-solid fa-layer-group fa-xs"></i>-->
         <!--<i class="fas fa-caret-down fa-xs"></i>-->
         <a href="#">
@@ -20,7 +20,7 @@
         <div class="dropdown-menu">
           <ul>
             <li
-                class="li-item-light"
+                class="li-item" :class="dark?'dark':''"
                 v-for="item in categoryList"
                 :key="item.id"
                 @click="category(item.name)"
@@ -30,14 +30,14 @@
           </ul>
         </div>
       </li>
-      <li class="li-item-light">
+      <li class="li-item" :class="dark?'dark':''">
         <!--<i class="fa-solid fa-calendar fa-xs"></i>-->
         <router-link to="/archives">
           <font-awesome-icon icon="fa-calendar" size="xs"></font-awesome-icon>
           归档
         </router-link>
       </li>
-      <li class="li-item-light">
+      <li class="li-item" :class="dark?'dark':''">
         <!--<i class="fa-solid fa-circle-info fa-xs"></i>-->
         <a href="#" @click="about">
           <font-awesome-icon icon="fa-circle-info" size="xs"></font-awesome-icon>
@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import {dark2light, light2dark} from "@/utils/navCss";
 import {mapState} from "vuex";
 
 export default {
@@ -67,30 +66,29 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      dark: false
+    };
   },
   computed: {
     ...mapState(["clientSize"])
   },
   watch: {
     '$route.fullPath'() {
-      if (this.$route.name === "home") {
-        dark2light()
-      } else {
-        light2dark()
-      }
+      this.dark = this.$route.name !== "home";
     }
   },
   mounted() {
+    //如果在其他路由页面直接刷新，就会重新挂载nav，这里做一次判断，并对代码做一个精简和性能优化
+    if (this.$route.name !== "home") {
+      this.dark = true
+    }
     window.addEventListener("scroll", () => {
       if (this.$route.name === "home") {
-        if (window.scrollY >= this.clientSize.clientHeight / 2) {
-          light2dark()
-        } else {
-          dark2light()
-        }
+        this.dark = window.scrollY >= this.clientSize.clientHeight / 2;
       }
     })
+
 
   },
   methods: {
@@ -115,6 +113,11 @@ export default {
   padding: 0 5%;
   position: relative;
   z-index: 1000;
+}
+
+.nav-menu.dark {
+  transition: .5s all ease-in-out;
+  background-color: var(--color-black);
 }
 
 .men-bar .logo {
@@ -151,32 +154,32 @@ export default {
   align-items: center;
 }
 
-.men-bar ul .li-item-light:hover {
-  transition: background-color .2s;
+.men-bar ul .li-item:hover {
+  transition: background-color .2s ease-in-out;
   background-color: #0000000d;
 }
 
-.men-bar ul .li-item-dark:hover {
-  transition: background-color .2s;
+.men-bar ul .li-item.dark:hover {
+  transition: background-color .2s ease-in-out;
   background-color: var(--color-black-1);
 }
 
 
-.men-bar ul .li-item-light:hover .dropdown-menu {
+.men-bar ul .li-item:hover .dropdown-menu {
   display: block;
   position: absolute;
   left: 0;
   top: 100%;
-  transition: background-color .2s;
+  transition: background-color .2s ease-in-out;
   background-color: inherit;
 }
 
-.men-bar ul .li-item-dark:hover .dropdown-menu {
+.men-bar ul .li-item.dark:hover .dropdown-menu {
   display: block;
   position: absolute;
   left: 0;
   top: 100%;
-  transition: background-color .2s;
+  transition: background-color .2s ease-in-out;
   background-color: var(--color-black);
   border-radius: 5px;
 }
