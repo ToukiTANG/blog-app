@@ -2,9 +2,9 @@ import request from "@/api/request";
 
 export function getBlogList(pageNum) {
     return request({
-        url: "/blogs",
+        url: "blogs",
         method: "GET",
-        param: {
+        params: {
             pageNum
         }
     })

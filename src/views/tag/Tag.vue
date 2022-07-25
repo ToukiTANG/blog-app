@@ -31,14 +31,15 @@ export default {
     '$route.fullPath'() {
       //检测全局的路由变化，如果是通向本组件的，应该重新进行加载
       //在这里create函数是不能有这个效果的，因为重用是指跳转到另外的category页面，相当于create了另一个页面
-      if (this.$route.name === "category") {
+      if (this.$route.name === "tag") {
         this.getBlogList()
       }
     }
   },
   methods: {
-    getBlogList() {
-      getBlogListByTagName().then((res) => {
+    getBlogList(pageNum) {
+      getBlogListByTagName(this.tagName, pageNum).then((res) => {
+        console.log(res)
         this.blogList = res.data.list
         this.totalPage = res.data.totalPage
       }).catch(() => {
