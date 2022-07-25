@@ -4,7 +4,7 @@
       <div class="content-top">
         <div class="content-top-item">
           <div class="new-blog-title" style="color: #d8d8d8">最新博客</div>
-          <div class="new-blog" v-for="blog in newBlogs" :key="blog.id">{{ blog.title }}</div>
+          <div class="new-blog" v-for="blog in newBlogList" :key="blog.id">{{ blog.title }}</div>
         </div>
         <div class="content-top-item divider-container">
           <el-divider direction="vertical"></el-divider>
@@ -29,10 +29,14 @@ export default {
       type: Object,
       require: true
     },
+    newBlogList: {
+      type: Array,
+      require: true
+    }
   },
   data() {
     return {
-      newBlogs: [{id: 1, title: "测试标题01"}, {id: 2, title: "测试标题000002"}, {id: 3, title: "测试标题000000000003"}]
+      // newBlogList: [{id: 1, title: "测试标题01"}, {id: 2, title: "测试标题000002"}, {id: 3, title: "测试标题000000000003"}]
     }
   },
 };

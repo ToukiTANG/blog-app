@@ -23,11 +23,17 @@ export default {
   name: "Tags",
   data() {
     return {
-      tagList: [{id: 1, tagName: "Java"}, {id: 2, tagName: "SpringBoot"}, {id: 3, tagName: "Python"}, {
-        id: 4, tagName:
-            "测试tag名字"
-      }, {id: 5, tagName: "C++"}],
+      // tagList: [{id: 1, tagName: "Java"}, {id: 2, tagName: "SpringBoot"}, {id: 3, tagName: "Python"}, {
+      //   id: 4, tagName:
+      //       "测试tag名字"
+      // }, {id: 5, tagName: "C++"}],
     }
+  },
+  props: {
+    tagList: {
+      type: Array,
+      require: true
+    },
   },
   computed: {
     ...mapState(["colorObj"])

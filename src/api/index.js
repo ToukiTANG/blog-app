@@ -6,3 +6,10 @@ export function getHitokoto() {
         method: "GET"
     })
 }
+
+export function getSite() {
+    return request({
+        url: "/site",
+        method: "GET"
+    })
+}

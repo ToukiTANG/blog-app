@@ -18,8 +18,8 @@
         </keep-alive>
       </div>
       <div class="side">
-        <random-article></random-article>
-        <tags></tags>
+        <random-blog :randomBlogList="randomBlogList"></random-blog>
+        <tags :tagList="tagList"></tags>
       </div>
     </div>
     <!--回到顶部图标-->
@@ -29,7 +29,7 @@
       </el-backtop>
     </transition>
 
-    <BlogFooter :hitokoto="hitokoto"></BlogFooter>
+    <BlogFooter :hitokoto="hitokoto" :newBlogList="newBlogList"></BlogFooter>
   </div>
 </template>
 
@@ -40,18 +40,21 @@ import BlogFooter from "@/components/index/BlogFooter.vue";
 import ArticleCard from "@/components/blog/ArticleCard.vue";
 import {SAVE_CLIENT_SIZE, SAVE_SITE_INFO} from "@/store/mutation-types";
 import Introduction from "@/components/side/Introduction";
-import RandomArticle from "@/components/side/RandomArticle";
-import {getHitokoto} from "@/api/hitokoto";
+import RandomBlog from "@/components/side/RandomBlog";
+import {getHitokoto, getSite} from "@/api";
 import Tags from "@/components/side/Tags";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Index",
   // eslint-disable-next-line vue/no-unused-components
-  components: {Tags, RandomArticle, Introduction, Navigation, BlogHeader, BlogFooter, ArticleCard},
+  components: {Tags, RandomBlog, Introduction, Navigation, BlogHeader, BlogFooter, ArticleCard},
   data() {
     return {
-      categoryList: [{id: "001", name: "随笔"}, {id: "002", name: "test02"}],
+      categoryList: [],
+      tagList: [],
+      randomBlogList: [],
+      newBlogList: [],
       hitokoto: {},
       siteInfo: {
         webTitleSuffix: " - Touki's blog"
@@ -69,6 +72,7 @@ export default {
     this.$store.commit(SAVE_SITE_INFO, this.siteInfo)
     //标签title
     document.title = this.$route.meta.title + this.siteInfo.webTitleSuffix
+    this.getSite()
   },
   mounted() {
     //进入首页过后即计算窗口大小
@@ -107,6 +111,14 @@ export default {
       getHitokoto().then(res => {
         this.hitokoto = res
       })
+    },
+    getSite() {
+      getSite().then((res) => {
+        this.categoryList = res.data.categoryList
+        this.randomBlogList = res.data.randomBlogList
+        this.tagList = res.data.tagList
+        this.newBlogList = res.data.newBlogList
+      })
     }
   },
 };
@@ -144,7 +156,8 @@ export default {
   flex: 3;
   margin: 0 14px;
 }
-.tags{
+
+.tags {
   margin-top: 20px;
 }
 

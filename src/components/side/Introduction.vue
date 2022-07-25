@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-.introduction{
+.introduction {
   position: sticky;
   top: 60px;
 }
@@ -30,9 +30,10 @@ export default {
 .image {
   object-fit: cover;
   width: 100%;
+  height: 260px;
 }
 
-.el-card{
+.el-card {
   border: 1px solid var(--color-border);
 }
 
