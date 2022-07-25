@@ -1,7 +1,7 @@
 <template>
   <div class="introduction">
     <el-card shadow="hover" :body-style="{padding:0}">
-      <img src="@/assets/touki.jpg" class="image" alt="">
+      <img src="http://rfjxf8517.hn-bkt.clouddn.com/touki.jpg" class="image" alt="">
       <div class="text-nickname">Touki</div>
       <el-divider></el-divider>
       <div class="text-description">人生海海，山山而川</div>

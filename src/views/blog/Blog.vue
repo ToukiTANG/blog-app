@@ -391,6 +391,10 @@ export default {
   font-size: 100%;
 }
 
+.markdown-body >>> hr {
+  height: 1px;
+}
+
 .markdown-body >>> .highlight pre, .markdown-body >>> pre {
   padding: 0;
 }
