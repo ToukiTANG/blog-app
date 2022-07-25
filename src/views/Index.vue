@@ -37,7 +37,7 @@
 import Navigation from "@/components/index/Navigation.vue";
 import BlogHeader from "@/components/index/BlogHeader.vue";
 import BlogFooter from "@/components/index/BlogFooter.vue";
-import ArticleCard from "@/components/blog/ArticleCard.vue";
+import ArticleCard from "@/components/blog/BlogCard.vue";
 import {SAVE_CLIENT_SIZE, SAVE_SITE_INFO} from "@/store/mutation-types";
 import Introduction from "@/components/side/Introduction";
 import RandomBlog from "@/components/side/RandomBlog";

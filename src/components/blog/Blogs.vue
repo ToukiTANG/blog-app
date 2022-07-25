@@ -1,20 +1,20 @@
 <template>
-  <div class="articles">
-    <article-card class="article-card-list" :blogList="blogList"></article-card>
-    <pagination class="article-pagination" :getBlogList="getBlogList" :totalPage="totalPage"></pagination>
+  <div class="blogs">
+    <blog-card class="blog-card-list" :blogList="blogList"></blog-card>
+    <pagination class="blog-pagination" :getBlogList="getBlogList" :totalPage="totalPage"></pagination>
   </div>
 </template>
 
 <script>
-import ArticleCard from "@/components/blog/ArticleCard";
+import BlogCard from "@/components/blog/BlogCard";
 import Pagination from "@/components/blog/Pagination";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Articles",
+  name: "Blogs",
   components: {
     // eslint-disable-next-line vue/no-unused-components
-    ArticleCard, Pagination
+    BlogCard, Pagination
   },
   props: {
     blogList: {

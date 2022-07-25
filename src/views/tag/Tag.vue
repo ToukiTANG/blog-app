@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Articles from "@/components/blog/Articles";
+import Articles from "@/components/blog/Blogs";
 import {getBlogListByTagName} from "@/api/tag";
 import {Message} from "element-ui";
 

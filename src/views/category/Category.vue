@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Articles from "@/components/blog/Articles";
+import Articles from "@/components/blog/Blogs";
 import {getBlogListByCategoryName} from "@/api/category";
 import {Message} from "element-ui";
 

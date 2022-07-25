@@ -1,11 +1,11 @@
 <template>
   <div class="Home">
-    <Articles :blogList="blogList" :getBlogList="getBlogList" :totalPage="totalPage"></Articles>
+    <blogs :blogList="blogList" :getBlogList="getBlogList" :totalPage="totalPage"></blogs>
   </div>
 </template>
 
 <script>
-import Articles from "@/components/blog/Articles"
+import Blogs from "@/components/blog/Blogs"
 import {getBlogList} from "@/api/home"
 import {SET_IS_BLOG_TO_HOME} from "@/store/mutation-types";
 import {Message} from "element-ui";
@@ -14,7 +14,7 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Home",
   components: {
-    Articles,
+    Blogs,
   },
   data() {
     return {
