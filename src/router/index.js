@@ -27,7 +27,13 @@ const router = new VueRouter({
                     path: '/archives',
                     name: 'archives',
                     component: () => import('@/views/archives/Archives'),
-                    meta: {title: "归档"}
+                    meta: {title: "归档"},
+                },
+                {
+                    path: 'archive/:yearMonth',
+                    name: 'archive',
+                    component: () => import('@/views/archives/Archives'),
+                    meta: {title: "年月归档"}
                 },
                 {
                     path: '/about',

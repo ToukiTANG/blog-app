@@ -254,7 +254,7 @@ export default {
 
 .first-img {
   object-fit: cover;
-  max-width: 100%;
+  width: 100%;
   text-align: center;
   border-radius: 5px;
 }

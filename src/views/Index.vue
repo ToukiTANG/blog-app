@@ -13,7 +13,7 @@
         <introduction></introduction>
       </div>
       <div class="main-content">
-        <keep-alive include="Home">
+        <keep-alive include="Home,Archives">
           <router-view/>
         </keep-alive>
       </div>
