@@ -261,6 +261,7 @@ export default {
 
 .blog-description {
   margin: 20px 0;
+  line-height: 1.8;
 }
 
 .category-tag {

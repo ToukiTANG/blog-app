@@ -4,7 +4,11 @@
       <div class="content-top">
         <div class="content-top-item">
           <div class="new-blog-title" style="color: #d8d8d8">最新博客</div>
-          <div class="new-blog" v-for="blog in newBlogList" :key="blog.id">{{ blog.title }}</div>
+          <!--<div class="new-blog" v-for="blog in newBlogList" :key="blog.id" >{{ blog.title }}</div>-->
+          <router-link :to="`/blog/${blog.id}`" class="new-blog" v-for="(blog,index) in newBlogList" :key="index">{{
+              blog.title
+            }}
+          </router-link>
         </div>
         <div class="content-top-item divider-container">
           <el-divider direction="vertical"></el-divider>
@@ -71,6 +75,12 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.content-top .content-top-item:first-child {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .content-top-item {
