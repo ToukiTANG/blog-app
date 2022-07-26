@@ -1,18 +1,18 @@
 <template>
   <div class="blog">
-    <div class="article-top" v-if="blog.weight===1">
+    <div class="blog-top" v-if="blog.weight===1">
       <font-awesome-icon icon="fa-solid fa-circle-up" size="lg"></font-awesome-icon>
     </div>
     <el-card shadow="always" :body-style="{ padding: '0 16px 16px' }">
       <div class="blog-header">
         <!--标题-->
-        <div class="article-title">
+        <div class="blog-title">
           <h2>
             <a href="#">{{ blog.title }}</a>
           </h2>
         </div>
         <!--简略信息图标-->
-        <div class="article-info">
+        <div class="blog-info">
           <div class="info-item">
             <div class="info-time">
               <font-awesome-icon icon="fa-solid fa-calendar-days" size="xs"></font-awesome-icon>
@@ -48,18 +48,28 @@
           {{ blog.category.categoryName }}
         </router-link>
       </div>
-      <div class="article-content">
+      <div class="blog-content">
         <mavon-editor :value="blog.content" :subfield="false" defaultOpen="preview" :toolbarsFlag="false"
                       :boxShadow="false" previewBackground="#ffffff" codeStyle="atom-one-dark"></mavon-editor>
       </div>
       <el-divider></el-divider>
       <!--标签-->
-      <div class="article-footer">
+      <div class="blog-footer">
         <el-tag v-for="t in blog.tags" :key="t.id" :class="colorObj[Math.round(Math.random()*4)]">
           <router-link :to="`/tag/${t.tagName}`">{{ t.tagName }}</router-link>
         </el-tag>
       </div>
     </el-card>
+    <div class="blog-msg">
+      <ul class="msg-list">
+        <li>作者：</li>
+        <li>发表时间：{{ blog.createTime|timeFormat }}</li>
+        <li>最后编辑：{{ blog.updateTime|timeFormat }}</li>
+        <li>本作品采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">署名4.0国际(CC BY 4
+          .0)</a>进行许可。可自由转载引用，并允许商业性使用，但需署名作者且注明出处。
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -67,6 +77,8 @@
 import {mavonEditor} from "mavon-editor"
 import "mavon-editor/dist/css/index.css"
 import {mapState} from "vuex";
+import {getBlog} from "@/api/blog";
+import {Message} from "element-ui";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -167,6 +179,19 @@ export default {
   computed: {
     ...mapState(["colorObj"])
   },
+  methods: {
+    getBlog(id = this.$route.params.id) {
+      getBlog(id).then(res => {
+        this.blog = res.data.blog
+        document.title = this.blog.title + this.siteInfo.webTitleSuffix
+      }).catch(() => {
+        Message({type: "error", message: "文章加载失败，请重试！", showClose: true})
+      })
+    }
+  },
+  created() {
+    // this.getBlog()
+  },
   mounted() {
   }
 }
@@ -180,26 +205,26 @@ export default {
   overflow: visible;
 }
 
-.article-title {
+.blog-title {
   margin-bottom: 20px;
 }
 
-.article-title h2 {
+.blog-title h2 {
   text-align: center;
 }
 
-.article-title h2 a {
+.blog-title h2 a {
   color: #333333;
 }
 
-.article-top {
+.blog-top {
   width: 0;
   height: 0;
   float: right;
   position: relative;
 }
 
-.article-top:after {
+.blog-top:after {
   content: "";
   float: right;
   position: relative;
@@ -209,7 +234,7 @@ export default {
   border-bottom: solid 30px transparent;
 }
 
-.article-top svg {
+.blog-top svg {
   color: white;
   float: right;
   position: relative;
@@ -218,7 +243,7 @@ export default {
   z-index: 1;
 }
 
-.article-info {
+.blog-info {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -282,87 +307,82 @@ export default {
   color: var(--color-white);
 }
 
-.blog-content {
-  height: 300px;
-  border: solid 1px black;
-}
-
-.article-footer {
+.blog-footer {
   margin: 0 0 8px;
 }
 
-.article-footer .el-tag {
+.blog-footer .el-tag {
   margin-left: 6px;
   color: #206864;
   border-color: #206864d4;
   background-color: #2068641f;
 }
 
-.article-footer .el-tag:hover {
+.blog-footer .el-tag:hover {
   transition: .2s;
   background-color: #2068644C;
 }
 
-.article-footer .el-tag:hover {
+.blog-footer .el-tag:hover {
   transition: .2s;
   /*background-color: #2068644C;*/
 }
 
-.article-footer .el-tag.blue {
+.blog-footer .el-tag.blue {
   color: #4994c4;
   border-color: #4994c4;
   background-color: #4994c41f;
 }
 
-.article-footer .el-tag.blue:hover {
+.blog-footer .el-tag.blue:hover {
   background-color: #4994c44c;
 }
 
-.article-footer .el-tag.dark {
+.blog-footer .el-tag.dark {
   color: #31322c;
   border-color: #31322c;
   background-color: #31322c1f;
 }
 
-.article-footer .el-tag.dark:hover {
+.blog-footer .el-tag.dark:hover {
   background-color: #31322c4c;
 }
 
-.article-footer .el-tag.green {
+.blog-footer .el-tag.green {
   color: #5d7259;
   border-color: #5d7259;
   background-color: #5d72591f;
 }
 
-.article-footer .el-tag.green:hover {
+.blog-footer .el-tag.green:hover {
   background-color: #5d72594c;
 }
 
-.article-footer .el-tag.red {
+.blog-footer .el-tag.red {
   color: #b13b2e;
   border-color: #b13b2e;
   background-color: #b13b2e1f;
 }
 
-.article-footer .el-tag.red:hover {
+.blog-footer .el-tag.red:hover {
   background-color: #b13b2e4c;
 }
 
-.article-footer .el-tag.orange {
+.blog-footer .el-tag.orange {
   color: #d9883d;
   border-color: #d9883d;
   background-color: #d9883d1f;
 }
 
-.article-footer .el-tag.orange:hover {
+.blog-footer .el-tag.orange:hover {
   background-color: #d9883d4c;
 }
 
-.article-footer span .el-tag .el-tag-light {
+.blog-footer span .el-tag .el-tag-light {
   padding: 0 10px;
 }
 
-.article-footer .el-tag a {
+.blog-footer .el-tag a {
   color: inherit;
   display: inline-block;
   height: 100%;

@@ -14,7 +14,7 @@
           <el-divider direction="vertical"></el-divider>
         </div>
         <div class="content-top-item" style="line-height: 3.0; color: rgba(255, 255, 255, .5)">
-          <p id="hitokoto-text">{{ hitokoto.hitokoto }}</p>
+          <p id="hitokoto-text" style="text-align: left;padding-left: 20px">{{ hitokoto.hitokoto }}</p>
           <p id="hitokoto-from" style="float: right;"
              v-text="hitokoto.from?`——《${hitokoto.from}》`:''"></p>
         </div>
