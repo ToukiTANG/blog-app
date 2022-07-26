@@ -42,7 +42,8 @@
           </div>
         </div>
       </div>
-      <div class="category-tag">
+      <!--这里加一个判断，否则异步渲染会报警告-->
+      <div class="category-tag" v-if="blog.category">
         <router-link :to="`/category/${blog.category.categoryName}`">
           <font-awesome-icon icon="fa-solid fa-folder-open" size="sm"></font-awesome-icon>
           {{ blog.category.categoryName }}
@@ -93,108 +94,114 @@ export default {
     return {
       blog:
           {
-            id: 1,
-            title: "测试标题",
-            createTime: "2022-07-09T07:40:35.000+00:00",
-            updateTime: "2022-07-14T07:15:45.000+00:00",
-            weight: 1,
-            views: 10,
-            content: "### 布局\n" +
-                "\n" +
-                "---\n" +
-                "\n" +
-                "+ 浏览器默认样式：`body`的外边框\n" +
-                "\n" +
-                "#### 正常布局\n" +
-                "\n" +
-                "---\n" +
-                "\n" +
-                "##### 宽度\n" +
-                "\n" +
-                "+ 对于父子元素的宽度\n" +
-                "\n" +
-                "  + 子元素的`margin-left`+`border-left`+`padding-left`+`width`+`padding-right`+`border-right`+`margin-right`=父元素的`width`（正常布局情况下强制满足）\n" +
-                "\n" +
-                "  + 当以上某一值设置为`auto`后，会调整该值以满足等式\n" +
-                "\n" +
-                "  + **常用的**，会设置`margin: 0 auto;`来使子元素在父元素的水平方向上居中\n" +
-                "\n" +
-                "##### 高度\n" +
-                "\n" +
-                "+ 对于父子元素的高度\n" +
-                "  + 如果不指定父元素的高度，**父元素的高度默认被子元素撑开**\n" +
-                "  + 如果子元素的高度超过了父元素，使用`overflow`设置父元素如何处理子元素的溢出（**设置在父元素上**）\n" +
-                "    + `overflow: visible;`默认值，会使子元素在父元素外部显示\n" +
-                "    + `overflow: hidden;`会使子元素溢出部分被裁剪\n" +
-                "    + `overflow: scorll;`生成垂直水平两个滚动条\n" +
-                "    + `overflow: auto;`按需生成滚动条\n" +
-                "      + 此外`overflow-x`与`overflow-y`可以单独处理水平和垂直方向的溢出\n" +
-                "\n" +
-                "##### 相邻边距\n" +
-                "\n" +
-                "+ 对于兄弟元素的相邻边距（不需要处理）\n" +
-                "\n" +
-                "  + <u>兄弟元素间的边距会发生折叠现象</u>\n" +
-                "  + 如果都是正数，以最大的为准\n" +
-                "  + 如果一正一负（很少用），取相加值\n" +
-                "  + 如果都是负数，以绝对值较大的为准\n" +
-                "\n" +
-                "+ 对于父子元素的相邻边距（**需要处理**）\n" +
-                "\n" +
-                "  + <u>子元素的边距会传递给父元素</u>\n" +
-                "\n" +
-                "  + 可以做如下处理（还可以同时解决高度塌陷问题）\n" +
-                "\n" +
-                "    + ```css\n" +
-                "      <style>\n" +
-                "      .child::fefore{\n" +
-                "          content: '';\n" +
-                "          display: table;\n" +
-                "      }\n" +
-                "      \n" +
-                "      .clearfix::before, .clearfix::after{\n" +
-                "          content:'',\n" +
-                "              display: table;\n" +
-                "              clear: both;\n" +
-                "      }\n" +
-                "      </style>\n" +
-                "      ```",
-            category: {
-              id: 1,
-              categoryName: "随笔"
-            },
-            tags: [
-              {
-                id: 1,
-                tagName: "SpringBoot"
-              },
-              {
-                id: 2,
-                tagName: "Java"
-              },
-              {
-                id: 3,
-                tagName: "Python"
-              }]
-
+            // id: 1,
+            // title: "测试标题",
+            // createTime: "2022-07-09T07:40:35.000+00:00",
+            // updateTime: "2022-07-14T07:15:45.000+00:00",
+            // weight: 1,
+            // views: 10,
+            // content: "### 布局\n" +
+            //     "\n" +
+            //     "---\n" +
+            //     "\n" +
+            //     "+ 浏览器默认样式：`body`的外边框\n" +
+            //     "\n" +
+            //     "#### 正常布局\n" +
+            //     "\n" +
+            //     "---\n" +
+            //     "\n" +
+            //     "##### 宽度\n" +
+            //     "\n" +
+            //     "+ 对于父子元素的宽度\n" +
+            //     "\n" +
+            //     "  + 子元素的`margin-left`+`border-left`+`padding-left`+`width`+`padding-right`+`border-right`+`margin-right`=父元素的`width`（正常布局情况下强制满足）\n" +
+            //     "\n" +
+            //     "  + 当以上某一值设置为`auto`后，会调整该值以满足等式\n" +
+            //     "\n" +
+            //     "  + **常用的**，会设置`margin: 0 auto;`来使子元素在父元素的水平方向上居中\n" +
+            //     "\n" +
+            //     "##### 高度\n" +
+            //     "\n" +
+            //     "+ 对于父子元素的高度\n" +
+            //     "  + 如果不指定父元素的高度，**父元素的高度默认被子元素撑开**\n" +
+            //     "  + 如果子元素的高度超过了父元素，使用`overflow`设置父元素如何处理子元素的溢出（**设置在父元素上**）\n" +
+            //     "    + `overflow: visible;`默认值，会使子元素在父元素外部显示\n" +
+            //     "    + `overflow: hidden;`会使子元素溢出部分被裁剪\n" +
+            //     "    + `overflow: scorll;`生成垂直水平两个滚动条\n" +
+            //     "    + `overflow: auto;`按需生成滚动条\n" +
+            //     "      + 此外`overflow-x`与`overflow-y`可以单独处理水平和垂直方向的溢出\n" +
+            //     "\n" +
+            //     "##### 相邻边距\n" +
+            //     "\n" +
+            //     "+ 对于兄弟元素的相邻边距（不需要处理）\n" +
+            //     "\n" +
+            //     "  + <u>兄弟元素间的边距会发生折叠现象</u>\n" +
+            //     "  + 如果都是正数，以最大的为准\n" +
+            //     "  + 如果一正一负（很少用），取相加值\n" +
+            //     "  + 如果都是负数，以绝对值较大的为准\n" +
+            //     "\n" +
+            //     "+ 对于父子元素的相邻边距（**需要处理**）\n" +
+            //     "\n" +
+            //     "  + <u>子元素的边距会传递给父元素</u>\n" +
+            //     "\n" +
+            //     "  + 可以做如下处理（还可以同时解决高度塌陷问题）\n" +
+            //     "\n" +
+            //     "    + ```css\n" +
+            //     "      <style>\n" +
+            //     "      .child::fefore{\n" +
+            //     "          content: '';\n" +
+            //     "          display: table;\n" +
+            //     "      }\n" +
+            //     "      \n" +
+            //     "      .clearfix::before, .clearfix::after{\n" +
+            //     "          content:'',\n" +
+            //     "              display: table;\n" +
+            //     "              clear: both;\n" +
+            //     "      }\n" +
+            //     "      </style>\n" +
+            //     "      ```",
+            // category: {
+            //   id: 1,
+            //   categoryName: "随笔"
+            // },
+            // tags: [
+            //   {
+            //     id: 1,
+            //     tagName: "SpringBoot"
+            //   },
+            //   {
+            //     id: 2,
+            //     tagName: "Java"
+            //   },
+            //   {
+            //     id: 3,
+            //     tagName: "Python"
+            //   }]
           }
     }
   },
   computed: {
-    ...mapState(["colorObj"])
+    ...mapState(["colorObj", "siteInfo"])
   },
   methods: {
     getBlog(id = this.$route.params.id) {
-      getBlog(id).then(res => {
-        this.blog = res.data.blog
+      getBlog(id).then((res) => {
+        this.blog = res.data
         document.title = this.blog.title + this.siteInfo.webTitleSuffix
       }).catch(() => {
-        Message({type: "error", message: "文章加载失败，请重试！", showClose: true})
+        Message({type: "error", message: "文章详情加载失败，请重试！", showClose: true})
       })
     }
   },
   created() {
-    // this.getBlog()
+    this.getBlog()
+  },
+  beforeRouteUpdate(to, from, next) {
+    //当在文章页面跳转到其他文章页面时应该重新获取文章
+    if (to.path !== from.path) {
+      this.getBlog(to.params.id)
+      next()
+    }
   },
   mounted() {
   }
@@ -453,5 +460,6 @@ ul.msg-list {
 
 .markdown-body >>> .highlight pre, .markdown-body >>> pre {
   padding: 0;
+  max-width: 700px;
 }
 </style>

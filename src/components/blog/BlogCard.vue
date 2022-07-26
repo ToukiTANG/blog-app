@@ -11,6 +11,7 @@
           <div class="blog-title">
             <h2>
               <router-link :to="`/blog/${blog.id}`">{{ blog.title }}</router-link>
+              <!--<a href="#" @click.prevent="view(blog.id)">{{ blog.title }}</a>-->
             </h2>
           </div>
           <!--简略信息图标-->

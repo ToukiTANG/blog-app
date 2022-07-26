@@ -43,7 +43,7 @@ export default {
         this.blogList = res.data.list
         this.totalPage = res.data.totalPage
       }).catch(() => {
-        Message({type: "error", message: "文章加载失败，请重试！", showClose: true})
+        Message({type: "error", message: "分类文章加载失败，请重试！", showClose: true})
       })
     }
   },

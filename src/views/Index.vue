@@ -43,6 +43,7 @@ import Introduction from "@/components/side/Introduction";
 import RandomBlog from "@/components/side/RandomBlog";
 import {getHitokoto, getSite} from "@/api";
 import Tags from "@/components/side/Tags";
+import {Message} from "element-ui";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -118,6 +119,8 @@ export default {
         this.randomBlogList = res.data.randomBlogList
         this.tagList = res.data.tagList
         this.newBlogList = res.data.newBlogList
+      }).catch(()=>{
+        Message({type: "error", message: "首页信息加载失败，请重试！", showClose: true})
       })
     }
   },
@@ -140,7 +143,7 @@ export default {
   display: flex;
   justify-content: center;
   position: relative;
-  width: 1400px;
+  width: 1600px;
   margin: 80px auto 0;
   min-height: 100vh;
 }
@@ -153,7 +156,7 @@ export default {
 .main-content {
   padding: 0 20px;
   display: block;
-  flex: 3;
+  flex: 4;
   margin: 0 14px;
 }
 

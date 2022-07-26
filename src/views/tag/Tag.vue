@@ -39,11 +39,10 @@ export default {
   methods: {
     getBlogList(pageNum) {
       getBlogListByTagName(this.tagName, pageNum).then((res) => {
-        console.log(res)
         this.blogList = res.data.list
         this.totalPage = res.data.totalPage
       }).catch(() => {
-        Message({type: "error", message: "文章加载失败，请重试！", showClose: true})
+        Message({type: "error", message: "Tag标签加载失败，请重试！", showClose: true})
       })
     }
   },

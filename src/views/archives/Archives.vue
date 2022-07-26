@@ -132,6 +132,7 @@ export default {
 .timeline {
   padding: 0 50px 0;
   flex-direction: column;
+  margin-left: 100px;
 }
 
 .timeline .timeline-header {
