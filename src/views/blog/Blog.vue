@@ -62,13 +62,16 @@
     </el-card>
     <div class="blog-msg">
       <ul class="msg-list">
-        <li>作者：</li>
+        <li>作者：Touki</li>
         <li>发表时间：{{ blog.createTime|timeFormat }}</li>
         <li>最后编辑：{{ blog.updateTime|timeFormat }}</li>
         <li>本作品采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">署名4.0国际(CC BY 4
           .0)</a>进行许可。可自由转载引用，并允许商业性使用，但需署名作者且注明出处。
         </li>
       </ul>
+    </div>
+    <div class="blog-comment">
+      <h3>评论已关闭</h3>
     </div>
   </div>
 </template>
@@ -92,6 +95,7 @@ export default {
           {
             id: 1,
             title: "测试标题",
+            createTime: "2022-07-09T07:40:35.000+00:00",
             updateTime: "2022-07-14T07:15:45.000+00:00",
             weight: 1,
             views: 10,
@@ -200,9 +204,10 @@ export default {
 <style scoped>
 .el-card {
   padding: 25px 20px 0;
-  margin-bottom: 30px;
+  /*margin-bottom: 30px;*/
   border: 1px solid var(--color-border);
   overflow: visible;
+  border-radius: 4px 4px 0 0;
 }
 
 .blog-title {
@@ -387,6 +392,37 @@ export default {
   display: inline-block;
   height: 100%;
   width: 100%;
+}
+
+.blog-msg {
+  padding: 20px;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-bottom: none;
+  /*border-radius: 0 0 4px 4px;*/
+  /*margin-bottom: 30px;*/
+  background-color: #fcfff5;
+}
+
+.blog-msg a {
+  color: #0366d6;
+}
+
+ul.msg-list {
+  margin-left: 20px;
+  line-height: 1.5;
+  color: #4c7d4b;
+}
+
+.blog-comment {
+  margin-bottom: 20px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+  border: 1px solid var(--color-border);
+  border-top: 2px solid #00b5ad;
+  border-radius: 0 0 4px 4px;
 }
 
 /*使mavonEditor容器不会浮在表面*/
