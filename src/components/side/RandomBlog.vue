@@ -63,8 +63,7 @@ export default {
 
 <style scoped>
 .random-blog {
-  position: sticky;
-  top: 60px;
+  margin-bottom: 20px;
 }
 
 .random-blog >>> .el-card__body {

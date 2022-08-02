@@ -10,7 +10,7 @@
 
     <div class="main">
       <div class="side">
-        <introduction></introduction>
+        <introduction :introduction="introduction"></introduction>
       </div>
       <div class="main-content">
         <keep-alive include="Home,Archives">
@@ -18,8 +18,10 @@
         </keep-alive>
       </div>
       <div class="side">
-        <random-blog :randomBlogList="randomBlogList"></random-blog>
-        <tags :tagList="tagList"></tags>
+        <div class="side-right">
+          <random-blog :randomBlogList="randomBlogList"></random-blog>
+          <tags :tagList="tagList"></tags>
+        </div>
       </div>
     </div>
     <!--回到顶部图标-->
@@ -59,7 +61,8 @@ export default {
       hitokoto: {},
       siteInfo: {
         webTitleSuffix: " - Touki's blog"
-      }
+      },
+      introduction: {},
     };
   },
   watch: {
@@ -115,11 +118,13 @@ export default {
     },
     getSite() {
       getSite().then((res) => {
+        this.siteInfo = res.data.siteInfo
+        this.introduction = res.data.introduction
         this.categoryList = res.data.categoryList
         this.randomBlogList = res.data.randomBlogList
         this.tagList = res.data.tagList
         this.newBlogList = res.data.newBlogList
-      }).catch(()=>{
+      }).catch(() => {
         Message({type: "error", message: "首页信息加载失败，请重试！", showClose: true})
       })
     }
@@ -145,7 +150,8 @@ export default {
   position: relative;
   width: 1600px;
   margin: 80px auto 0;
-  min-height: 100vh;
+  /*减去与header的80和footer的260*/
+  min-height: calc(100vh - 260px - 80px);
 }
 
 .side {
@@ -156,12 +162,17 @@ export default {
 .main-content {
   padding: 0 20px;
   display: block;
-  flex: 4;
+  flex: 3;
   margin: 0 14px;
 }
 
-.tags {
-  margin-top: 20px;
+.side-right {
+  position: sticky;
+  top: 60px;
 }
+
+/*.tags {*/
+/*  margin-top: 20px;*/
+/*}*/
 
 </style>
