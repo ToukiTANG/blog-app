@@ -4,7 +4,6 @@
       <div class="content-top">
         <div class="content-top-item">
           <div class="new-blog-title" style="color: #d8d8d8">最新博客</div>
-          <!--<div class="new-blog" v-for="blog in newBlogList" :key="blog.id" >{{ blog.title }}</div>-->
           <router-link :to="`/blog/${blog.id}`" class="new-blog" v-for="(blog,index) in newBlogList" :key="index">{{
               blog.title
             }}
@@ -13,9 +12,9 @@
         <div class="content-top-item divider-container">
           <el-divider direction="vertical"></el-divider>
         </div>
-        <div class="content-top-item" style="line-height: 3.0; color: rgba(255, 255, 255, .5)">
+        <div class="content-top-item" style="color: rgba(255, 255, 255, .5)">
           <p id="hitokoto-text" style="text-align: left;padding-left: 20px">{{ hitokoto.hitokoto }}</p>
-          <p id="hitokoto-from" style="float: right;"
+          <p id="hitokoto-from" style="float: right; line-height: 3"
              v-text="hitokoto.from?`——《${hitokoto.from}》`:''"></p>
         </div>
       </div>
