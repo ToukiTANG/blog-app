@@ -1,7 +1,7 @@
 <template>
   <div class="introduction">
     <el-card shadow="hover" :body-style="{padding:0}">
-      <img src="http://rfjxf8517.hn-bkt.clouddn.com/touki.jpg" class="image" alt="">
+      <img :src="introduction.avatar" class="image" alt="">
       <div class="text-nickname">{{ introduction.nickname }}</div>
       <!--<el-divider></el-divider>-->
       <div class="text-description">{{ introduction.description }}</div>
