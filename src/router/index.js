@@ -52,6 +52,12 @@ const router = new VueRouter({
                     name: 'tag',
                     component: () => import('@/views/tag/Tag'),
                     meta: {title: "标签"}
+                },
+                {
+                    path: '/moment',
+                    name: 'moment',
+                    component: () => import('@/views/moment/Moment'),
+                    meta: {title: "动态"}
                 }
             ]
         }

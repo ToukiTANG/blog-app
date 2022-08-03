@@ -3,7 +3,7 @@
     <el-card shadow="always">
       <h2 class="category-name">分类{{ categoryName }}下的文章</h2>
     </el-card>
-    <articles :getBlogList="getBlogList" :blogList="blogList" :totalPage="totalPage"></articles>
+    <articles :getBlogList="getBlogList" :blogList="blogList" :total="total" :pageSize="pageSize"></articles>
   </div>
 
 </template>
@@ -20,7 +20,8 @@ export default {
   data() {
     return {
       blogList: [],
-      totalPage: 0,
+      total: 0,
+      pageSize: 0
     }
   },
   watch: {
@@ -41,7 +42,8 @@ export default {
     getBlogList(pageNum) {
       getBlogListByCategoryName(this.categoryName, pageNum).then(res => {
         this.blogList = res.data.list
-        this.totalPage = res.data.totalPage
+        this.total = res.data.total
+        this.pageSize = res.data.pageSize
       }).catch(() => {
         Message({type: "error", message: "分类文章加载失败，请重试！", showClose: true})
       })

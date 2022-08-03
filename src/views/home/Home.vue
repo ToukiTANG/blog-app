@@ -1,6 +1,6 @@
 <template>
   <div class="Home">
-    <blogs :blogList="blogList" :getBlogList="getBlogList" :totalPage="totalPage"></blogs>
+    <blogs :blogList="blogList" :getBlogList="getBlogList" :total="total" :pageSize="pageSize"></blogs>
   </div>
 </template>
 
@@ -19,7 +19,8 @@ export default {
   data() {
     return {
       blogList: [],
-      totalPage: 0,
+      total: 0,
+      pageSize: 0,
       getBlogListFinish: false
     }
   },
@@ -29,13 +30,13 @@ export default {
       if (from.name !== "blog") {
         vm.$store.commit(SET_IS_BLOG_TO_HOME, false)
         vm.getBlogList()
-      }else {
+      } else {
         //如果首页就是起始页，则没有缓存，重新请求数据
-        if (!vm.getBlogListFinish){
+        if (!vm.getBlogListFinish) {
           vm.getBlogList()
         }
         //如果从文章页面跳过来，可以使用缓存
-        vm.$store.commit(SET_IS_BLOG_TO_HOME,true)
+        vm.$store.commit(SET_IS_BLOG_TO_HOME, true)
       }
     })
   },
@@ -43,7 +44,8 @@ export default {
     getBlogList(pageNum) {
       getBlogList(pageNum).then(res => {
         this.blogList = res.data.list
-        this.totalPage = res.data.totalPage
+        this.total = res.data.total
+        this.pageSize = res.data.pageSize
       }).catch(() => {
         Message({type: "error", message: "文章加载失败，请重试！", showClose: true})
       })

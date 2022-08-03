@@ -3,7 +3,7 @@
     <el-card shadow="always">
       <h2 class="tag-name">标签{{ tagName }}下的文章</h2>
     </el-card>
-    <articles :getBlogList="getBlogList" :blogList="blogList" :totalPage="totalPage"></articles>
+    <articles :getBlogList="getBlogList" :blogList="blogList" :total="total" :pageSize="pageSize"></articles>
   </div>
 </template>
 
@@ -19,7 +19,8 @@ export default {
   data() {
     return {
       blogList: [],
-      totalPage: 0
+      total: 0,
+      pageSize: 0
     }
   },
   computed: {
@@ -40,7 +41,8 @@ export default {
     getBlogList(pageNum) {
       getBlogListByTagName(this.tagName, pageNum).then((res) => {
         this.blogList = res.data.list
-        this.totalPage = res.data.totalPage
+        this.total = res.data.total
+        this.pageSize = res.data.pageSize
       }).catch(() => {
         Message({type: "error", message: "Tag标签加载失败，请重试！", showClose: true})
       })

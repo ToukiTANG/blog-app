@@ -1,7 +1,7 @@
 <template>
   <div class="blogs">
     <blog-card class="blog-card-list" :blogList="blogList"></blog-card>
-    <pagination class="blog-pagination" :getBlogList="getBlogList" :totalPage="totalPage"></pagination>
+    <pagination class="blog-pagination" :getBlogList="getBlogList" :totalPage="total" :pageSize="pageSize"></pagination>
   </div>
 </template>
 
@@ -21,7 +21,11 @@ export default {
       type: Array,
       require: true
     },
-    totalPage: {
+    total: {
+      type: Number,
+      require: true
+    },
+    pageSize: {
       type: Number,
       require: true
     },

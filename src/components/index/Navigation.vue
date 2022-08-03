@@ -33,6 +33,12 @@
         </router-link>
       </li>
       <li class="li-item" :class="dark?'dark':''">
+        <router-link to="/moment">
+          <font-awesome-icon icon="fa-comment-dots" size="xs"></font-awesome-icon>
+          动态
+        </router-link>
+      </li>
+      <li class="li-item" :class="dark?'dark':''">
         <router-link to="/about">
           <font-awesome-icon icon="fa-circle-info" size="xs"></font-awesome-icon>
           关于

@@ -28,7 +28,7 @@
     <el-card v-show="yearMonth">
       <h2>{{ yearMonth }}的文章</h2>
     </el-card>
-    <blogs v-show="yearMonth" :blogList="blogList" :totalPage="totalPage"></blogs>
+    <blogs v-show="yearMonth" :blogList="blogList" :total="total"></blogs>
   </div>
 </template>
 
@@ -65,7 +65,7 @@ export default {
             //     ]
           },
       blogList: [],
-      totalPage: 0,
+      total: 0,
     }
   },
   computed: {
@@ -103,7 +103,7 @@ export default {
     },
     getBlogList(pageNum) {
       getBlogListByYearMonth(pageNum, this.yearMonth).then(res => {
-        this.totalPage = res.data.totalPage
+        this.total = res.data.total
         this.blogList = res.data.list
       }).catch(() => {
         Message({type: "error", message: "好像哪里出了问题呢，请重试！", showClose: true})

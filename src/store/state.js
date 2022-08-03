@@ -12,5 +12,9 @@ export default {
         2: 'green',
         3: 'orange',
         4: 'red',
+    },
+    introduction:{
+        avatar:"",
+        nickname:""
     }
 }
