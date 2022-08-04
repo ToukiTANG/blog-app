@@ -27,13 +27,6 @@
               <span>{{ blog.views }}</span></div>
           </div>
           <div class="info-item">
-            <div class="info-font-size">
-              <el-tooltip content="点击切换字体大小" placement="top">
-                <font-awesome-icon icon="fa-solid fa-a" size="xs"></font-awesome-icon>
-              </el-tooltip>
-            </div>
-          </div>
-          <div class="info-item">
             <div class="info-focus">
               <el-tooltip content="点击切换专注模式" placement="top">
                 <font-awesome-icon icon="fa-solid fa-book" size="xs"></font-awesome-icon>
@@ -49,9 +42,9 @@
           {{ blog.category.categoryName }}
         </router-link>
       </div>
+      <!--正文-->
       <div class="blog-content">
-        <mavon-editor :value="blog.content" :subfield="false" defaultOpen="preview" :toolbarsFlag="false"
-                      :boxShadow="false" previewBackground="#ffffff" codeStyle="atom-one-dark"></mavon-editor>
+        <div class="typo js-toc-content match-braces rainbow-braces" v-html="blog.content"></div>
       </div>
       <el-divider></el-divider>
       <!--标签-->
@@ -78,18 +71,15 @@
 </template>
 
 <script>
-import {mavonEditor} from "mavon-editor"
-import "mavon-editor/dist/css/index.css"
 import {mapState} from "vuex";
 import {getBlog} from "@/api/blog";
 import {Message} from "element-ui";
+import {SET_FOCUS_MODE, SET_IS_BLOG_RENDER_COMPLETE} from "@/store/mutation-types";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Blog",
-  components: {
-    "mavon-editor": mavonEditor,
-  },
+  components: {},
   data() {
     return {
       blog:
@@ -100,66 +90,7 @@ export default {
             // updateTime: "2022-07-14T07:15:45.000+00:00",
             // weight: 1,
             // views: 10,
-            // content: "### 布局\n" +
-            //     "\n" +
-            //     "---\n" +
-            //     "\n" +
-            //     "+ 浏览器默认样式：`body`的外边框\n" +
-            //     "\n" +
-            //     "#### 正常布局\n" +
-            //     "\n" +
-            //     "---\n" +
-            //     "\n" +
-            //     "##### 宽度\n" +
-            //     "\n" +
-            //     "+ 对于父子元素的宽度\n" +
-            //     "\n" +
-            //     "  + 子元素的`margin-left`+`border-left`+`padding-left`+`width`+`padding-right`+`border-right`+`margin-right`=父元素的`width`（正常布局情况下强制满足）\n" +
-            //     "\n" +
-            //     "  + 当以上某一值设置为`auto`后，会调整该值以满足等式\n" +
-            //     "\n" +
-            //     "  + **常用的**，会设置`margin: 0 auto;`来使子元素在父元素的水平方向上居中\n" +
-            //     "\n" +
-            //     "##### 高度\n" +
-            //     "\n" +
-            //     "+ 对于父子元素的高度\n" +
-            //     "  + 如果不指定父元素的高度，**父元素的高度默认被子元素撑开**\n" +
-            //     "  + 如果子元素的高度超过了父元素，使用`overflow`设置父元素如何处理子元素的溢出（**设置在父元素上**）\n" +
-            //     "    + `overflow: visible;`默认值，会使子元素在父元素外部显示\n" +
-            //     "    + `overflow: hidden;`会使子元素溢出部分被裁剪\n" +
-            //     "    + `overflow: scorll;`生成垂直水平两个滚动条\n" +
-            //     "    + `overflow: auto;`按需生成滚动条\n" +
-            //     "      + 此外`overflow-x`与`overflow-y`可以单独处理水平和垂直方向的溢出\n" +
-            //     "\n" +
-            //     "##### 相邻边距\n" +
-            //     "\n" +
-            //     "+ 对于兄弟元素的相邻边距（不需要处理）\n" +
-            //     "\n" +
-            //     "  + <u>兄弟元素间的边距会发生折叠现象</u>\n" +
-            //     "  + 如果都是正数，以最大的为准\n" +
-            //     "  + 如果一正一负（很少用），取相加值\n" +
-            //     "  + 如果都是负数，以绝对值较大的为准\n" +
-            //     "\n" +
-            //     "+ 对于父子元素的相邻边距（**需要处理**）\n" +
-            //     "\n" +
-            //     "  + <u>子元素的边距会传递给父元素</u>\n" +
-            //     "\n" +
-            //     "  + 可以做如下处理（还可以同时解决高度塌陷问题）\n" +
-            //     "\n" +
-            //     "    + ```css\n" +
-            //     "      <style>\n" +
-            //     "      .child::fefore{\n" +
-            //     "          content: '';\n" +
-            //     "          display: table;\n" +
-            //     "      }\n" +
-            //     "      \n" +
-            //     "      .clearfix::before, .clearfix::after{\n" +
-            //     "          content:'',\n" +
-            //     "              display: table;\n" +
-            //     "              clear: both;\n" +
-            //     "      }\n" +
-            //     "      </style>\n" +
-            //     "      ```",
+            // content: "<h3 id=\"date的转换问题\">Date的转换问题</h3>\n<hr />\n<h4 id=\"获取当前时间\">获取当前时间</h4>\n<pre><code class=\"language-java\">Calendar calendar = Calendar.getInstance();\nDate currentTime = calendar.getTime()\n</code></pre>\n<h4 id=\"将-javautildate-格式转换成-string-格式\">将 java.util.Date 格式转换成 String 格式</h4>\n<pre><code class=\"language-java\">Date date = new Date();  // 获取当前系统时间\nSimpleDateFormat simpleDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);  // 设置日期格式\nString strTime = simpleDateFormat.format(date);  // 格式转换\nSystem.out.println(strTime); \n</code></pre>\n<h4 id=\"将-javautildate-格式转换成-javasqldate-格式\">将 java.util.Date 格式转换成 java.sql.Date 格式</h4>\n<pre><code class=\"language-java\">Date date = new Date();\nlong longTime = date.getTime();\njava.sql.Date sDate = new java.sql.Date(longTime);\nSystem.out.println(sDate);\n</code></pre>\n<h4 id=\"将-javautildate-格式转换成-timestamp-格式\">将 java.util.Date 格式转换成 Timestamp 格式</h4>\n<pre><code class=\"language-java\">Date date = new Date();\nTimestamp timestamp = new Timestamp(date.getTime());\nSystem.out.println(timestamp);\n</code></pre>\n<h4 id=\"将-string-格式转换成-javautildate-格式\">将 String 格式转换成 java.util.Date 格式</h4>\n<pre><code class=\"language-java\">\nString strTime = &quot;2019-06-10 17:32:05&quot;;\nSimpleDateFormat simpleDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);\nDate date = null;\ntry {\n    date = simpleDateFormat.parse(strTime);\n} catch (ParseException e) {\n    e.printStackTrace();\n}\nSystem.out.println(date);\n</code></pre>\n<h3 id=\"string\">String</h3>\n<hr />\n<h4 id=\"stringstringbufferstringbuilder\">String、StringBuffer、StringBuilder</h4>\n<ul>\n<li>\n<p>底层</p>\n<ul>\n<li>三者底层都是用<code>char[]</code>数组储存数据（<code>JDK9</code>之后采用<code>byte[]</code>数组储存）</li>\n</ul>\n</li>\n<li>\n<p>线程安全</p>\n<ul>\n<li><code>StringBuff</code>是线程非安全的，<code>StringBuilder</code>是线程安全的</li>\n</ul>\n</li>\n<li>\n<p>容量与扩容</p>\n<ul>\n<li><strong>初始容量</strong>：<code>StringBuffer</code>与<code>StringBuilder</code>的初始<code>char[]</code>容量均为16（<strong>实际上</strong>如果使用<code>new StringBuffer(&quot;test&quot;)</code>等方式创建，容量会是<code>length(&quot;test&quot;)+16</code>），</li>\n<li><strong>扩容</strong>：扩容时（如进行<code>append()</code>操作时）将原容量翻倍并加2与新容量比较，取较大的容量为最终的新容量（期间还会防止OOM），扩容代码如下：</li>\n</ul>\n</li>\n</ul>\n<pre><code class=\"language-java\">private int newCapacity(int minCapacity) {\n    // overflow-conscious code\n    int newCapacity = (value.length &lt;&lt; 1) + 2;\n    if (newCapacity - minCapacity &lt; 0) {\n        newCapacity = minCapacity;\n    }\n    return (newCapacity &lt;= 0 || MAX_ARRAY_SIZE - newCapacity &lt; 0)\n        ? hugeCapacity(minCapacity)\n        : newCapacity;\n}\n</code></pre>\n<h4 id=\"string与一些常用类型间的转化\">String与一些常用类型间的转化</h4>\n<h5 id=\"string与int\">String与Int</h5>\n<pre><code class=\"language-java\">//String转int，这里其实涉及拆装箱\nString str1 = &quot;123&quot;;\nint num1 = Integer.parseInt(str1);\n//int转String\nint num2 = 123;\nString str2 = String.valueOf(num2);\n</code></pre>\n<h5 id=\"string与char\">String与char[]</h5>\n<pre><code class=\"language-java\">//String转char[]\nString str1 = &quot;hello&quot;;\nchar[] char1 = str1.toCharArray();\n//char[]转String\nchar[] char2 = new char[]{'h','e','l','l','o'};\nString str2 = new String(char2);\n</code></pre>\n<h5 id=\"string与byte\">String与byte[]</h5>\n<pre><code class=\"language-java\">//String转byte[]\nString str1 = &quot;abc123&quot;;\nbyte[] bytes1 =str1.getBytes();//[97, 98, 99, 49, 50, 51]\n//byte[]转String\nString str2 = new String(bytes1);\n</code></pre>\n<h4 id=\"string不变性的理解\">String不变性的理解</h4>\n<h5 id=\"string不可变的原因\">String不可变的原因</h5>\n<ul>\n<li>String类的成员变量如下(JDK1.8)</li>\n</ul>\n<pre><code class=\"language-java\">public final class String\n    implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence {\n    /** The value is used for character storage. */\n    private final char value[];\n\n    /** Cache the hash code for the string */\n    private int hash; // Default to 0\n\n    /** use serialVersionUID from JDK 1.0.2 for interoperability */\n    private static final long serialVersionUID = -6849794470754667710L;\n\n    /**\n     * Class String is special cased within the Serialization Stream Protocol.\n     *\n     * A String instance is written into an ObjectOutputStream according to\n     * &lt;a href=&quot;{@docRoot}/../platform/serialization/spec/output.html&quot;&gt;\n     * Object Serialization Specification, Section 6.2, &quot;Stream Elements&quot;&lt;/a&gt;\n     */\n    private static final ObjectStreamField[] serialPersistentFields =\n        new ObjectStreamField[0];\n}\n</code></pre>\n<ul>\n<li>\n<p>其中最主要的是<code>value[]</code>字符数组和<code>hash</code>标记，<code>serialVersionUID</code>与<code>serialPersistentFields</code>为序列化相关变量</p>\n</li>\n<li>\n<p>因此String不可变的==原因一==：保存字符串的<code>value[]</code>数组被<code>final</code>修饰并被设置为私有的，另一方面String类并没有暴露/提供修改这个字符串的方法。</p>\n</li>\n<li>\n<p>==原因二==：String类被<code>final</code>修饰导致其不能被继承，杜绝了子类的破坏。</p>\n<ul>\n<li>==注意==，在Java9之后、String、StringBuild与StringBuffer的使用改为使用**<code>byte[]</code>数组**存储字符串。至于原因，是因为新的String支持的编码方案的原因，这里不必深究。</li>\n</ul>\n</li>\n</ul>\n<h5 id=\"string真的不可变吗\">String真的“不可变”吗？</h5>\n<ul>\n<li>有时候会出现以下的迷惑问题</li>\n</ul>\n<pre><code class=\"language-java\">String s = &quot;ABCabc&quot;;\nSystem.out.println(&quot;s = &quot; + s);\n//s=ABCabc\ns = &quot;123456&quot;;\nSystem.out.println(&quot;s = &quot; + s);\n//s=123456\n</code></pre>\n<ul>\n<li>\n<p>乍一看，字符串<code>s</code>确实被改变了。但事实上，这里的<code>s</code>仅仅是字符串对象的一个引用，最终改变的仅仅是<code>s</code>的引用值而已。</p>\n</li>\n<li>\n<p>相同的，以下示例</p>\n</li>\n</ul>\n<pre><code class=\"language-java\">String a = &quot;ABCabc&quot;;\nSystem.out.println(&quot;a = &quot; + a);\n//a=ABCabc\na = a.replace('A', 'a');\nSystem.out.println(&quot;a = &quot; + a);\n//a=aBCabc\n</code></pre>\n<ul>\n<li>原因同上，仅仅是引用改变了，==注意替代成功时返回的是一个新的字符串对象==</li>\n</ul>\n<pre><code class=\"language-java\">public String replace(char oldChar, char newChar) {\n    if (oldChar != newChar) {\n        int len = value.length;\n        int i = -1;\n        char[] val = value; /* avoid getfield opcode */\n\n        while (++i &lt; len) {\n            if (val[i] == oldChar) {\n                break;\n            }\n        }\n        if (i &lt; len) {\n            char buf[] = new char[len];\n            for (int j = 0; j &lt; i; j++) {\n                buf[j] = val[j];\n            }\n            while (i &lt; len) {\n                char c = val[i];\n                buf[i] = (c == oldChar) ? newChar : c;\n                i++;\n            }\n            return new String(buf, true); /* 返回了新的字符串对象 */\n        }\n    }\n    return this;\n}\n</code></pre>\n<ul>\n<li><strong>另一方面</strong>，如果我们能够访问到字符串的<code>value</code>变量，字符串就是==可以被改变的==！答案就是使用反射。</li>\n</ul>\n<pre><code class=\"language-java\">public static void testReflection() throws Exception {\n\t\t\n    //创建字符串&quot;Hello World&quot;， 并赋给引用s\n    String s = &quot;Hello World&quot;; \n\n    System.out.println(&quot;s = &quot; + s);\t//Hello World\n\n    //获取String类中的value字段\n    Field valueFieldOfString = String.class.getDeclaredField(&quot;value&quot;);\n\n    //改变value属性的访问权限\n    valueFieldOfString.setAccessible(true);\n\n    //获取s对象上的value属性的值\n    char[] value = (char[]) valueFieldOfString.get(s);\n\n    //改变value所引用的数组中的第5个字符\n    value[5] = '_';\n\n    System.out.println(&quot;s = &quot; + s);  //Hello_World\n}\n</code></pre>\n<ul>\n<li>总结：通常我们认为的字符串改变了仅仅是改变了引用值而已，字符串本身时不会改变的；但如果使用反射获取到字符串中的<code>value</code>变量，那么其实也是可以对字符串本身进行修改的。</li>\n</ul>\n",
             // category: {
             //   id: 1,
             //   categoryName: "随笔"
@@ -177,7 +108,7 @@ export default {
             //     id: 3,
             //     tagName: "Python"
             //   }]
-          }
+          },
     }
   },
   computed: {
@@ -188,6 +119,12 @@ export default {
       getBlog(id).then((res) => {
         this.blog = res.data
         document.title = this.blog.title + this.siteInfo.webTitleSuffix
+        //v-html渲染完成后再渲染代码块样式
+        this.$nextTick(() => {
+          Prism.highlightAll()
+          //将文章渲染完成状态置为 true
+          this.$store.commit(SET_IS_BLOG_RENDER_COMPLETE, true)
+        })
       }).catch(() => {
         Message({type: "error", message: "文章详情加载失败，请重试！", showClose: true})
       })
@@ -196,10 +133,28 @@ export default {
   created() {
     this.getBlog()
   },
+  beforeRouteEnter(to, from, next) {
+    //路由到博客文章页面之前，应将文章的渲染完成状态置为 false
+    next(vm => {
+      // 当 beforeRouteEnter 钩子执行前，组件实例尚未创建
+      // vm 就是当前组件的实例，可以在 next 方法中把 vm 当做 this用
+      vm.$store.commit(SET_IS_BLOG_RENDER_COMPLETE, false)
+    })
+  },
+  beforeRouteLeave(to, from, next) {
+    this.$store.commit(SET_FOCUS_MODE, false)
+    // 从文章页面路由到其它页面时，销毁当前组件的同时，要销毁tocbot实例
+    // 否则tocbot一直在监听页面滚动事件，而文章页面的锚点已经不存在了，会报"Uncaught TypeError: Cannot read property 'className' of null"
+    tocbot.destroy()
+    next()
+  },
   beforeRouteUpdate(to, from, next) {
     //当在文章页面跳转到其他文章页面时应该重新获取文章
     if (to.path !== from.path) {
+      this.$store.commit(SET_FOCUS_MODE, false)
       this.getBlog(to.params.id)
+      //只要路由路径有改变，且停留在当前Blog组件内，就把文章的渲染完成状态置为 false
+      this.$store.commit(SET_IS_BLOG_RENDER_COMPLETE, false)
       next()
     }
   },
@@ -430,36 +385,5 @@ ul.msg-list {
   border: 1px solid var(--color-border);
   border-top: 2px solid #00b5ad;
   border-radius: 0 0 4px 4px;
-}
-
-/*使mavonEditor容器不会浮在表面*/
-.v-note-wrapper {
-  z-index: 0;
-}
-
-/*去掉mavonEditor的边框*/
-.v-note-wrapper.markdown-body {
-  border: none;
-}
-
-.markdown-body {
-  line-height: 1.8;
-}
-
-.markdown-body >>> .hljs {
-  padding: 16px;
-}
-
-.markdown-body >>> code {
-  font-size: 100%;
-}
-
-.markdown-body >>> hr {
-  height: 1px;
-}
-
-.markdown-body >>> .highlight pre, .markdown-body >>> pre {
-  padding: 0;
-  max-width: 700px;
 }
 </style>

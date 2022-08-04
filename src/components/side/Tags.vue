@@ -42,10 +42,6 @@ export default {
 </script>
 
 <style scoped>
-.tags {
-  position: sticky;
-  top: 522px;
-}
 
 .tags >>> .el-card__body {
   padding: 0;

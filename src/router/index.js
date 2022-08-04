@@ -5,6 +5,7 @@ import getPageTitle from "@/utils/get-page-title";
 Vue.use(VueRouter)
 
 const router = new VueRouter({
+    mode: "history",
     routes: [
         {
             path: '/',

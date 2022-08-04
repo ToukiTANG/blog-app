@@ -21,6 +21,7 @@
         <div class="side-right">
           <random-blog :randomBlogList="randomBlogList"></random-blog>
           <tags :tagList="tagList"></tags>
+          <toc v-if="$route.name==='blog'"></toc>
         </div>
       </div>
     </div>
@@ -40,6 +41,7 @@ import Navigation from "@/components/index/Navigation.vue";
 import BlogHeader from "@/components/index/BlogHeader.vue";
 import BlogFooter from "@/components/index/BlogFooter.vue";
 import ArticleCard from "@/components/blog/BlogCard.vue";
+import Toc from "@/components/side/Toc";
 import {SAVE_CLIENT_SIZE, SAVE_INTRODUCTION, SAVE_SITE_INFO} from "@/store/mutation-types";
 import Introduction from "@/components/side/Introduction";
 import RandomBlog from "@/components/side/RandomBlog";
@@ -51,7 +53,7 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Index",
   // eslint-disable-next-line vue/no-unused-components
-  components: {Tags, RandomBlog, Introduction, Navigation, BlogHeader, BlogFooter, ArticleCard},
+  components: {Tags, RandomBlog, Introduction, Navigation, BlogHeader, BlogFooter, ArticleCard, Toc},
   data() {
     return {
       categoryList: [],
@@ -154,9 +156,5 @@ export default {
   position: sticky;
   top: 60px;
 }
-
-/*.tags {*/
-/*  margin-top: 20px;*/
-/*}*/
 
 </style>

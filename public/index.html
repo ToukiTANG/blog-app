@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <link rel="stylesheet" href="<%= BASE_URL %>lib/css/base.css">
-    <!--<script src="https://kit.fontawesome.com/3082273c48.js" crossorigin="anonymous"></script>-->
+    <link rel="stylesheet" href="<%= BASE_URL %>lib/css/prism.css">
 
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
-<div id="app"></div>
+    <div id="app"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.18.2/tocbot.min.js"></script>
+    <script src="<%= BASE_URL %>lib/js/prism.js"></script>
 <!-- built files will be auto injected -->
 </body>
 </html>
