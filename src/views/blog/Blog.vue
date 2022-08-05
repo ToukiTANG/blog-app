@@ -26,13 +26,6 @@
               <font-awesome-icon icon="fa-solid fa-eye" size="xs"></font-awesome-icon>
               <span>{{ blog.views }}</span></div>
           </div>
-          <div class="info-item">
-            <div class="info-focus">
-              <el-tooltip content="点击切换专注模式" placement="top">
-                <font-awesome-icon icon="fa-solid fa-book" size="xs"></font-awesome-icon>
-              </el-tooltip>
-            </div>
-          </div>
         </div>
       </div>
       <!--这里加一个判断，否则异步渲染会报警告-->

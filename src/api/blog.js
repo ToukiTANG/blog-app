@@ -9,3 +9,13 @@ export function getBlog(id) {
         }
     })
 }
+
+export function getSearchBlogList(queryString) {
+    return request({
+        url: '/searchBlog',
+        method: 'GET',
+        params: {
+            queryString
+        }
+    })
+}

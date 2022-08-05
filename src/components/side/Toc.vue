@@ -2,7 +2,7 @@
   <div class="toc">
     <el-card class="toc-container" shadow="hover" style="{padding: 0}">
       <div class="toc-header">
-        <font-awesome-icon icon="fa-tags"></font-awesome-icon>
+        <font-awesome-icon icon="fa-solid fa-list" />
         <span>本文目录</span>
       </div>
       <el-divider></el-divider>
@@ -51,11 +51,6 @@ export default {
         scrollSmooth: true,
         // Smooth scroll duration.
         scrollSmoothDuration: 420,
-        // //到顶部导航条的距离
-        // scrollSmoothOffset: 55,
-        // Headings offset between the headings and the top of the document (this is meant for minor adjustments).
-        // Can also be used to account for scroll height discrepancies from the use of css scroll-padding-top
-        headingsOffset: -18
       })
     }
   },

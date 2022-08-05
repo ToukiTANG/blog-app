@@ -28,10 +28,9 @@ requests.interceptors.response.use((res) => {
     } else {
         return res.data
     }
-}, error => {
+}, () => {
     //失败的回调
     NProgress.done()
-    console.log(error)
     return Promise.reject("error")
 })
 export default requests

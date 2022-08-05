@@ -45,17 +45,28 @@
         </router-link>
       </li>
     </ul>
-    <div class="search">
-      <div class="icon"></div>
-      <div class="input">
-        <input type="text" placeholder="Search" id="mySearch"/>
-      </div>
-    </div>
+    <el-autocomplete
+        class="search"
+        v-model="queryString"
+        :fetch-suggestions="querySearchAsync"
+        placeholder="Search..."
+        popper-class="search-item"
+        @select="handleSelect"
+        suffix-icon="el-icon-search"
+        :debounce="1000"
+    >
+      <template slot-scope="{ item }">
+        <div class="title">{{ item.title }}</div>
+        <span class="content">{{ item.content }}</span>
+      </template>
+    </el-autocomplete>
   </div>
 </template>
 
 <script>
 import {mapState} from "vuex";
+import {getSearchBlogList} from "@/api/blog";
+import {Message} from "element-ui";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -68,7 +79,9 @@ export default {
   },
   data() {
     return {
-      dark: false
+      dark: false,
+      queryString: '',
+      queryResult: [],
     };
   },
   computed: {
@@ -92,7 +105,34 @@ export default {
 
 
   },
-  methods: {},
+  methods: {
+    querySearchAsync(queryString, callback) {
+      if (queryString == null
+          || queryString.trim() === ''
+          || queryString.indexOf('%') !== -1
+          || queryString.indexOf('_') !== -1
+          || queryString.indexOf('[') !== -1
+          || queryString.indexOf('#') !== -1
+          || queryString.indexOf('*') !== -1
+          || queryString.trim().length > 20) {
+        return
+      }
+      getSearchBlogList(queryString).then(res => {
+        this.queryResult = res.data
+        if (this.queryResult.length === 0) {
+          this.queryResult.push({title: '无相关搜索结果'})
+        }
+        callback(this.queryResult)
+      }).catch(() => {
+        Message({type: "error", message: "搜索好像出了一点问题呢，请稍后重试！", showClose: true})
+      })
+    },
+    handleSelect(item) {
+      if (item.id) {
+        this.$router.push(`/blog/${item.id}`)
+      }
+    }
+  },
 };
 </script>
 
@@ -196,70 +236,31 @@ export default {
   padding-left: 5px;
 }
 
-.men-bar .search {
-  position: relative;
-  height: 50%;
-  background-color: transparent;
-  border-radius: 60px;
-  flex: 1;
-  transition: 0.5s;
-  overflow: hidden;
-}
-
-.men-bar .search .icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 60px;
-  height: 100%;
-  background: transparent;
-  border-radius: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  cursor: pointer;
-}
-
-.men-bar .search .icon::before {
-  content: '';
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  border: 3px solid #8b909f;
-  border-radius: 50%;
-  transform: translate(-4px, -4px);
-}
-
-.men-bar .search .icon::after {
-  content: '';
-  position: absolute;
-  width: 3px;
-  height: 12px;
-  background: #8b909f;
-  border-radius: 50%;
-  transform: translate(6px, 6px) rotate(315deg);
-}
-
-.men-bar .search .input {
-  position: relative;
-  width: 300px;
-  height: 100%;
-  left: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.men-bar .search .input input {
-  color: var(--color-white);
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
+input {
   border: none;
-  outline: none;
-  font-size: 18px;
-  background: transparent;
+}
+
+>>> .el-input__inner {
+  background-color: transparent;
+  color: #e9e9e9;
+  border: none;
+  border-left: 1px solid #e9e9e93b;
+  border-radius: 0;
+}
+
+>>> .el-input__suffix {
+  color: #e9e9e9;
+}
+
+.search {
+  min-width: 300px !important;
+}
+
+.title{
+  font-weight: 700;
+}
+
+.content{
+  margin-left: 10px;
 }
 </style>
