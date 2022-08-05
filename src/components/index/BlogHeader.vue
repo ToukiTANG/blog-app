@@ -2,15 +2,15 @@
 
   <div class="image-header" ref="header">
     <div class="main-image">
-      <img class="img-view" src="http://rfjxf8517.hn-bkt.clouddn.com/Lumine.jpg" alt="main-image">
+      <img class="img-view" src="https://cdn.jsdelivr.net/gh/ToukiTANG/pic/img/Lumine.jpg" alt="main-image">
     </div>
     <div class="wrapper">
       <div>
         <!--<i class="icon-down fa-solid fa-angles-down" @click="toMain"></i>-->
         <font-awesome-icon class="icon-down" icon="fa-angles-down" @click="toMain"></font-awesome-icon>
       </div>
-      <div class="wave1" style="background: url(http://rfjxf8517.hn-bkt.clouddn.com/wave1.png) repeat-x"></div>
-      <div class="wave2" style="background: url(http://rfjxf8517.hn-bkt.clouddn.com/wave2.png) repeat-x"></div>
+      <div class="wave1" style="background: url(https://cdn.jsdelivr.net/gh/ToukiTANG/pic/img/wave1.png) repeat-x"></div>
+      <div class="wave2" style="background: url(https://cdn.jsdelivr.net/gh/ToukiTANG/pic/img/wave2.png) repeat-x"></div>
     </div>
   </div>
 </template>

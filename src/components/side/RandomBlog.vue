@@ -25,7 +25,7 @@ export default {
   name: "RandomBlog",
   data() {
     return {
-      default_img: "http://rfjxf8517.hn-bkt.clouddn.com/random_default.jpg"
+      default_img: "https://cdn.jsdelivr.net/gh/ToukiTANG/pic/img/random_default.jpg"
       /*randomList: [*/
       /*  {*/
       /*    "id": 1,*/
