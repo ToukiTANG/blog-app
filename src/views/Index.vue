@@ -10,17 +10,17 @@
 
     <div class="main">
       <div class="side">
-        <introduction :introduction="introduction"></introduction>
+        <introduction :introduction="introduction" :class="{'display-none':focusMode}"></introduction>
       </div>
       <div class="main-content">
-        <keep-alive include="Home,Archives">
+        <keep-alive include="Home">
           <router-view/>
         </keep-alive>
       </div>
       <div class="side">
         <div class="side-right">
-          <random-blog :randomBlogList="randomBlogList"></random-blog>
-          <tags :tagList="tagList"></tags>
+          <random-blog :randomBlogList="randomBlogList" :class="{'display-none':focusMode}"></random-blog>
+          <tags :tagList="tagList" :class="{'display-none':focusMode}"></tags>
           <toc v-if="$route.name==='blog'"></toc>
         </div>
       </div>
@@ -48,6 +48,7 @@ import RandomBlog from "@/components/side/RandomBlog";
 import {getHitokoto, getSite} from "@/api";
 import Tags from "@/components/side/Tags";
 import {Message} from "element-ui";
+import {mapState} from "vuex";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -66,6 +67,9 @@ export default {
       },
       introduction: {},
     };
+  },
+  computed: {
+    ...mapState(["focusMode"])
   },
   watch: {
     '$route.path'() {
@@ -157,4 +161,7 @@ export default {
   top: 60px;
 }
 
+.display-none{
+  display: none;
+}
 </style>

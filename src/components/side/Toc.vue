@@ -59,11 +59,6 @@ export default {
 
 <style scoped>
 
-.toc {
-  margin-top: 20px;
-  overflow-y: hidden;
-}
-
 >>> .el-card__body {
   padding: 0;
 }
@@ -113,7 +108,7 @@ export default {
 
 >>> a.is-active-link {
   transition: all .3s ease-in-out;
-  color: #fbbd08;
+  color: #003d74;
   opacity: 1;
   font-weight: 700;
 }

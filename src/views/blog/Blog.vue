@@ -26,6 +26,13 @@
               <font-awesome-icon icon="fa-solid fa-eye" size="xs"></font-awesome-icon>
               <span>{{ blog.views }}</span></div>
           </div>
+          <div class="info-item">
+            <div class="info-focus">
+              <el-tooltip content="点击切换专注模式以获得更好体验" placement="top">
+                <font-awesome-icon icon="fa-solid fa-book" size="xs" @click.prevent="changeFocusMode"></font-awesome-icon>
+              </el-tooltip>
+            </div>
+          </div>
         </div>
       </div>
       <!--这里加一个判断，否则异步渲染会报警告-->
@@ -105,7 +112,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["colorObj", "siteInfo"])
+    ...mapState(["colorObj", "siteInfo","focusMode"])
   },
   methods: {
     getBlog(id = this.$route.params.id) {
@@ -121,6 +128,9 @@ export default {
       }).catch(() => {
         Message({type: "error", message: "文章详情加载失败，请重试！", showClose: true})
       })
+    },
+    changeFocusMode(){
+      this.$store.commit(SET_FOCUS_MODE, !this.focusMode)
     }
   },
   created() {

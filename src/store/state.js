@@ -22,5 +22,7 @@ export default {
         nickname:""
     },
     //文章渲染标识
-    isBlogRenderComplete:false
+    isBlogRenderComplete:false,
+    //专注模式（去掉introduction和randomBlog及tags）
+    focusMode: false,
 }

@@ -42,6 +42,9 @@ export default {
 </script>
 
 <style scoped>
+.tags {
+  margin-bottom: 20px;
+}
 
 .tags >>> .el-card__body {
   padding: 0;
