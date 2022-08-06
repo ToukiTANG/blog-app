@@ -15,8 +15,7 @@
               </span>
               <span style="float: right;font-size: .8em">{{ moment.createTime|timeFormat }}</span>
             </div>
-            <mavon-editor :value="moment.content" :subfield="false" defaultOpen="preview" :toolbarsFlag="false"
-                          :boxShadow="false" previewBackground="#ffffff"></mavon-editor>
+            <div class="typo match-braces rainbow-braces" v-html="moment.content"></div>
             <div class="bottom">
               <font-awesome-icon @click="like(moment.id)" icon="fa-regular fa-heart" size="xs"
                                  :class="isLike(moment.id)?'red':''"/>
@@ -34,7 +33,6 @@
 </template>
 
 <script>
-import {mavonEditor} from "mavon-editor";
 import {getMomentList, likeMoment} from "@/api/moment";
 import {Message, Notification} from "element-ui";
 import {mapState} from "vuex";
@@ -42,9 +40,7 @@ import {mapState} from "vuex";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Moment",
-  components: {
-    "mavon-editor": mavonEditor
-  },
+  components: {},
   data() {
     return {
       momentList: [
@@ -125,6 +121,10 @@ export default {
         this.momentList = res.data.list
         this.total = res.data.total
         this.pageSize = res.data.pageSize
+        //Prism需要手动渲染
+        this.$nextTick(() => {
+          Prism.highlightAll()
+        })
       }).catch(() => {
         Message({type: "error", message: "动态加载失败，请重试！", showClose: true})
       })
@@ -194,6 +194,7 @@ export default {
   flex-direction: column;
   position: relative;
   background-color: white;
+  padding: 10px 15px;
 }
 
 .moment-item .content:before {
@@ -215,7 +216,8 @@ export default {
 }
 
 .content .top {
-  padding: 10px 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .05);
 }
 
 .v-note-wrapper {
