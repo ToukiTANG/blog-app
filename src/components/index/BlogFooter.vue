@@ -19,12 +19,25 @@
         </div>
       </div>
       <el-divider></el-divider>
-      <div class="content-bottom" style="color: #d8d8d8">网站信息</div>
+      <div class="content-bottom" style="color: #d8d8d8">
+        <p>
+          <span v-if="siteInfo.copyright">
+            {{ siteInfo.copyright.title }}<router-link to="/" style="margin-left: 10px">{{ siteInfo.copyright.siteName }}</router-link></span>
+          <span>|</span>
+          <!--<span>本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"-->
+          <!--             target="_blank"><img src="http://rg54u4oo6.hn-bkt.clouddn.com/upyun-logo.png" alt="upyun"></a>提供CDN-->
+          <!--  /云储存服务</span>-->
+          <!--<span>|</span>-->
+          <a v-if="siteInfo.filing" :href="siteInfo.filing.link" target="_blank">{{ siteInfo.filing.info }}</a>
+        </p>
+      </div>
     </div>
   </footer>
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   name: "BlogFooter",
   props: {
@@ -41,6 +54,9 @@ export default {
     return {
       // newBlogList: [{id: 1, title: "测试标题01"}, {id: 2, title: "测试标题000002"}, {id: 3, title: "测试标题000000000003"}]
     }
+  },
+  computed: {
+    ...mapState(["siteInfo"])
   },
 };
 </script>
@@ -108,5 +124,32 @@ footer {
 .content-bottom {
   margin: 25px 0 25px;
   text-align: center;
+}
+
+.content-bottom p {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  letter-spacing: 1px;
+}
+
+.content-bottom span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  padding: 0 5px;
+}
+
+.content-bottom a {
+  display: flex;
+  color: #f08d49;
+  align-items: center;
+  opacity: .7;
+}
+
+.content-bottom span img {
+  height: 30px;
+  margin-top: 3px;
 }
 </style>

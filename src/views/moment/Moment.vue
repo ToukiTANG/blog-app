@@ -26,7 +26,7 @@
       </div>
       <el-pagination @current-change="handleCurrentChange" :current-page="pageNum" :total="total"
                      :page-size="pageSize"
-                     layout="prev, pager, next" background>
+                     layout="prev, pager, next, jumper" background>
       </el-pagination>
     </el-card>
   </div>
