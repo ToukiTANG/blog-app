@@ -1,13 +1,39 @@
 const {defineConfig} = require('@vue/cli-service')
 const path = require('path')
+// 导入compression-webpack-plugin
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+// 定义压缩文件类型
+const productionGzipExtensions = ['js', 'css']
+
 module.exports = defineConfig({
         transpileDependencies: true,
+
+        // 是否启用eslint
         lintOnSave: false,
+        //打包不生成map文件
+        productionSourceMap: false,
         configureWebpack: {
             resolve: {
                 alias: {
                     '@': path.resolve(__dirname, 'src')
                 }
+            },
+            plugins: [
+                new CompressionWebpackPlugin({
+                    filename: '[path].gz[query]',
+                    algorithm: 'gzip',
+                    test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+                    threshold: 10240,
+                    minRatio: 0.2
+                })
+            ],
+            externals:{
+                vue:"Vue",
+                'element-ui':"ELEMENT",
+                moment:"moment",
+                'vue-router':"VueRouter",
+                vuex:"Vuex",
+                axios:"axios"
             }
         },
         devServer: {
@@ -22,8 +48,6 @@ module.exports = defineConfig({
                     }
                 }
             },
-
         },
-        publicPath: process.env.NODE_ENV === 'production' ? './' : '/'
     }
 )

@@ -5,7 +5,7 @@ import getPageTitle from "@/utils/get-page-title";
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-    mode: "hash",
+    mode: process.env.NODE_ENV === "production" ? "history" : "hash",
     routes: [
         {
             path: '/',
