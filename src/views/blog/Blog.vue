@@ -1,6 +1,6 @@
 <template>
   <div class="blog">
-    <div class="blog-top" v-if="blog.weight===1">
+    <div class="blog-top" v-if="blog.top">
       <font-awesome-icon icon="fa-solid fa-circle-up" size="lg"></font-awesome-icon>
     </div>
     <el-card shadow="always" :body-style="{ padding: '0 16px 16px' }">
@@ -82,37 +82,11 @@ export default {
   components: {},
   data() {
     return {
-      blog:
-          {
-            // id: 1,
-            // title: "测试标题",
-            // createTime: "2022-07-09T07:40:35.000+00:00",
-            // updateTime: "2022-07-14T07:15:45.000+00:00",
-            // weight: 1,
-            // views: 10,
-            // content: "<h3 id=\"date的转换问题\">Date的转换问题</h3>\n<hr />\n<h4 id=\"获取当前时间\">获取当前时间</h4>\n<pre><code class=\"language-java\">Calendar calendar = Calendar.getInstance();\nDate currentTime = calendar.getTime()\n</code></pre>\n<h4 id=\"将-javautildate-格式转换成-string-格式\">将 java.util.Date 格式转换成 String 格式</h4>\n<pre><code class=\"language-java\">Date date = new Date();  // 获取当前系统时间\nSimpleDateFormat simpleDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);  // 设置日期格式\nString strTime = simpleDateFormat.format(date);  // 格式转换\nSystem.out.println(strTime); \n</code></pre>\n<h4 id=\"将-javautildate-格式转换成-javasqldate-格式\">将 java.util.Date 格式转换成 java.sql.Date 格式</h4>\n<pre><code class=\"language-java\">Date date = new Date();\nlong longTime = date.getTime();\njava.sql.Date sDate = new java.sql.Date(longTime);\nSystem.out.println(sDate);\n</code></pre>\n<h4 id=\"将-javautildate-格式转换成-timestamp-格式\">将 java.util.Date 格式转换成 Timestamp 格式</h4>\n<pre><code class=\"language-java\">Date date = new Date();\nTimestamp timestamp = new Timestamp(date.getTime());\nSystem.out.println(timestamp);\n</code></pre>\n<h4 id=\"将-string-格式转换成-javautildate-格式\">将 String 格式转换成 java.util.Date 格式</h4>\n<pre><code class=\"language-java\">\nString strTime = &quot;2019-06-10 17:32:05&quot;;\nSimpleDateFormat simpleDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);\nDate date = null;\ntry {\n    date = simpleDateFormat.parse(strTime);\n} catch (ParseException e) {\n    e.printStackTrace();\n}\nSystem.out.println(date);\n</code></pre>\n<h3 id=\"string\">String</h3>\n<hr />\n<h4 id=\"stringstringbufferstringbuilder\">String、StringBuffer、StringBuilder</h4>\n<ul>\n<li>\n<p>底层</p>\n<ul>\n<li>三者底层都是用<code>char[]</code>数组储存数据（<code>JDK9</code>之后采用<code>byte[]</code>数组储存）</li>\n</ul>\n</li>\n<li>\n<p>线程安全</p>\n<ul>\n<li><code>StringBuff</code>是线程非安全的，<code>StringBuilder</code>是线程安全的</li>\n</ul>\n</li>\n<li>\n<p>容量与扩容</p>\n<ul>\n<li><strong>初始容量</strong>：<code>StringBuffer</code>与<code>StringBuilder</code>的初始<code>char[]</code>容量均为16（<strong>实际上</strong>如果使用<code>new StringBuffer(&quot;test&quot;)</code>等方式创建，容量会是<code>length(&quot;test&quot;)+16</code>），</li>\n<li><strong>扩容</strong>：扩容时（如进行<code>append()</code>操作时）将原容量翻倍并加2与新容量比较，取较大的容量为最终的新容量（期间还会防止OOM），扩容代码如下：</li>\n</ul>\n</li>\n</ul>\n<pre><code class=\"language-java\">private int newCapacity(int minCapacity) {\n    // overflow-conscious code\n    int newCapacity = (value.length &lt;&lt; 1) + 2;\n    if (newCapacity - minCapacity &lt; 0) {\n        newCapacity = minCapacity;\n    }\n    return (newCapacity &lt;= 0 || MAX_ARRAY_SIZE - newCapacity &lt; 0)\n        ? hugeCapacity(minCapacity)\n        : newCapacity;\n}\n</code></pre>\n<h4 id=\"string与一些常用类型间的转化\">String与一些常用类型间的转化</h4>\n<h5 id=\"string与int\">String与Int</h5>\n<pre><code class=\"language-java\">//String转int，这里其实涉及拆装箱\nString str1 = &quot;123&quot;;\nint num1 = Integer.parseInt(str1);\n//int转String\nint num2 = 123;\nString str2 = String.valueOf(num2);\n</code></pre>\n<h5 id=\"string与char\">String与char[]</h5>\n<pre><code class=\"language-java\">//String转char[]\nString str1 = &quot;hello&quot;;\nchar[] char1 = str1.toCharArray();\n//char[]转String\nchar[] char2 = new char[]{'h','e','l','l','o'};\nString str2 = new String(char2);\n</code></pre>\n<h5 id=\"string与byte\">String与byte[]</h5>\n<pre><code class=\"language-java\">//String转byte[]\nString str1 = &quot;abc123&quot;;\nbyte[] bytes1 =str1.getBytes();//[97, 98, 99, 49, 50, 51]\n//byte[]转String\nString str2 = new String(bytes1);\n</code></pre>\n<h4 id=\"string不变性的理解\">String不变性的理解</h4>\n<h5 id=\"string不可变的原因\">String不可变的原因</h5>\n<ul>\n<li>String类的成员变量如下(JDK1.8)</li>\n</ul>\n<pre><code class=\"language-java\">public final class String\n    implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence {\n    /** The value is used for character storage. */\n    private final char value[];\n\n    /** Cache the hash code for the string */\n    private int hash; // Default to 0\n\n    /** use serialVersionUID from JDK 1.0.2 for interoperability */\n    private static final long serialVersionUID = -6849794470754667710L;\n\n    /**\n     * Class String is special cased within the Serialization Stream Protocol.\n     *\n     * A String instance is written into an ObjectOutputStream according to\n     * &lt;a href=&quot;{@docRoot}/../platform/serialization/spec/output.html&quot;&gt;\n     * Object Serialization Specification, Section 6.2, &quot;Stream Elements&quot;&lt;/a&gt;\n     */\n    private static final ObjectStreamField[] serialPersistentFields =\n        new ObjectStreamField[0];\n}\n</code></pre>\n<ul>\n<li>\n<p>其中最主要的是<code>value[]</code>字符数组和<code>hash</code>标记，<code>serialVersionUID</code>与<code>serialPersistentFields</code>为序列化相关变量</p>\n</li>\n<li>\n<p>因此String不可变的==原因一==：保存字符串的<code>value[]</code>数组被<code>final</code>修饰并被设置为私有的，另一方面String类并没有暴露/提供修改这个字符串的方法。</p>\n</li>\n<li>\n<p>==原因二==：String类被<code>final</code>修饰导致其不能被继承，杜绝了子类的破坏。</p>\n<ul>\n<li>==注意==，在Java9之后、String、StringBuild与StringBuffer的使用改为使用**<code>byte[]</code>数组**存储字符串。至于原因，是因为新的String支持的编码方案的原因，这里不必深究。</li>\n</ul>\n</li>\n</ul>\n<h5 id=\"string真的不可变吗\">String真的“不可变”吗？</h5>\n<ul>\n<li>有时候会出现以下的迷惑问题</li>\n</ul>\n<pre><code class=\"language-java\">String s = &quot;ABCabc&quot;;\nSystem.out.println(&quot;s = &quot; + s);\n//s=ABCabc\ns = &quot;123456&quot;;\nSystem.out.println(&quot;s = &quot; + s);\n//s=123456\n</code></pre>\n<ul>\n<li>\n<p>乍一看，字符串<code>s</code>确实被改变了。但事实上，这里的<code>s</code>仅仅是字符串对象的一个引用，最终改变的仅仅是<code>s</code>的引用值而已。</p>\n</li>\n<li>\n<p>相同的，以下示例</p>\n</li>\n</ul>\n<pre><code class=\"language-java\">String a = &quot;ABCabc&quot;;\nSystem.out.println(&quot;a = &quot; + a);\n//a=ABCabc\na = a.replace('A', 'a');\nSystem.out.println(&quot;a = &quot; + a);\n//a=aBCabc\n</code></pre>\n<ul>\n<li>原因同上，仅仅是引用改变了，==注意替代成功时返回的是一个新的字符串对象==</li>\n</ul>\n<pre><code class=\"language-java\">public String replace(char oldChar, char newChar) {\n    if (oldChar != newChar) {\n        int len = value.length;\n        int i = -1;\n        char[] val = value; /* avoid getfield opcode */\n\n        while (++i &lt; len) {\n            if (val[i] == oldChar) {\n                break;\n            }\n        }\n        if (i &lt; len) {\n            char buf[] = new char[len];\n            for (int j = 0; j &lt; i; j++) {\n                buf[j] = val[j];\n            }\n            while (i &lt; len) {\n                char c = val[i];\n                buf[i] = (c == oldChar) ? newChar : c;\n                i++;\n            }\n            return new String(buf, true); /* 返回了新的字符串对象 */\n        }\n    }\n    return this;\n}\n</code></pre>\n<ul>\n<li><strong>另一方面</strong>，如果我们能够访问到字符串的<code>value</code>变量，字符串就是==可以被改变的==！答案就是使用反射。</li>\n</ul>\n<pre><code class=\"language-java\">public static void testReflection() throws Exception {\n\t\t\n    //创建字符串&quot;Hello World&quot;， 并赋给引用s\n    String s = &quot;Hello World&quot;; \n\n    System.out.println(&quot;s = &quot; + s);\t//Hello World\n\n    //获取String类中的value字段\n    Field valueFieldOfString = String.class.getDeclaredField(&quot;value&quot;);\n\n    //改变value属性的访问权限\n    valueFieldOfString.setAccessible(true);\n\n    //获取s对象上的value属性的值\n    char[] value = (char[]) valueFieldOfString.get(s);\n\n    //改变value所引用的数组中的第5个字符\n    value[5] = '_';\n\n    System.out.println(&quot;s = &quot; + s);  //Hello_World\n}\n</code></pre>\n<ul>\n<li>总结：通常我们认为的字符串改变了仅仅是改变了引用值而已，字符串本身时不会改变的；但如果使用反射获取到字符串中的<code>value</code>变量，那么其实也是可以对字符串本身进行修改的。</li>\n</ul>\n",
-            // category: {
-            //   id: 1,
-            //   categoryName: "随笔"
-            // },
-            // tags: [
-            //   {
-            //     id: 1,
-            //     tagName: "SpringBoot"
-            //   },
-            //   {
-            //     id: 2,
-            //     tagName: "Java"
-            //   },
-            //   {
-            //     id: 3,
-            //     tagName: "Python"
-            //   }]
-          },
+      blog: {},
     }
   },
   computed: {
-    ...mapState(["colorObj", "siteInfo","focusMode"])
+    ...mapState(["colorObj", "siteInfo", "focusMode"])
   },
   methods: {
     getBlog(id = this.$route.params.id) {
@@ -129,7 +103,7 @@ export default {
         Message({type: "error", message: "文章详情加载失败，请重试！", showClose: true})
       })
     },
-    changeFocusMode(){
+    changeFocusMode() {
       this.$store.commit(SET_FOCUS_MODE, !this.focusMode)
     }
   },
