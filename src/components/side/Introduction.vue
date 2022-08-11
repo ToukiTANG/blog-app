@@ -23,7 +23,7 @@
                 p-id="6879"></path>
           </svg>
         </a>
-        <a :href="introduction.github" target="_blank" v-if="introduction.bilibili">
+        <a :href="introduction.bilibili" target="_blank" v-if="introduction.bilibili">
           <svg style="width: 1em;height: 1em;" class="icon"
                viewBox="0 0 1129 1024" xmlns="http://www.w3.org/2000/svg" p-id="4873" width="200"
                height="200">
