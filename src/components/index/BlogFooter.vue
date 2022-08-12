@@ -24,10 +24,10 @@
           <span v-if="siteInfo.copyright">
             {{ siteInfo.copyright.title }}<router-link to="/" style="margin-left: 10px">{{ siteInfo.copyright.siteName }}</router-link></span>
           <span>|</span>
-          <!--<span>本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"-->
-          <!--             target="_blank"><img src="http://rg54u4oo6.hn-bkt.clouddn.com/upyun-logo.png" alt="upyun"></a>提供CDN-->
-          <!--  /云储存服务</span>-->
-          <!--<span>|</span>-->
+          <span>本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"
+                       target="_blank"><img src="https://cdn.touki.top/blog/upyun-logo.png" alt="upyun"></a>提供CDN
+            /云储存服务</span>
+          <span>|</span>
           <a v-if="siteInfo.filing" :href="siteInfo.filing.link" target="_blank">{{ siteInfo.filing.info }}</a>
         </p>
       </div>
