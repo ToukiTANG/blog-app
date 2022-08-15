@@ -2,11 +2,10 @@
 
   <div class="image-header" ref="header">
     <div class="main-image">
-      <img class="img-view" src="https://cdn.touki.top/blog/Lumine.jpg" alt="main-image">
+      <img class="img-view" :src="siteInfo.headImg" alt="main-image">
     </div>
     <div class="wrapper">
       <div>
-        <!--<i class="icon-down fa-solid fa-angles-down" @click="toMain"></i>-->
         <font-awesome-icon class="icon-down" icon="fa-angles-down" @click="toMain"></font-awesome-icon>
       </div>
       <div class="wave1" style="background: url(https://cdn.touki.top/blog/wave1.png) repeat-x"></div>
@@ -24,7 +23,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(["clientSize"]),
+    ...mapState(["clientSize","siteInfo"]),
   },
   watch: {
     "clientSize.clientHeight"() {

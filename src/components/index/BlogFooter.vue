@@ -51,9 +51,7 @@ export default {
     }
   },
   data() {
-    return {
-      // newBlogList: [{id: 1, title: "测试标题01"}, {id: 2, title: "测试标题000002"}, {id: 3, title: "测试标题000000000003"}]
-    }
+    return {}
   },
   computed: {
     ...mapState(["siteInfo"])
