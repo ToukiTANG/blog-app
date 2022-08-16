@@ -37,9 +37,7 @@
             </router-link>
           </div>
           <!--概述-->
-          <div class="blog-description typo">
-            {{ blog.description }}
-          </div>
+          <div class="blog-description typo" v-html="blog.description"></div>
           <!--首图-->
           <div v-if="blog.firstPicture" style="{width: 100%}">
             <img class="first-img" :src="blog.firstPicture" alt="firstPicture"/>
@@ -177,7 +175,6 @@ export default {
 
 .blog-description {
   margin: 20px 0;
-  line-height: 1.8;
 }
 
 .category-tag {
