@@ -29,6 +29,9 @@ import {faHeart} from "@fortawesome/free-regular-svg-icons"
 import router from './router'
 import store from '@/store/index'
 
+import Viewer from "v-viewer";
+import "viewerjs/dist/viewer.css"
+
 import "./assets/typo.css"
 import "./utils/directive"
 import "@/utils/timeFormat.js"
@@ -69,6 +72,7 @@ Vue.use(Tag)
 Vue.use(Button)
 Vue.use(Tooltip)
 Vue.use(Autocomplete)
+Vue.use(Viewer)
 
 
 new Vue({

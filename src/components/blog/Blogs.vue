@@ -1,6 +1,6 @@
 <template>
   <div class="blogs">
-    <blog-card class="blog-card-list" :blogList="blogList"></blog-card>
+    <blog-card class="blog-card-list" :blogList="blogList" v-viewer></blog-card>
     <pagination class="blog-pagination" :getBlogList="getBlogList" :totalPage="total" :pageSize="pageSize"></pagination>
   </div>
 </template>

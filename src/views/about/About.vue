@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="about" v-viewer>
     <el-card shadow="always" :body-style="{ padding: '0 16px 16px'}">
       <h2 style="text-align: center">{{ about.title }}</h2>
       <el-divider></el-divider>

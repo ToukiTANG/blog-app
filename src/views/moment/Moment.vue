@@ -4,7 +4,7 @@
       <h2 style="text-align: center">我的动态</h2>
       <el-divider></el-divider>
       <div class="momentList">
-        <div class="moment-item" v-for="(moment,index) in momentList" :key="index">
+        <div class="moment-item" v-for="(moment,index) in momentList" :key="index" v-viewer>
           <div class="avatar">
             <img :src="introduction.avatar" alt="moment-avatar">
           </div>
@@ -43,53 +43,7 @@ export default {
   components: {},
   data() {
     return {
-      momentList: [
-        // {
-        //   id:1,
-        //   avatar: "http://rfjxf8517.hn-bkt.clouddn.com/touki.jpg",
-        //   name: "Touki",
-        //   content: "#### 一些配置导致的报错\n" +
-        //       "\n" +
-        //       "+ 运行`npm run xxx`时报错`Component name \"Home\" should always be multi-word`\n" +
-        //       "\n" +
-        //       "  + 原因在于组件名希望是驼峰或连字符形式，但官方也明确了单个残次组件命名时合规的，因此触发了`eslint`的语法检测\n" +
-        //       "\n" +
-        //       "  + **解决方案：**在`vue.config.js`配置文件中配置`lintOnSave: false`重新编译运行即可\n" +
-        //       "\n" +
-        //       "\n" +
-        //       "\n" +
-        //       "#### 一些通用配置\n" +
-        //       "\n" +
-        //       "+ 配置`@`为`/src`路径\n" +
-        //       "\n" +
-        //       "  + 在`vue.config.js`中做如下配置\n" +
-        //       "\n" +
-        //       "  + ```js\n" +
-        //       "    const path = require('path')\n" +
-        //       "    module.exports = {\n" +
-        //       "      configureWebpack: {\n" +
-        //       "        resolve: {\n" +
-        //       "          alias: {\n" +
-        //       "            '@': path.resolve(__dirname, 'src')\n" +
-        //       "          }\n" +
-        //       "        }\n" +
-        //       "      }\n" +
-        //       "    }\n" +
-        //       "    ```",
-        //   createTime: "2022-07-11T07:15:45.000+00:00",
-        //   likes: 0,
-        // },
-        // {
-        //   id:2,
-        //   avatar: "http://rfjxf8517.hn-bkt.clouddn.com/touki.jpg",
-        //   name: "Touki",
-        //   content: "楚归寒本想说自己今年已经十九岁了，算不得小姑娘了，可是话到嘴边却没说出口。\n" +
-        //       "\n" +
-        //       "华重慢步走向厢房，楚归寒默默看着他的背影，月光下他的影子慢慢融入屋檐下。",
-        //   createTime: "2022-07-11T07:15:45.000+00:00",
-        //   likes: 0,
-        // }
-      ],
+      momentList: [],
       pageNum: 1,
       total: 1,
       pageSize: 1,
