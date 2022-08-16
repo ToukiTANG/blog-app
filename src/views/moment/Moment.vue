@@ -225,6 +225,10 @@ export default {
   z-index: 0;
 }
 
+.typo {
+  margin: 20px 0;
+}
+
 .markdown-body >>> .v-show-content {
   padding: 15px !important;
 }
