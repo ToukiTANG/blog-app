@@ -7,6 +7,7 @@
     width: 100%;
     text-align: justify;
     word-wrap: break-word;
+    max-width: 846px;
 }
 
 .typo img {
@@ -181,7 +182,7 @@
 }
 
 /* 代码片断 */
-.typo p code, .typo ul code, .typo ol code {
+.typo p code:not([class*="language-"]), .typo ul code:not([class*="language-"]), .typo ol code:not([class*="language-"]) {
     margin-left: 3px;
     margin-right: 3px;
     border: 1px solid #ddd;
