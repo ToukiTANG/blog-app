@@ -41,7 +41,7 @@ export default {
   methods: {
     getBlogList(pageNum) {
       getBlogListByCategoryName(this.categoryName, pageNum).then(res => {
-        this.blogList = res.data.list
+        this.blogList = res.data.dataList
         this.total = res.data.total
         this.pageSize = res.data.pageSize
       }).catch(() => {

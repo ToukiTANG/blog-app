@@ -4,7 +4,7 @@
       <div class="content-top">
         <div class="content-top-item">
           <div class="new-blog-title" style="color: #d8d8d8">最新博客</div>
-          <router-link :to="`/blog/${blog.id}`" class="new-blog" v-for="(blog,index) in newBlogList" :key="index">{{
+          <router-link :to="`/blog/${blog.blogId}`" class="new-blog" v-for="(blog,index) in newBlogList" :key="index">{{
               blog.title
             }}
           </router-link>

@@ -8,7 +8,7 @@
       </div>
       <el-divider></el-divider>
       <div class="blog-container">
-        <div class="blog-item" v-for="blog in randomBlogList" :key="blog.id" @click="view(blog.id)">
+        <div class="blog-item" v-for="blog in randomBlogList" :key="blog.blogId" @click="view(blog.blogId)">
           <img :src="blog.firstPicture?blog.firstPicture:default_img" alt="">
           <div class="blog-info">
             <div class="date">{{ blog.createTime|timeFormat("yyyy-MM-DD") }}</div>
@@ -54,8 +54,8 @@ export default {
     },
   },
   methods: {
-    view(id) {
-      this.$router.push(`/blog/${id}`)
+    view(blogId) {
+      this.$router.push(`/blog/${blogId}`)
     }
   },
 }

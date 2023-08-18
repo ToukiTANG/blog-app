@@ -43,7 +43,7 @@ const router = new VueRouter({
                     meta: {title: "关于"}
                 },
                 {
-                    path: '/blog/:id',
+                    path: '/blog/:blogId',
                     name: 'blog',
                     component: () => import('@/views/blog/Blog'),
                     meta: {title: "博客"}

@@ -49,7 +49,7 @@
       <el-divider></el-divider>
       <!--标签-->
       <div class="blog-footer">
-        <el-tag v-for="t in blog.tags" :key="t.id" :class="colorObj[Math.round(Math.random()*4)]">
+        <el-tag v-for="t in blog.tags" :key="t.tagId" :class="colorObj[Math.round(Math.random()*4)]">
           <router-link :to="`/tag/${t.tagName}`">{{ t.tagName }}</router-link>
         </el-tag>
       </div>
@@ -89,8 +89,8 @@ export default {
     ...mapState(["colorObj", "siteInfo", "focusMode"])
   },
   methods: {
-    getBlog(id = this.$route.params.id) {
-      getBlog(id).then((res) => {
+    getBlog(blogId = this.$route.params.blogId) {
+      getBlog(blogId).then((res) => {
         this.blog = res.data
         document.title = this.blog.title + this.siteInfo.webTitleSuffix
         //v-html渲染完成后再渲染代码块样式
@@ -129,7 +129,7 @@ export default {
     //当在文章页面跳转到其他文章页面时应该重新获取文章
     if (to.path !== from.path) {
       this.$store.commit(SET_FOCUS_MODE, false)
-      this.getBlog(to.params.id)
+      this.getBlog(to.params.blogId)
       //只要路由路径有改变，且停留在当前Blog组件内，就把文章的渲染完成状态置为 false
       this.$store.commit(SET_IS_BLOG_RENDER_COMPLETE, false)
       next()

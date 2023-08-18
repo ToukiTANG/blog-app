@@ -21,7 +21,6 @@ requests.interceptors.request.use((config) => {
 //响应拦截器
 requests.interceptors.response.use((res) => {
     NProgress.done()
-    // console.log(res)
     //成功的回调
     if (res.status !== 200) {
         return Promise.reject("error")

@@ -10,7 +10,7 @@
           <!--标题-->
           <div class="blog-title">
             <h2>
-              <router-link :to="`/blog/${blog.id}`">{{ blog.title }}</router-link>
+              <router-link :to="`/blog/${blog.blogId}`">{{ blog.title }}</router-link>
             </h2>
           </div>
           <!--简略信息图标-->
@@ -44,12 +44,12 @@
           </div>
           <!--阅读全文按钮-->
           <div class="blog-reading">
-            <el-button @click="view(blog.id)" type="primary" round size="small">阅读全文</el-button>
+            <el-button @click="view(blog.blogId)" type="primary" round size="small">阅读全文</el-button>
           </div>
           <el-divider></el-divider>
           <!--标签-->
           <div class="blog-footer">
-            <el-tag v-for="t in blog.tags" :key="t.id" :class="colorObj[Math.round(Math.random()*4)]">
+            <el-tag v-for="t in blog.tags" :key="t.tagId" :class="colorObj[Math.round(Math.random()*4)]">
               <router-link :to="`/tag/${t.tagName}`">{{ t.tagName }}</router-link>
             </el-tag>
           </div>
@@ -77,8 +77,8 @@ export default {
     ...mapState(["colorObj"])
   },
   methods: {
-    view(id) {
-      this.$router.push(`/blog/${id}`)
+    view(blogId) {
+      this.$router.push(`/blog/${blogId}`)
     },
   },
 };
