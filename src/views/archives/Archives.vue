@@ -9,11 +9,11 @@
           <div class="timeline-header" :class="colorObj[index%5]">
             <router-link :to="`/archive/${key}`" class="date">{{ key }}</router-link>
           </div>
-          <div v-for="item in value" :key="item.id">
+          <div v-for="item in value" :key="item.blogId">
             <div class="timeline-item">
               <div class="wrap" :class="colorObj[index%5]">
                 <span class="day">{{ item.day }}日</span>
-                <router-link :to="`/blog/${item.id}`">
+                <router-link :to="`/blog/${item.blogId}`">
                   <div class="title" :class="colorObj[index%5]">{{ item.title }}</div>
                 </router-link>
               </div>
@@ -104,7 +104,7 @@ export default {
     getBlogList(pageNum) {
       getBlogListByYearMonth(pageNum, this.yearMonth).then(res => {
         this.total = res.data.total
-        this.blogList = res.data.list
+        this.blogList = res.data.dataList
       }).catch(() => {
         Message({type: "error", message: "好像哪里出了问题呢，请重试！", showClose: true})
       })

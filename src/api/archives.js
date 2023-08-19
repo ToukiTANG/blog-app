@@ -2,14 +2,14 @@ import request from "@/api/request";
 
 export function getArchives() {
     return request({
-        url: "/archives",
+        url: "/archive",
         method: "GET",
     })
 }
 
 export function getBlogListByYearMonth(pageNum, yearMonth) {
     return request({
-        url: "/archive",
+        url: "/archive/yearMonth",
         method: "GET",
         params: {
             pageNum,
