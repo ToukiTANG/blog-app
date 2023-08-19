@@ -1,11 +1,11 @@
 import request from "@/api/request";
 
-export function getBlogListByTagName(tagName, pageNum) {
+export function getBlogListByTagId(tagId, pageNum) {
     return request({
         url: "/tag",
         method: "GET",
         params: {
-            tagName,
+            tagId,
             pageNum
         }
     })

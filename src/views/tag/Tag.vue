@@ -1,7 +1,7 @@
 <template>
   <div class="tag">
     <el-card shadow="always">
-      <h2 class="tag-name">标签{{ tagName }}下的文章</h2>
+      <h2 class="tag-name">标签{{ tag.tagName }}下的文章</h2>
     </el-card>
     <articles :getBlogList="getBlogList" :blogList="blogList" :total="total" :pageSize="pageSize"></articles>
   </div>
@@ -9,7 +9,7 @@
 
 <script>
 import Articles from "@/components/blog/Blogs";
-import {getBlogListByTagName} from "@/api/tag";
+import {getBlogListByTagId, getBlogListByTagName} from "@/api/tag";
 import {Message} from "element-ui";
 
 export default {
@@ -20,12 +20,13 @@ export default {
     return {
       blogList: [],
       total: 0,
-      pageSize: 0
+      pageSize: 0,
+      tag: null
     }
   },
   computed: {
-    tagName() {
-      return this.$route.params.name
+    tagId() {
+      return this.$route.params.tagId
     }
   },
   watch: {
@@ -39,9 +40,10 @@ export default {
   },
   methods: {
     getBlogList(pageNum) {
-      getBlogListByTagName(this.tagName, pageNum).then((res) => {
-        this.blogList = res.data.list
-        this.total = res.data.total
+      getBlogListByTagId(this.tagId, pageNum).then((res) => {
+        this.blogList = res.data.blogInfoPage.dataList
+        this.tag=res.data.tag
+        this.total = res.data.blogInfoPage.total
         this.pageSize = res.data.pageSize
       }).catch(() => {
         Message({type: "error", message: "Tag标签加载失败，请重试！", showClose: true})

@@ -1,7 +1,7 @@
 <template>
   <div class="category">
     <el-card shadow="always">
-      <h2 class="category-name">分类{{ categoryName }}下的文章</h2>
+      <h2 class="category-name">分类{{ category.categoryName }}下的文章</h2>
     </el-card>
     <articles :getBlogList="getBlogList" :blogList="blogList" :total="total" :pageSize="pageSize"></articles>
   </div>
@@ -10,7 +10,7 @@
 
 <script>
 import Articles from "@/components/blog/Blogs";
-import {getBlogListByCategoryName} from "@/api/category";
+import {getBlogListByCategoryId, getBlogListByCategoryName} from "@/api/category";
 import {Message} from "element-ui";
 
 export default {
@@ -21,7 +21,8 @@ export default {
     return {
       blogList: [],
       total: 0,
-      pageSize: 0
+      pageSize: 0,
+      category: null
     }
   },
   watch: {
@@ -34,15 +35,16 @@ export default {
     }
   },
   computed: {
-    categoryName() {
-      return this.$route.params.name
+    categoryId() {
+      return this.$route.params.categoryId
     }
   },
   methods: {
     getBlogList(pageNum) {
-      getBlogListByCategoryName(this.categoryName, pageNum).then(res => {
-        this.blogList = res.data.dataList
-        this.total = res.data.total
+      getBlogListByCategoryId(this.categoryId, pageNum).then(res => {
+        this.blogList = res.data.blogInfoPage.dataList
+        this.category=res.data.category
+        this.total = res.data.blogInfoPage.total
         this.pageSize = res.data.pageSize
       }).catch(() => {
         Message({type: "error", message: "分类文章加载失败，请重试！", showClose: true})

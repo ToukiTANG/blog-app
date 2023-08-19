@@ -19,7 +19,7 @@ const router = new VueRouter({
                     meta: {title: "首页"}
                 },
                 {
-                    path: '/category/:name',
+                    path: '/category/:categoryId',
                     name: 'category',
                     component: () => import('@/views/category/Category'),
                     meta: {title: "分类"}
@@ -49,7 +49,7 @@ const router = new VueRouter({
                     meta: {title: "博客"}
                 },
                 {
-                    path: '/tag/:name',
+                    path: '/tag/:tagId',
                     name: 'tag',
                     component: () => import('@/views/tag/Tag'),
                     meta: {title: "标签"}

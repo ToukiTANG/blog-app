@@ -12,7 +12,7 @@ export function getBlog(blogId) {
 
 export function getSearchBlogList(queryString) {
     return request({
-        url: '/searchBlog',
+        url: 'blog/searchBlog',
         method: 'GET',
         params: {
             queryString

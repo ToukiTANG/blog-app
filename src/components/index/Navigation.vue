@@ -21,7 +21,7 @@
                 v-for="item in categoryList"
                 :key="item.id"
             >
-              <router-link :to="`/category/${item.categoryName}`">{{ item.categoryName }}</router-link>
+              <router-link :to="`/category/${item.categoryId}`">{{ item.categoryName }}</router-link>
             </li>
           </ul>
         </div>
@@ -57,7 +57,7 @@
     >
       <template slot-scope="{ item }">
         <div class="title">{{ item.title }}</div>
-        <span class="content">{{ item.content }}</span>
+        <span class="content">{{ item.contentText }}</span>
       </template>
     </el-autocomplete>
   </div>
@@ -128,8 +128,8 @@ export default {
       })
     },
     handleSelect(item) {
-      if (item.id) {
-        this.$router.push(`/blog/${item.id}`)
+      if (item.blogId) {
+        this.$router.push(`/blog/${item.blogId}`)
       }
     }
   },
