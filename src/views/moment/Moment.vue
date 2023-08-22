@@ -17,8 +17,8 @@
             </div>
             <div class="typo match-braces rainbow-braces" v-html="moment.content"></div>
             <div class="bottom">
-              <font-awesome-icon @click="like(moment.id)" icon="fa-regular fa-heart" size="xs"
-                                 :class="isLike(moment.id)?'red':''"/>
+              <font-awesome-icon @click="like(moment.momentId)" icon="fa-regular fa-heart" size="xs"
+                                 :class="isLike(moment.momentId)?'red':''"/>
               {{ moment.likes }}
             </div>
           </div>
@@ -72,7 +72,7 @@ export default {
   methods: {
     getMomentList() {
       getMomentList(this.pageNum).then(res => {
-        this.momentList = res.data.list
+        this.momentList = res.data.dataList
         this.total = res.data.total
         this.pageSize = res.data.pageSize
         //Prism需要手动渲染
@@ -88,18 +88,18 @@ export default {
       this.pageNum = newPage
       this.getMomentList();
     },
-    like(id) {
-      if (this.likeMomentIds.indexOf(id) > -1) {
+    like(momentId) {
+      if (this.likeMomentIds.indexOf(momentId) > -1) {
         //两秒后关闭
         Notification.warning({title: "注意", message: "你已经点过赞了哦！", duration: 3000})
         return
       }
-      likeMoment(id).then(() => {
+      likeMoment(momentId).then(() => {
         Notification.success({title: "成功", message: "点赞成功！", duration: 3000})
-        this.likeMomentIds.push(id)
+        this.likeMomentIds.push(momentId)
         //成功后要更新本地的moment情况（因为此时没有请求momentList，likes需要手动更新）
         this.momentList.forEach(item => {
-          if (item.id === id) {
+          if (item.momentId === momentId) {
             return item.likes++
           }
         })

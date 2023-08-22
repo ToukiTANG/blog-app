@@ -44,13 +44,13 @@
       </div>
       <!--正文-->
       <div class="blog-content">
-        <div class="typo js-toc-content match-braces rainbow-braces" v-html="blog.content"></div>
+        <div class="typo js-toc-content match-braces rainbow-braces" v-html="blog.content.text"></div>
       </div>
       <el-divider></el-divider>
       <!--标签-->
       <div class="blog-footer">
         <el-tag v-for="t in blog.tags" :key="t.tagId" :class="colorObj[Math.round(Math.random()*4)]">
-          <router-link :to="`/tag/${t.tagName}`">{{ t.tagName }}</router-link>
+          <router-link :to="`/tag/${t.tagId}`">{{ t.tagName }}</router-link>
         </el-tag>
       </div>
     </el-card>

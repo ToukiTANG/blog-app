@@ -31,7 +31,7 @@
           </div>
           <!--分类标签-->
           <div class="category-tag">
-            <router-link :to="`/category/${blog.category.categoryName}`">
+            <router-link :to="`/category/${blog.category.categoryId}`">
               <font-awesome-icon icon="fa-solid fa-folder-open" size="sm"></font-awesome-icon>
               {{ blog.category.categoryName }}
             </router-link>
@@ -50,7 +50,7 @@
           <!--标签-->
           <div class="blog-footer">
             <el-tag v-for="t in blog.tags" :key="t.tagId" :class="colorObj[Math.round(Math.random()*4)]">
-              <router-link :to="`/tag/${t.tagName}`">{{ t.tagName }}</router-link>
+              <router-link :to="`/tag/${t.tagId}`">{{ t.tagName }}</router-link>
             </el-tag>
           </div>
         </div>
