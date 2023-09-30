@@ -1,7 +1,7 @@
 <template>
   <div class="tag">
     <el-card shadow="always">
-      <h2 class="tag-name">标签{{ tag.tagName }}下的文章</h2>
+      <h2 class="tag-name">标签『{{ tag.tagName }}』下的文章</h2>
     </el-card>
     <articles :getBlogList="getBlogList" :blogList="blogList" :total="total" :pageSize="pageSize"></articles>
   </div>

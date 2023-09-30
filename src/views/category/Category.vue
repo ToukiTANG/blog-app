@@ -1,7 +1,7 @@
 <template>
   <div class="category">
     <el-card shadow="always">
-      <h2 class="category-name">分类{{ category.categoryName }}下的文章</h2>
+      <h2 class="category-name">分类『{{ category.categoryName }}』下的文章</h2>
     </el-card>
     <articles :getBlogList="getBlogList" :blogList="blogList" :total="total" :pageSize="pageSize"></articles>
   </div>

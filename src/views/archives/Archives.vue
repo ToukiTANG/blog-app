@@ -1,7 +1,7 @@
 <template>
   <div class="archives">
     <el-card shadow="always" v-show="!yearMonth">
-      <h2 class="category-name">当前共{{ count }}篇文章</h2>
+      <h2 class="category-name">当前共『{{ count }}』篇文章</h2>
       <div class="count-text">点击日期标签查看当月文章列表或点击文章标签查看详情</div>
       <el-divider></el-divider>
       <div class="timeline">
@@ -26,7 +26,7 @@
       </div>
     </el-card>
     <el-card v-show="yearMonth">
-      <h2>{{ yearMonth }}的文章</h2>
+      <h2>『{{ yearMonth }}』的文章</h2>
     </el-card>
     <blogs v-show="yearMonth" :blogList="blogList" :total="total"></blogs>
   </div>
