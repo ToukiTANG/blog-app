@@ -43,7 +43,7 @@
         </router-link>
       </div>
       <!--正文-->
-      <div class="blog-content">
+      <div class="blog-content" v-if="blog.content">
         <div class="typo js-toc-content match-braces rainbow-braces" v-html="blog.content.text"></div>
       </div>
       <el-divider></el-divider>

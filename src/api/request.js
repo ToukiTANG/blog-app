@@ -13,6 +13,11 @@ requests.interceptors.request.use((config) => {
     //nprogress进度条
     NProgress.start()
     //config中可以配置请求头Header
+    const identification = window.localStorage.getItem('identification')
+    //identification存在，且是基于baseURL的请求
+    if (identification && !(config.url.startsWith('http://') || config.url.startsWith('https://'))) {
+        config.headers.identification = identification
+    }
     return config
 }, error => {
     NProgress.done()
@@ -25,6 +30,12 @@ requests.interceptors.response.use((res) => {
     if (res.status !== 200) {
         return Promise.reject("error")
     } else {
+        const identification = res.headers.identification
+        if (identification) {
+            //保存身份标识到localStorage
+            window.localStorage.setItem('identification', identification)
+        }
+
         return res.data
     }
 }, () => {
