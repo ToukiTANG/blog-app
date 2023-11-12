@@ -1,5 +1,5 @@
 <template>
-  <div class="blog">
+  <div class="blog" v-viewer>
     <div class="blog-top" v-if="blog.top">
       <font-awesome-icon icon="fa-solid fa-circle-up" size="lg"></font-awesome-icon>
     </div>
