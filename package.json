@@ -17,7 +17,7 @@
     "core-js": "^3.8.3",
     "element-ui": "^2.15.9",
     "mavon-editor": "^2.10.4",
-    "moment": "^2.29.4",
+    "moment": "^2.30.1",
     "nprogress": "^0.2.0",
     "v-viewer": "^1.6.4",
     "vue": "^2.6.14",

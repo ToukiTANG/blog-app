@@ -30,7 +30,6 @@ module.exports = defineConfig({
             externals:{
                 vue:"Vue",
                 'element-ui':"ELEMENT",
-                moment:"moment",
                 'vue-router':"VueRouter",
                 vuex:"Vuex",
                 axios:"axios"
